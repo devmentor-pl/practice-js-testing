@@ -19,7 +19,13 @@ function getProductList() {
 function getTotalPrice(productList) {
     return productList.reduce((acc, product) => {
         let productPrice = (product.price * product.count * (1-product.discount));
-        return acc + productPrice;
+        console.log(productPrice);
+        acc += productPrice;
+        console.log(acc);
+        
+        // MATEUSZ
+        // dlaczego ta funkcja (reduce) rozpoczęła drugiego loopa skoro wcześniej wpadła na "return"? 
+        return acc
     }, 0);
 }
 
