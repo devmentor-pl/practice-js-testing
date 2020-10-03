@@ -16,4 +16,4 @@ export default function randomArray(min, max) {
         }
         return array;
     }
-}
+};
