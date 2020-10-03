@@ -2,14 +2,14 @@ export default class DB {
     constructor() {
         this._rows = [];
     }
-
+    
     insert(data) {
         return new Promise((resolve, reject) => {
             if(data.id) {
                 if(typeof data.id !== 'number') {
                     this.async(reject,'ID can be only number!');
                 }
-    
+
                 if(this._rows.some(item => item.id === data.id)) {
                     this.async(reject, 'ID can\'t be duplicated!');
                 }
@@ -46,7 +46,7 @@ export default class DB {
                 const lengthBeforeFilter = this._rows.length;
                 this._rows = this._rows.filter(item => item.id !== id);
                 const lengthAfterFilter = this._rows.length;
-                
+
                 if(lengthBeforeFilter === lengthAfterFilter) {
                     reject('Item not exist!');
                 } else {
@@ -69,7 +69,7 @@ export default class DB {
                         updated = data
                         return updated;
                     }
-        
+
                     return item;
                 });
 
@@ -88,7 +88,7 @@ export default class DB {
                 this._rows = [];
                 resolve(true);
             });
-            
+
         })
     }
 
