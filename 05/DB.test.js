@@ -23,7 +23,6 @@ describe('Running tests for class DB', () => {
       function createFakeDatabaseAndData() {
         const newDB = new DB();
         const data = {
-          id: 222,
           type: 'CD',
           yearInvented: 1982,
         };
@@ -32,40 +31,72 @@ describe('Running tests for class DB', () => {
       expect(createFakeDatabaseAndData).toBeInstanceOf(Object)
     });
 
-    it("checks if ID is a number", () => {
-      function createFakeDatabaseAndData() {
-        const newDB = new DB();
-        const data = {
-          id: 222,
-          type: 'CD',
-          yearInvented: 1982,
-        };
-        
-      }
-      expect(createFakeDatabaseAndData).toBe('222')
-    });
 
-    it("checks if ID is NOT a string", () => {
+    it("should resolve if data.id is not passed", () => {
       const newDB = new DB();
-      expect(newDB._rows.length).toBe(0);
+      expect(newDB.insert()).resolves.toEqual({});
     });
 
-  });
+    it("should reject with error if data.id is a not number", () => {
+        // given
+        function funFun() {
+          const newDB = new DB();
+          const data = {
+            id: 'word',
+            region: 'pl',
+            type: 'CD'
+          }
+          const promise = newDB.insert(data);
+          return promise;
+        }
+
+        funFun().then(result => {
+          expect(result).rejects.toMatch('ID can be only number!');
+          // expect(result).rejects.toMatch('ID can be only number!');
+        })
+    })
+  })
 
   describe('SELECT() method tests will follow', () => {
 
-  });
+    it("should reject if id is not passed", () => {
+
+    });
+
+    it('rejects if ID is not a number', () => {
+        // nie jestem pewien tego warunku
+    });
+  })
 
   describe('REMOVE() method tests will follow', () => {
 
-  });
+    it("should reject if ID is not passed", () => {
+
+    });
+
+    it('rejects if ID is not in the array', () => {
+
+    });
+
+    it('resolves when item exists in the array ', () => {
+
+    });
+  })
   describe('UPDATE() method tests will follow', () => {
 
-  });
-  describe('TRUNCATE() function', () => {
+    it("should reject if data is not passed", () => {
 
-  });
-  describe('async CALLBACK method tests will follow', () => {
+    });
 
-  });
+    it('resolve if ID match ID of data already exisiting in DB', () => {
+
+    });
+  })
+
+  describe('TRUNCATE() method tests will follow', () => {
+
+    it("should resolve every time it is called", () => {
+
+    });
+  })
 });

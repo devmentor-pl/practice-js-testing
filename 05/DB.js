@@ -31,6 +31,7 @@ export default class DB {
         return new Promise((resolve, reject) => {
             this.async(() => {
                 const [row = null] = this._rows.filter(item => item.id === id);
+
                 if(row) {
                     resolve(row);
                 } else {
@@ -66,7 +67,7 @@ export default class DB {
                 let updated = null;
                 this._rows = this._rows.map(item => {
                     if(item.id === data.id) {
-                        updated = data
+                        updated = data;
                         return updated;
                     }
 
@@ -82,13 +83,13 @@ export default class DB {
         });
     }
 
+    // TRUNCATE TABLE command deletes the data inside a table, but not the table itself. 
     truncate() {
         return new Promise(resolve => {
             this.async(() => {
                 this._rows = [];
                 resolve(true);
             });
-
         })
     }
 
