@@ -83,7 +83,7 @@ export default class DB {
         });
     }
 
-    // TRUNCATE TABLE command deletes the data inside a table, but not the table itself. 
+    // TRUNCATE powoduje szybkie usunięcie danych z tabeli, zazwyczaj z pominięciem mechanizmów wymuszających integralność danych
     truncate() {
         return new Promise(resolve => {
             this.async(() => {
@@ -99,3 +99,15 @@ export default class DB {
         }, Math.random() * 100);
     }
 }
+
+
+// CALLBACK =
+// () => {
+//     const [row = null] = this._rows.filter(item => item.id === id);
+
+//     if (row) {
+//         resolve(row);
+//     } else {
+//         reject('ID not found');
+//     }
+// })

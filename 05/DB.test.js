@@ -19,7 +19,7 @@ describe('Running tests for class DB', () => {
 
   describe('INSERT() method tests will follow', () => {
 
-    it("checks if data that has been passed into the insert() is type object", () => {
+    it("Checks if data that has been passed into the insert() is type object", () => {
       function createFakeDatabaseAndData() {
         const newDB = new DB();
         const data = {
@@ -32,71 +32,88 @@ describe('Running tests for class DB', () => {
     });
 
 
-    it("should resolve if data.id is not passed", () => {
-      const newDB = new DB();
-      expect(newDB.insert()).resolves.toEqual({});
-    });
-
-    it("should reject with error if data.id is a not number", () => {
+    // it("Should resolve if data.id is not passed", () => {
+    //   const newDB = new DB();
+    //   expect(newDB.insert()).resolves.toEqual({});
+    // });    
+    
+    it("Should resolve if ID is a number", () => {
         // given
-        function funFun() {
-          const newDB = new DB();
-          const data = {
-            id: 'word',
-            region: 'pl',
-            type: 'CD'
-          }
-          const promise = newDB.insert(data);
-          return promise;
+        // I expect to get receive a Promise form insert();
+        const newDB = new DB();
+        const data = {
+          id: 2222,
+          region: 'pl',
+          type: 'CD'
         }
+        newDB.insert(data).then(id => expect(id).toEqual(2222))
+     
+        // return expect(newDB.insert(data)).resolves.toEqual(2222) // Doesnt work. Why?
 
-        funFun().then(result => {
-          expect(result).rejects.toMatch('ID can be only number!');
-          // expect(result).rejects.toMatch('ID can be only number!');
-        })
     })
+
+
+    it('Rejects the promise if data.id is not a number', () => {
+      
+      // expect.assertions(1);
+      const newDB = new DB();
+      const data = {
+        id: 's',
+        region: 'pl',
+        type: 'CD'
+      }
+      newDB.insert(data).catch(e => expect(e).toEqual('ID can be only number!'));
+    });
   })
 
   describe('SELECT() method tests will follow', () => {
 
-    it("should reject if id is not passed", () => {
+    it("Throws if ID is not passed", async () => {
 
+      const dataBase = new DB();
+    
+      // const result = await dataBase.select();
+      const result = dataBase.select();
+      // return result.catch(e => expect(e).toEqual({error: 'ID not found'}));
+      await expect(result).rejects.toEqual('ID not found')
     });
 
-    it('rejects if ID is not a number', () => {
-        // nie jestem pewien tego warunku
-    });
+    // it('resolves when ID exists in database', () => {
+    //     // nie jestem pewien tego warunku
+    // });
   })
 
-  describe('REMOVE() method tests will follow', () => {
+  // describe('REMOVE() method tests will follow', () => {
 
-    it("should reject if ID is not passed", () => {
+  //   it("should reject if ID is not passed", () => {
 
-    });
+  //   });
 
-    it('rejects if ID is not in the array', () => {
+  //   it('rejects if ID is not in the array', () => {
 
-    });
+  //   });
 
-    it('resolves when item exists in the array ', () => {
+  //   it('resolves when item exists in the array ', () => {
 
-    });
-  })
-  describe('UPDATE() method tests will follow', () => {
+  //   });
+  // })
 
-    it("should reject if data is not passed", () => {
+  // describe('UPDATE() method tests will follow', () => {
 
-    });
+  //   it("should reject if data is not passed", () => {
 
-    it('resolve if ID match ID of data already exisiting in DB', () => {
+  //   });
 
-    });
-  })
+  //   it('resolve if ID match ID of data already exisiting in DB', () => {
 
-  describe('TRUNCATE() method tests will follow', () => {
+  //   });
+  // })
 
-    it("should resolve every time it is called", () => {
+  // describe('TRUNCATE() method tests will follow', () => {
 
-    });
-  })
+  //   it("should resolve every time it is called", () => {
+
+  //   });
+  // })
+
 });

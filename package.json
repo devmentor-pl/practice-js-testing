@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "test-03": "jest 03/ --watch --coverage",
     "test-04": "jest 04/ --watch --coverage",
-    "test-05": "jest 05/ --watch --coverage"
+    "test-05": "jest 05/ --watch"
   },
   "keywords": [],
   "author": "",
