@@ -51,7 +51,7 @@ export default class DB {
                 if(lengthBeforeFilter === lengthAfterFilter) {
                     reject('Item not exist!');
                 } else {
-                    resolve('Item was remove!');
+                    resolve('Item was removed!');
                 }
             });
         });
@@ -96,6 +96,6 @@ export default class DB {
     async(callback, ...params) {
         setTimeout(() => {
             callback(...params);
-        }, Math.random() * 100);
+        }, Math.random() * 60);
     }
 }
