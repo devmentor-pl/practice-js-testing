@@ -68,26 +68,49 @@ describe('Running tests for class DB', () => {
 
   describe('SELECT() method tests will follow', () => {
 
-    it("Throws if ID is not passed", async () => {
+    // doesn't work
+    // it("Throws if ID is not passed or not in the database", async () => {
+
+    //   const dataBase = new DB();
+    //   const result = await dataBase.select();
+
+    //   expect(result).rejects.toEqual('ID not found')
+    // });
+
+    it("Throws if ID is not passed or not in the database", () => {
 
       const dataBase = new DB();
-    
-      // const result = await dataBase.select();
       const result = dataBase.select();
-      // return result.catch(e => expect(e).toEqual({error: 'ID not found'}));
-      await expect(result).rejects.toEqual('ID not found')
+      
+      return result.catch(e => expect(e).toBe('ID not found'))
     });
 
-    // it('resolves when ID exists in database', () => {
-    //     // nie jestem pewien tego warunku
-    // });
+    it('resolves if ID exists in database', async () => {
+
+      function populateFakeDataAndRunSelectMethod() {
+        const dataBase = new DB();
+        const randomData = {
+          id: 2,
+          region: 'pl',
+          type: 'CD'
+        }
+        dataBase.insert(randomData)
+        const result = dataBase.select(2);
+        return result;
+      }
+
+      populateFakeDataAndRunSelectMethod().then(data => expect(data).toContain({
+        "id": 2, "region": "pl", "type": "CD"
+      }))
+
+    });
   })
 
-  // describe('REMOVE() method tests will follow', () => {
+  describe('REMOVE() method tests will follow', () => {
 
-  //   it("should reject if ID is not passed", () => {
+    it("should reject if ID is not passed", () => {
 
-  //   });
+    });
 
   //   it('rejects if ID is not in the array', () => {
 
@@ -96,7 +119,7 @@ describe('Running tests for class DB', () => {
   //   it('resolves when item exists in the array ', () => {
 
   //   });
-  // })
+  })
 
   // describe('UPDATE() method tests will follow', () => {
 

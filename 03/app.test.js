@@ -15,7 +15,7 @@ describe('randomArray() function', () => {
             const min = 3;
             const max = 33;
 
-            expect(typeof min).toBe('number');
+            expect(typeof min).toBe('number'); // no need to check that
             expect(typeof max).toBe('number');
             // expect(randomNumber(min, max)).toBe(99);
         });

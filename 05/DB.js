@@ -99,15 +99,3 @@ export default class DB {
         }, Math.random() * 100);
     }
 }
-
-
-// CALLBACK =
-// () => {
-//     const [row = null] = this._rows.filter(item => item.id === id);
-
-//     if (row) {
-//         resolve(row);
-//     } else {
-//         reject('ID not found');
-//     }
-// })
