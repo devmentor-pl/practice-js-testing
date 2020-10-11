@@ -13,12 +13,20 @@ function init() {
 }
 
 function setRandomPosition(element, error = null) {
+    try{
     element.style.top = Math.random() * 600 + 'px';
     element.style.left = Math.random() * 800 + 'px';
-
-    if(error) {
-        throw error;
     }
+    catch(e){
+        console.log('bbb')
+        throw(error)
+    }
+    finally{
+        console.log('aaa')
+    }
+    // if(error) {
+    //     throw error;
+    // }
 }
 
 function initEventWithError(element, eventName, error) {
