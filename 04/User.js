@@ -1,9 +1,11 @@
 export default class User {
     constructor(object) {
-        this.email = object.email;
-        this.password = object.password;
-        this.checkIfCorrectMail();
-        this.checkIfCorrectPass();
+
+        ({email: this.email, password: this.password} = object);
+        // this.email = object.email;
+        // this.password = object.password;
+        this.isEmailCorrect();
+        this.isPassCorrect();
     };
 
     getEmail() {
@@ -12,21 +14,27 @@ export default class User {
     getPassword() {
         return this.password;
     }
-    checkIfCorrectMail() {
-        if (!this.email.includes('@')) {
+    isEmailCorrect() {
+        if (this.email.includes('@')) {
+            return this.email;
+        } else {
             throw new TypeError('E-mail must contain @')
-        };
+        }
     }
-    checkIfCorrectPass() {
-        if (this.password.length <= 6 && this.password.includes(/\d+/)) {
+    isPassCorrect() {
+        const regex = /\d+/
+        if (this.password.length >= 6 && this.password.match(regex)) {
+            return true;
+        }
+        else {
             throw new TypeError('Pass must be longer than 6 letters and contain at least one digit')
         };
     }
-    login(){
+    login() {
         if (this.email.includes('devmentor.pl')) {
             return true;
         }
-        if (!this.email.includes('devmentor.pl')) {
+        else {
             return false;
         }
     }
