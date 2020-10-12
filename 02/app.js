@@ -33,14 +33,20 @@ function initEventWithError(element, eventName, error) {
 }
 
 function alertErrorToUser(error) {
-    const alertUser = alert(error.message);
+    const alertSection = document.querySelector('.alert');
+    const par = alertSection.querySelector('p')
+    par.innerText = error.message;
+    alertSection.classList.remove('alert--hidden');
+
+    hideAlert(alertSection);
+
+};
+
+function hideAlert(element) {
+    element.addEventListener('click', () => {
+        element.classList.add('alert--hidden')
+    })
 }
-
-// wiecej kodu nie pisalem bo nie wydaje mi się ze mozna z poziomu skryptu zamknac pop-upa.
-// wiecej info tutaj: https://stackoverflow.com/questions/463368/javascript-close-alert-box 
-// prosze o jakis feedback zebym się orientował (:
-
-
 
 
 

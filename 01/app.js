@@ -22,10 +22,8 @@ function getTotalPrice(productList) {
         console.log(productPrice);
         acc += productPrice;
         console.log(acc);
-        
-        // MATEUSZ
-        // dlaczego ta funkcja (reduce) rozpoczęła drugiego loopa skoro wcześniej wpadła na "return"? 
         return acc
+        // this function is executed once for every element from productList, that is why return doesn't break it
     }, 0);
 }
 
