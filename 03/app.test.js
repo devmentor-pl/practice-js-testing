@@ -11,12 +11,12 @@ describe('randomArray() function', () => {
             expect(randomArray).toBeDefined();
         });
 
-        it('checks if two arguments passed to the function are type of number', () => {
+        it('throws if min or max is undefined', () => {
             const min = 3;
-            const max = 33;
+            const max = undefined;
 
-            expect(typeof min).toBe('number'); // no need to check that
-            expect(typeof max).toBe('number');
+        expect(() => randomArray(min, max)).toThrow('min and max must be defined!');
+
             // expect(randomNumber(min, max)).toBe(99);
         });
         it('should throw error when min is lower than 0', () => {
@@ -33,14 +33,18 @@ describe('randomArray() function', () => {
             const min = 3;
             const max = 5;
             const outputArray = [5, 5, 5, 5];
-
             expect(randomArray(min, max)).toStrictEqual(outputArray);
         });
-        it('no parameters passed should return null', () => {
-            const min = undefined;
-            const max = undefined;
 
-            expect(randomArray(min, max)).toBe(null);
+        it('checks if array has a lenght of min', () => {
+            const min = 4;
+            const max = 5;
+            const outputArray = [5, 5, 5, 5, 5];
+            expect(randomArray(min, max).length).toBe(min+1)
+        });
+        
+        it('no parameters passed should return null', () => {
+            expect(() => randomArray()).toThrow();
         });
     })
 });
