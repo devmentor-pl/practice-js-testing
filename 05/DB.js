@@ -6,6 +6,7 @@ export default class DB {
     insert(data) {
         return new Promise((resolve, reject) => {
             if(data.id) {
+                console.log(data.id + ' dataId');
                 if(typeof data.id !== 'number') {
                     this.async(reject,'ID can be only number!');
                 }
@@ -59,7 +60,7 @@ export default class DB {
 
     update(data) {
         return new Promise((resolve, reject) => {
-            if(!data.id) {
+            if(data && !data.id) {
                 this.async(reject, 'ID have to be set!');
             }
 

@@ -77,29 +77,6 @@ describe('Running tests for class DB', () => {
     //   }
     //   return populateDB().then( () => console.log('he HE')).catch(err => expect(err).toThrow('ID can be only number!'))
     // });
-
-    // ***************
-    // ***VERSION 2***
-    // ***************
-
-    // it('Rejects the promise if data.id is not a number', async () => {
-
-    //   expect.assertions(1);
-
-    //     const newDataBase = new DB();
-    //     const randomData = {
-    //       id: 'e',
-    //       region: 'de',
-    //       availability: true,
-    //     }
-    //     const result = await newDataBase.insert(randomData);
-
-    //     return expect(result).rejects.toThrow('ID can be only number!')
-
-    //   // return populateDB().then( () => console.log('he HE')).catch(err => expect(err).toThrow('ID can be only number!'))
-    // });
-
-
     it('Rejects the promise if data.id is not a number', () => {
       expect.assertions(1);
       const newDataBase = new DB();
@@ -110,30 +87,30 @@ describe('Running tests for class DB', () => {
       }
       return expect(newDataBase.insert(randomData)).rejects.toMatch('ID can be only number!')
     });
-
   })
 
   describe('SELECT()', () => {
 
     it("Throws if ID is not passed or not in the database", () => {
+      expect.assertions(1);
       const dataBase = new DB();
       const result = dataBase.select();
       return result.catch(e => expect(e).toBe('ID not found'))
     });
 
-    it('resolves if ID exists in database', async () => {
-      function populateFakeDataAndRunSelectMethod() {
+    it('resolves if ID exists in database', () => {
+      async function populateFakeDataAndRunSelectMethod() {
         const dataBase = new DB();
         const randomData = {
           id: 2,
           region: 'pl',
           type: 'CD'
         }
-        dataBase.insert(randomData)
-        const result = dataBase.select(2);
+        await dataBase.insert(randomData)
+        const result = await dataBase.select(2);
         return result;
       }
-      populateFakeDataAndRunSelectMethod().then(data => expect(data).toContain({
+      return populateFakeDataAndRunSelectMethod().then(data => expect(data).toMatchObject({
         "id": 2,
         "region": "pl",
         "type": "CD"
@@ -145,6 +122,7 @@ describe('Running tests for class DB', () => {
   describe('REMOVE()', () => {
 
     it('rejects when no ID passed', async () => {
+      expect.assertions(1);
       const subject = new DB();
       try {
         await subject.remove();
@@ -160,9 +138,7 @@ describe('Running tests for class DB', () => {
         region: 'pl'
       };
 
-      subject.insert(randomData);
-      console.log(subject._rows); // czemu tutaj dostaję UNDEFINED?
-
+      await subject.insert(randomData);
       const toRemove = await subject.remove(2);
       expect(toRemove).toEqual('Item was removed!')
     })
@@ -186,7 +162,7 @@ describe('Running tests for class DB', () => {
       }
     });
 
-    it('updates if ID match ID of data already exisiting in DB', async () => {
+    it('updates if ID exists in DB', async () => {
       const subject = new DB();
       subject._rows[0] = {
         "id": 99,
