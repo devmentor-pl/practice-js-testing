@@ -24,16 +24,17 @@ describe('Running tests for class DB', () => {
 
   describe('INSERT()', () => {
 
-    it("Checks if data that has been passed into the insert() is type object", () => {
+    it("Checks if data that has been passed into the insert() returns accurate value (2)", () => {
       function createFakeDatabaseAndData() {
         const newDB = new DB();
         const data = {
           type: 'CD',
           yearInvented: 1982,
+          id: 2
         };
-        newDB.insert(data);
+        return newDB.insert(data);
       }
-      expect(createFakeDatabaseAndData).toBeInstanceOf(Object)
+      return createFakeDatabaseAndData().then(id => expect(id).toBe(2))
     });
 
 
@@ -46,24 +47,70 @@ describe('Running tests for class DB', () => {
         region: 'pl',
         type: 'CD'
       }
-      newDB.insert(data).then(id => expect(id).toEqual(2222))
+      return expect(newDB.insert(data)).resolves.toEqual(2222) // mycode, should work propely
 
-      // return expect(newDB.insert(data)).resolves.toEqual(2222) // Doesnt work. Why?
 
+      // NOTES BELOW
+      // newDB.insert(data).then(id => expect(id).toEqual(2222)) // my code - wrong.
+      // !!! jak zwracana jest obietnica (a .insert()zwraca obietnicę) to zawsze powinniśmy wykorzystać return!!!
+      // return newDB.insert().then( id => expect(id).toEqual(2222)) // Mateusz proposition
     })
+
+    // ***************
+    // ***VERSION 1***
+    // ***************
+
+    // it('Rejects the promise if data.id is not a number', async () => {
+
+    //   expect.assertions(1);
+
+    //   async function populateDB() {
+
+    //     const newDataBase = new DB();
+    //     const randomData = {
+    //       id: 'e',
+    //       region: 'de',
+    //       availability: true,
+    //     }
+    //     return newDataBase.insert(randomData);
+
+    //   }
+    //   return populateDB().then( () => console.log('he HE')).catch(err => expect(err).toThrow('ID can be only number!'))
+    // });
+
+    // ***************
+    // ***VERSION 2***
+    // ***************
+
+    // it('Rejects the promise if data.id is not a number', async () => {
+
+    //   expect.assertions(1);
+
+    //     const newDataBase = new DB();
+    //     const randomData = {
+    //       id: 'e',
+    //       region: 'de',
+    //       availability: true,
+    //     }
+    //     const result = await newDataBase.insert(randomData);
+
+    //     return expect(result).rejects.toThrow('ID can be only number!')
+
+    //   // return populateDB().then( () => console.log('he HE')).catch(err => expect(err).toThrow('ID can be only number!'))
+    // });
 
 
     it('Rejects the promise if data.id is not a number', () => {
-
-      // expect.assertions(1);
-      const newDB = new DB();
-      const data = {
-        id: 's',
-        region: 'pl',
-        type: 'CD'
+      expect.assertions(1);
+      const newDataBase = new DB();
+      const randomData = {
+        id: 'e',
+        region: 'de',
+        availability: true,
       }
-      newDB.insert(data).catch(e => expect(e).toEqual('ID can be only number!'));
+      return expect(newDataBase.insert(randomData)).rejects.toMatch('ID can be only number!')
     });
+
   })
 
   describe('SELECT()', () => {
@@ -147,11 +194,11 @@ describe('Running tests for class DB', () => {
         "type": "CD"
       }
       const updateMe = {
-          "id": 99,
-          "region": "usa",
-          "type": "CD"
+        "id": 99,
+        "region": "usa",
+        "type": "CD"
       };
-      
+
       const result = await subject.update(updateMe);
       expect(result).toBe(updateMe);
     });
