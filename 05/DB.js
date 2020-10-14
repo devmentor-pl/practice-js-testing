@@ -6,9 +6,9 @@ export default class DB {
     insert(data) {
         return new Promise((resolve, reject) => {
             if(data.id) {
-                console.log(data.id + ' dataId');
                 if(typeof data.id !== 'number') {
                     this.async(reject,'ID can be only number!');
+                    return null;
                 }
 
                 if(this._rows.some(item => item.id === data.id)) {
@@ -71,14 +71,12 @@ export default class DB {
                         updated = data;
                         return updated;
                     }
-
                     return item;
                 });
 
                 if(updated) {
                     resolve(data);
                 }
-
                 reject('ID not found!');
             });
         });

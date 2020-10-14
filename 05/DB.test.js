@@ -1,7 +1,5 @@
 import DB from './DB';
 
-
-
 describe('Running tests for class DB', () => {
 
   describe('checking class', () => {
@@ -55,28 +53,6 @@ describe('Running tests for class DB', () => {
       // !!! jak zwracana jest obietnica (a .insert()zwraca obietnicę) to zawsze powinniśmy wykorzystać return!!!
       // return newDB.insert().then( id => expect(id).toEqual(2222)) // Mateusz proposition
     })
-
-    // ***************
-    // ***VERSION 1***
-    // ***************
-
-    // it('Rejects the promise if data.id is not a number', async () => {
-
-    //   expect.assertions(1);
-
-    //   async function populateDB() {
-
-    //     const newDataBase = new DB();
-    //     const randomData = {
-    //       id: 'e',
-    //       region: 'de',
-    //       availability: true,
-    //     }
-    //     return newDataBase.insert(randomData);
-
-    //   }
-    //   return populateDB().then( () => console.log('he HE')).catch(err => expect(err).toThrow('ID can be only number!'))
-    // });
     it('Rejects the promise if data.id is not a number', () => {
       expect.assertions(1);
       const newDataBase = new DB();
@@ -111,9 +87,9 @@ describe('Running tests for class DB', () => {
         return result;
       }
       return populateFakeDataAndRunSelectMethod().then(data => expect(data).toMatchObject({
-        "id": 2,
-        "region": "pl",
-        "type": "CD"
+        id: 2,
+        region: "pl",
+        type: "CD"
       }))
     });
 
@@ -153,7 +129,6 @@ describe('Running tests for class DB', () => {
         region: 'pl'
       };
       const populateData = await subject.insert(randomData);
-      console.log(subject._rows); // ==> [] 
 
       try {
         subject.update();
@@ -162,28 +137,27 @@ describe('Running tests for class DB', () => {
       }
     });
 
-    it('updates if ID exists in DB', async () => {
+    it('<Updates if ID exists in DB', async () => {
+    
       const subject = new DB();
       subject._rows[0] = {
-        "id": 99,
-        "region": "usa",
-        "type": "CD"
+        id: 100,
+        region: "usa",
+        type: "CD"
       }
       const updateMe = {
-        "id": 99,
-        "region": "usa",
-        "type": "CD"
+          id: 100,
+          region: "UK",
+          type: "casette"
       };
-
+      
       const result = await subject.update(updateMe);
       expect(result).toBe(updateMe);
     });
   })
 
   describe('TRUNCATE() method tests will follow', () => {
-
     it("should resolve every time it is called", () => {
-
     });
   })
 
