@@ -5,11 +5,28 @@ function getProductList() {
     ]
 }
 
+// function getTotalPrice(productList) {
+//     return productList.reduce( (product, acc) => {
+//         return acc + product;
+//     });
+
 function getTotalPrice(productList) {
-    return productList.reduce( (product, acc) => {
-        return acc + (product.price * product.count);
-    });
-}
+
+        return productList.reduce( (product, acc) => {
+            // console.log(product.price, product.count,  product.discount, acc.price,  acc.count, acc.discount)
+
+           const calculateFirstProduct = (product.price * product.count) * (1 - product.discount);
+           
+           const calculateSecondProduct = (acc.price * acc.count * (1 - acc.discount));
+         
+        const totalPrice =  calculateFirstProduct + calculateSecondProduct;
+        console.log(totalPrice.toFixed(2))
+
+
+        
+        });
+    }
+
 
 const totalPrice = getTotalPrice( getProductList() );
-console.log(totalPrice); // prawidłowa wartość: 390.42 (należy zaaokrąglić do 2 miejsc po przecinku)
+ // prawidłowa wartość: 390.42 (należy zaaokrąglić do 2 miejsc po przecinku)
