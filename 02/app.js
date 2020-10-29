@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', init);
 
 function init() {
@@ -23,6 +24,27 @@ function setRandomPosition(element, error = null) {
 
 function initEventWithError(element, eventName, error) {
     element.addEventListener(eventName, function() {
+
+        try {
+          
         setRandomPosition(this, error);
+  
+        } catch {
+       
+        const alertBox = document.querySelector('.alert');
+        const alertText = document.querySelector('.alert__message');
+        alertBox.innerHTML = 'error!'
+        const showAlert = alertBox.style.display = "block";
+          console.log('błąd')
+        
+    
+      }
+      finally{
+        console.log('done')
+      }
+    
     })
 }
+
+
+  
