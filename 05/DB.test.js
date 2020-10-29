@@ -25,6 +25,8 @@ describe("Insert", () => {
   });
 
   it("should not add data to the database when id is not a number", () => {
+    expect.assertions(1);
+
     const db = new DB();
     const data = {
       id: "1",
@@ -37,6 +39,8 @@ describe("Insert", () => {
   });
 
   it("should not add data to the database when the given id already exists", async () => {
+    expect.assertions(1);
+
     const db = new DB();
     const data = {
       id: 1,
@@ -68,6 +72,8 @@ describe("Select", () => {
   });
 
   it("should not return data when id does not exist", () => {
+    expect.assertions(1);
+
     const db = new DB();
     const id = 1;
 
@@ -77,6 +83,8 @@ describe("Select", () => {
   });
 
   it("should fail when id is not a number", () => {
+    expect.assertions(1);
+
     const db = new DB();
 
     return db.select("1").catch((err) => {
@@ -102,6 +110,8 @@ describe("Remove", () => {
   });
 
   it("should fail when id not exist", async () => {
+    expect.assertions(1);
+
     const db = new DB();
 
     const data = {
@@ -117,6 +127,8 @@ describe("Remove", () => {
   });
 
   it("should fail when id is not a number", () => {
+    expect.assertions(1);
+
     const db = new DB();
 
     return db.remove("1").catch((err) => {
@@ -146,6 +158,8 @@ describe("Update", () => {
   });
 
   it("should not change data when they not exist", async () => {
+    expect.assertions(1);
+
     const db = new DB();
     const data = {
       id: 1,
@@ -164,6 +178,8 @@ describe("Update", () => {
   });
 
   it("should not change data when id is not set", async () => {
+    expect.assertions(1);
+
     const db = new DB();
     const data = {
       id: 1,
@@ -181,6 +197,8 @@ describe("Update", () => {
   });
 
   it("should fail when id is not a number", () => {
+    expect.assertions(1);
+
     const db = new DB();
     const data = {
       id: "1",
