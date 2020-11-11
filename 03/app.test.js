@@ -32,10 +32,8 @@ describe('arguments', () => {
 
 describe('randomNumber', () => {
   it('should return an integer', () => {
-    function getRandomNum() {
-      randomNumber(-1.23, 0.123)
-    }
-    expect(getRandomNum).toBe(-1 || 0)
+    const value = randomNumber(-5.6, 7.8);
+    expect(Number.isInteger(value)).toBeTruthy()
   })
 })
 
