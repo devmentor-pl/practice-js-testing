@@ -20,3 +20,11 @@ it('throw exception when arg1 is not a number', () => {
   }
   expect(getRandomNum).toThrow('Argument must be a number.')
 })
+
+it('throw exception when arg2 is not a number', () => {
+  function getRandomNum() {
+    randomNumber(1, 'notANumber')
+  }
+  expect(getRandomNum).toThrow('Argument must be a number.')
+})
+
