@@ -35,5 +35,9 @@ describe('randomNumber', () => {
     const value = randomNumber(-5.6, 7.8);
     expect(Number.isInteger(value)).toBeTruthy()
   })
+  it('should return 0 when -0 is drawn', () => {
+    const value = randomNumber(-1, 0);
+    expect(value).toBe(0)
+  })
 })
 
