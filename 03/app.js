@@ -9,7 +9,9 @@ export default function randomNumber(min, max) {
     throw new Error('Argument must be a number.')
   }
 
-  return parseInt(Math.random() * (max - min) + min)
+  const randomNum = parseInt(Math.random() * (max - min) + min);
+  return randomNum === -0 ? 0 : randomNum
+
 }
 
 function areArgumentsPassed(...args) {
