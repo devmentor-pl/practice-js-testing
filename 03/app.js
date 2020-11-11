@@ -2,6 +2,9 @@ export default function randomNumber(min, max) {
   if (!areArgumentsPassed(min, max)) {
     throw new Error('No arguments were passed.')
   }
+  if (min > max) {
+    throw new Error('First argument must be lesser than the second one.')
+  }
 }
 
 function areArgumentsPassed(...args) {
