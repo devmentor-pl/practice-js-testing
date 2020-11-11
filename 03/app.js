@@ -8,6 +8,9 @@ export default function randomNumber(min, max) {
   if (isNaN(min)) {
     throw new Error('Argument must be a number.')
   }
+  if (isNaN(max)) {
+    throw new Error('Argument must be a number.')
+  }
 }
 
 function areArgumentsPassed(...args) {
