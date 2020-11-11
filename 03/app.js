@@ -8,6 +8,8 @@ export default function randomNumber(min, max) {
   if (!areArgumentsNums(min, max)) {
     throw new Error('Argument must be a number.')
   }
+
+  return parseInt(Math.random() * (max - min) + min)
 }
 
 function areArgumentsPassed(...args) {
