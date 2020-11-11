@@ -13,3 +13,10 @@ it('throw exception when arg1 is greater than arg2', () => {
   }
   expect(getRandomNum).toThrow('First argument must be lesser than the second one.')
 })
+
+it('throw exception when arg1 is not a number', () => {
+  function getRandomNum() {
+    randomNumber('notANumber', 1)
+  }
+  expect(getRandomNum).toThrow('Argument must be a number.')
+})
