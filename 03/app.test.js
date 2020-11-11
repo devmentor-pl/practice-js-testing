@@ -27,7 +27,15 @@ describe('arguments', () => {
       randomNumber(1, 'notANumber')
     }
     expect(getRandomNum).toThrow('Argument must be a number.')
-  })
+  })  
 })
 
+describe('randomNumber', () => {
+  it('should return an integer', () => {
+    function getRandomNum() {
+      randomNumber(-1.23, 0.123)
+    }
+    expect(getRandomNum).toBe(-1 || 0)
+  })
+})
 
