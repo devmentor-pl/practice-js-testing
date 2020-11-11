@@ -3,7 +3,7 @@ export default class User {
     if (!email.includes('@')) {
       throw new Error('Email address lacks \'@\'.')
     }
-    if (password.length <= 7) {
+    if (password.length <= 7 || !password.match(/\w/g)) {
       throw new Error('Password should have at least 7 characters')
     }
     this.email = email;
