@@ -74,5 +74,25 @@ describe('update method', () => {
     await db.insert(rowToEdit)
     await expect(db.update(newRow)).resolves.toEqual({ a: 'updated', id: 1 })
   })
-  //sprawdza czy zmiana w ogóle została dokonana (będzie oblany xD)
+})
+
+describe('truncate method', () => {
+  it('deletes all rows', async () => {
+    const db = new DB;
+    await db.insert({ a: 1, id: 1 })
+    await db.insert({ a: 2, id: 2 })
+    await db.insert({ a: 3, id: 3 })
+    await db.truncate()
+    await expect(db._rows.length).toBe(0)
+  })
+  it('resolves with true when rows are deleted', async () => {
+    const db = new DB;
+    await db.insert({ a: 1, id: 1 })
+    await db.insert({ a: 2, id: 2 })
+    await expect(db.truncate()).resolves.toBe(true)
+  })
+  it('rejects when _rows are already empty', async () => {
+    const db = new DB;
+    await expect(db.truncate()).rejects.toMatch('Nothing to remove')
+  })
 })
