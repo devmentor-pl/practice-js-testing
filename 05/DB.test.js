@@ -37,15 +37,17 @@ describe('select method', () => {
 })
 
 describe('remove method', () => {
-  const db = new DB;
   it('rejects when id does not exist', async () => {
+    const db = new DB;
     await expect(db.remove(1)).rejects.toMatch('Item not exist!')
   })
   it('resolves when id exists', async () => {
+    const db = new DB;
     await db.insert({ a: 1, id: 1 })
     await expect(db.remove(1)).resolves.toBe('Item was removed!')
   })
   it('removes only one row when id exists', async () => {
+    const db = new DB;
     await db.insert({ a: 1, id: 1 })
     await db.insert({ a: 2, id: 2 })
     await db.insert({ a: 3, id: 3 })
