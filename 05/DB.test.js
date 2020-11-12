@@ -22,3 +22,16 @@ describe('insert method', () => {
     await expect(db._rows[1].id - db._rows[0].id).toBe(1)
   })
 })
+
+describe('select method', () => {
+  it('resolves row with given id', async () => {
+    const db = new DB;
+    const row = { a: 1, id: 1 }
+    await db.insert(row)
+    await expect(db.select(1)).resolves.toBe(row)
+  })
+  it('rejects when given id does not exist', async () => {
+    const db = new DB;
+    await expect(db.select(1)).rejects.toMatch('ID not found')
+  })
+})
