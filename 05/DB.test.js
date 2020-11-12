@@ -96,3 +96,16 @@ describe('truncate method', () => {
     await expect(db.truncate()).rejects.toMatch('Nothing to remove')
   })
 })
+
+describe('getRows method', () => {
+  it('resolves with empty array or arr of rows', async () => {
+    const db = new DB;
+    await expect(db.getRows()).resolves.toEqual([])
+    await db.insert({ a: 1, id: 1 })
+    await db.insert({ a: 2, id: 2 })
+    await db.insert({ a: 3, id: 3 })
+    await expect(db.getRows()).resolves.toEqual(
+      [{ a: 1, id: 1 }, { a: 2, id: 2 }, { a: 3, id: 3 }]
+    )
+  })
+})
