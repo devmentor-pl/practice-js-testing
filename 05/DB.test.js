@@ -55,3 +55,24 @@ describe('remove method', () => {
     await expect(db._rows.length).toBe(2)
   })
 })
+
+describe('update method', () => {
+  it('rejects when id does not exist', async () => {
+    const db = new DB;
+    await db.insert({ a: 1, id: 1 })
+    await expect(db.update({ a: 2, id: 2 })).rejects.toMatch('ID not found!')
+  })
+  it('rejects when id was not passed', async () => {
+    const db = new DB;
+    await db.insert({ a: 1, id: 1 })
+    await expect(db.update({ a: 2 })).rejects.toMatch('ID have to be set!')
+  })
+  it('resolves when id exists', async () => {
+    const db = new DB;
+    const rowToEdit = { a: 1, id: 1 };
+    const newRow = { a: 'updated', id: 1 };
+    await db.insert(rowToEdit)
+    await expect(db.update(newRow)).resolves.toEqual({ a: 'updated', id: 1 })
+  })
+  //sprawdza czy zmiana w ogóle została dokonana (będzie oblany xD)
+})
