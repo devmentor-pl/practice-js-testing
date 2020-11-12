@@ -84,12 +84,15 @@ export default class DB {
     }
 
     truncate() {
-        return new Promise(resolve => {
+        return new Promise((resolve, reject) => {
             this.async(() => {
-                this._rows = [];
-                resolve(true);
+                if (this._rows.length === 0) {
+                    reject('Nothing to remove')
+                } else {
+                    this._rows = [];
+                    resolve(true);
+                }
             });
-            
         })
     }
 
