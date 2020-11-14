@@ -29,11 +29,12 @@ function initEventWithError(element, eventName, error) {
           
         setRandomPosition(this, error);
   
-        } catch {
+        } catch(e) {
+            console.log(e)
        
         const alertBox = document.querySelector('.alert');
         const alertText = document.querySelector('.alert__message');
-        alertBox.innerHTML = 'error!'
+        alertBox.innerHTML = e.message;
         const showAlert = alertBox.style.display = "block";
           console.log('błąd')
         

@@ -5,40 +5,45 @@ export default class User {
         this.email = user.email;
         this.password = user.password;
         this.checkCorrectEmail()
-        this.chectCorrectPassword()
-}
+        this.checkCorrectPassword()
+ };
 
-getEmail() {
+
+ getEmail() {
     return this.email;
-}
-getPassword() {
+ }
+ getPassword() {
     return this.password;
-}
+  } 
 
 
 
-checkCorrectEmail() {
+ checkCorrectEmail() {
    if(!this.email.includes('@')) {
     throw new TypeError ('email is not valid')
-} else if(this.email.includes('devmentor')) {
+ } else   {
     return true;
-}
-}
-
-chectCorrectPassword() {
-    if(!this.password.includes('pw') && this.password.length === 8) {
-    throw new TypeError ('password is not correct')
-    } 
-}
-
-
-
-login() {
-    if(this.login.includes('devmentor.pl')) {
-        return true;
-    } else if (!this.login.includes('devmentor.pl'))
-    return false;
   }
+}
+  
+
+
+
+ checkCorrectPassword() {
+    if (this.password.length <= 6  && this.password.includes((/\d+/))) {
+        throw new TypeError('password must be at least 6 characters long')
+    };
+}
+
+  login() {
+    if(this.email.includes('devmentor.pl')) {
+        return true;
+    }  else {
+        return false;
+    }
+
+  }
+
 
 }
 
