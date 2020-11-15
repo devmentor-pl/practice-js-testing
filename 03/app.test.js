@@ -2,7 +2,7 @@ import randomNumber from './app';
 
 
 
-describe('Test randomNumber()', ()=> {
+describe('Test randomNumber()', () => {
     it('check if the number is not 7 ', () => {
         const result = randomNumber(2,6);
         expect(result).not.toBe('7')

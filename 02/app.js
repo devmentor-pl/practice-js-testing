@@ -33,19 +33,46 @@ function initEventWithError(element, eventName, error) {
             console.log(e)
        
         const alertBox = document.querySelector('.alert');
+        const alertContainer = document.querySelector('.alert__container')
         const alertText = document.querySelector('.alert__message');
-        alertBox.innerHTML = e.message;
+        alertContainer.innerHTML = e.message;
         const showAlert = alertBox.style.display = "block";
           console.log('błąd')
-        
     
       }
       finally{
         console.log('done')
       }
-    
+    })
+
+
+
+function showAlert() {
+    let alertWindow = document.querySelector('.alert')
+    alertWindow.addEventListener('click', e => {
+        if(e.target === e.currentTarget) {
+           
+            // alertWindow.classList.toogle('alert--hidden');
+            /*czemu toogle nie działa ?*/
+
+            alertWindow.style.display = "none";
+        }
     })
 }
 
+showAlert()
 
-  
+}
+    
+
+
+
+
+
+
+   
+
+
+
+
+ 
