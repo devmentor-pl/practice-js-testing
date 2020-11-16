@@ -6,9 +6,18 @@ function getProductList() {
 }
 
 function getTotalPrice(productList) {
-    return productList.reduce( (product, acc) => {
-        return (((acc.price - (acc.price * acc.discount)) * acc.count) + ((product.price - (product.price * product.discount)) * product.count)).toFixed(2);
-    });
+    if (productList.length > 0) {
+        const sum = productList.reduce((acc, product) => {
+            return (getDetailPrice(acc) + getDetailPrice(product));
+        });
+        return sum.toFixed(2)
+    } else {
+        return 0
+    }
+}
+
+function getDetailPrice({ count, price, discount }) {
+    return (price - (price * discount)) * count
 }
 
 const totalPrice = getTotalPrice( getProductList() );
