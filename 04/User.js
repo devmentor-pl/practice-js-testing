@@ -3,8 +3,8 @@ export default class User {
     if (!email.includes('@')) {
       throw new Error('Email address lacks \'@\'.')
     }
-    if (password.length <= 7 || !password.match(/\w/g)) {
-      throw new Error('Password should have at least 7 characters')
+    if (this._isCorrectPassword(password)) {
+      throw new Error('Password should have at least 7 characters and contain letters')
     }
     this.email = email;
     this.password = password;
@@ -18,5 +18,15 @@ export default class User {
   }
   login() {
     return this.email.includes('devmentor.pl') ? true : false
+  }
+  _isCorrectPassword(password) {
+    return this._hasEnoughChars(password) || !this._hasAtLeastOneLetter(password)
+  }
+
+  _hasEnoughChars(string) {
+    return string.length <= 7
+  }
+  _hasAtLeastOneLetter(string) {
+    return string.match(/\w/g)
   }
 }
