@@ -18,14 +18,14 @@ export default class User {
 
 
 
- checkCorrectEmail() {
-   if(!this.email.includes('@')) {
-    throw new TypeError ('email is not valid')
- } else   {
-    return true;
+  checkCorrectEmail() {
+    if(!this.email.includes('@')) {
+      throw new TypeError ('email is not valid')
+  } else   {
+      return true;
+    }
   }
-}
-  
+    
 
 
 
