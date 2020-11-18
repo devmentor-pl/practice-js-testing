@@ -5,6 +5,7 @@ export default class User {
         this.password = user.password;
         this.checkCorrectEmail()
         this.checkCorrectPassword()
+        
  };
 
 
