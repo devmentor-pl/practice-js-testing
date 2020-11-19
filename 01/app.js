@@ -17,7 +17,7 @@ function getTotalPrice(productList) {
 }
 
 function getDetailPrice({ count, price, discount }) {
-    return (price - (price * discount)) * count
+    return price * (1 - discount) * count
 }
 
 const totalPrice = getTotalPrice( getProductList() );
