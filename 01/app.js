@@ -6,14 +6,10 @@ function getProductList() {
 }
 
 function getTotalPrice(productList) {
-    if (productList.length > 0) {
-        const sum = productList.reduce((acc, product) => {
-            return (getDetailPrice(acc) + getDetailPrice(product));
-        });
-        return sum.toFixed(2)
-    } else {
-        return 0
-    }
+    const sum = productList.reduce((acc, product) => {
+        return acc + getDetailPrice(product);
+    }, 0);
+    return sum.toFixed(2)
 }
 
 function getDetailPrice({ count, price, discount }) {
