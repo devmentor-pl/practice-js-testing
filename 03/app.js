@@ -1,5 +1,5 @@
 export default function randomNumber(min = 0, max = 0) {
-    if (isNumber(min)) {
+    if (isNumber(min, max)) {
         const number = Math.floor(Math.random() * (max - min) + min);
         return number;
     } else {
@@ -8,6 +8,10 @@ export default function randomNumber(min = 0, max = 0) {
     }
 }
 
-function isNumber(param) {
-    return typeof param === 'number' ? true : false
+function isNumber(...param) {
+    const paramArr = [...param];
+    if (paramArr.some(item => typeof item !== 'number')) {
+        return false;
+    }
+    return true;
 }
