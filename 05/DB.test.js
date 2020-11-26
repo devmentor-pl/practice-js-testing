@@ -34,13 +34,13 @@ describe('insert', () => {
             x: 'X'
         })
 
-        expect(result).toStrictEqual({
+        expect(result).toEqual({
             x: 'X',
             id: 1
         })
     })
 
-    it('Should insert data with id = 2', async () => {
+    it('Should insert second data with id = 2', async () => {
         const database = new DB([{
             x: 'X',
             id: 1
@@ -49,33 +49,30 @@ describe('insert', () => {
         const result = await database.insert({
             y: 'Y',
             id: 2
-        });
+        })
 
-        expect(result).toStrictEqual({
+        expect(result).toEqual({
             y: 'Y',
             id: 2
         })
     })
-
-
 })
 
 describe('remove', () => {
 
     // Nie działa
-    /*  it('Should throw if try to remove item with id that not exists', async () => {
+    it('Should throw if try to remove item with id that not exists', async () => {
 
-         const database = new DB([{
-             x: 'X',
-             id: 1
-         }]);
+        const database = new DB([{
+            x: 'X',
+            id: 1
+        }]);
 
-         const promise = database.remove(2)
 
-         return promise.then(result => {
-             expect(result).toBe('Item not exist!')
-         })
+        const result = await database.remove(2);
 
-     }) */
+        expect(result).rejects().toThrow('Item not exist!')
+
+    })
 
 })
