@@ -4,7 +4,7 @@ export default function randomNumber(min = 0, max = 0) {
         return number;
     } else {
         // Tutaj nie działa throw new Error('...')
-        return ('One of parameters is not a number')
+        throw new Error('One of parameters is not a number');
     }
 }
 

@@ -9,11 +9,11 @@ it('should return 0 if min = 0 and max = 0', () => {
 it('should throw an error if parameter min is not a number', () => {
     const min = 'X';
     // Tu nie działa .toThrow()
-    expect(randomNumber(min, undefined)).toBe('One of parameters is not a number');
+    expect(() => randomNumber(min, undefined)).toThrow('One of parameters is not a number');
 })
 
 it('should throw an error if parameter max is not a number', () => {
     const max = 'X';
     // Tu nie działa .toThrow()
-    expect(randomNumber(undefined, max)).toBe('One of parameters is not a number');
+    expect(() => randomNumber(undefined, max)).toThrow('One of parameters is not a number');
 })
