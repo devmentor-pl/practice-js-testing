@@ -21,3 +21,11 @@ it('throw exception when max <= min', () => {
     }
         expect(callRandomNumber).toThrow()
 })
+
+it('if min and min and max are OK, return number random number between min and max', () => {
+    const min = 3
+    const max = 4
+    const result = randomNumber(min, max)
+    expect(result).toBeGreaterThanOrEqual(min)
+    expect(result).toBeLessThan(max)
+})
