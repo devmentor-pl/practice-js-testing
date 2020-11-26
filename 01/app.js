@@ -12,15 +12,28 @@ function getProductList() {
             count: 4,
             price: 79.17,
             discount: 0.27
+        },
+        {
+            name: 'Czysty kod',
+            type: 'book',
+            count: 2,
+            price: 50,
+            discount: 0
         }
     ]
 }
 
 function getTotalPrice(productList) {
     //Dzięki debuggerowi i dodaniu do watch zmiennej acc mogłem zauważyć, że wskazuje ona na cały obiekt, a nie jego poszczególne właściwości.
-    return productList.reduce((product, acc) => {
-        return ((acc.price * acc.count) * (1 - acc.discount) + (product.price * product.count) * (1 - product.discount)).toFixed(2);
-    });
+    if (!productList.length) {
+        return 0;
+    } else {
+        const value = productList.reduce((total, acc) => {
+            return (total + (acc.price * acc.count) * (1 - acc.discount))
+        }, 0)
+
+        return value.toFixed(2);
+    }
 }
 
 const totalPrice = getTotalPrice(getProductList());
