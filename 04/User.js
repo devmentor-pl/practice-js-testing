@@ -1,3 +1,4 @@
+const PASSWORD_MIN_LENGHT = 7
 export default class User {
     constructor({
         email,
@@ -30,7 +31,7 @@ export default class User {
     }
 
     _checkPassword(password) {
-        const PASSWORD_MIN_LENGHT = 7
+
         if (password.length > PASSWORD_MIN_LENGHT) {
             if (/^(?=.*[A-Za-z])(?=.*\d)/.test(password)) {
                 return password;
