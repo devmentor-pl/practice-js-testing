@@ -144,7 +144,7 @@ describe('truncate', () => {
             id: 2
         })
 
-        await expect(database.truncate()).toBeTruthy();
+        await expect(database.truncate()).resolves.toBeTruthy();
     })
 })
 
