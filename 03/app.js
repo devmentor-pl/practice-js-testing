@@ -3,5 +3,5 @@ export default function randomNumber(min, max) {
     if(min > max) {
         throw new Error('\"min\" parameter cannot be bigger than \"max\"');
     }
-    
+    return Math.random() * (max - min) + min;
 }
