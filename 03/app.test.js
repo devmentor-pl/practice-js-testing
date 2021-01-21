@@ -20,5 +20,5 @@ it('throw exception if min parameter is bigger than max', () => {
 it('return parameter if both parameters are the same', () => {
     const min = 4
     const max = 4;
-    expect(randomNumber(min, max)).toBe(4);   
+    expect(randomNumber(min, max)).toBe(4);
 })

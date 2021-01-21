@@ -1,3 +1,7 @@
+// [1, 2, 3].reduce(function(acc, num) {
+//     console.log(acc, num);
+// }, 0);
+
 function getProductList() {
     return [
         {name: 'JavaScript: podstawy', type: 'book', count: 3, price: 67.19, discount: 0.21},
@@ -6,9 +10,9 @@ function getProductList() {
 }
 
 function getTotalPrice(productList) {
-    return productList.reduce( (product, acc) => {
-        return acc + (product.price * product.count);
-    });
+    return productList.reduce( (acc, product) => {
+        return acc + ((product.price * product.count) * (1 - product.discount));
+    }, 0).toFixed(2);
 }
 
 const totalPrice = getTotalPrice( getProductList() );
