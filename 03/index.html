@@ -10,10 +10,7 @@
 </body>
 <script>
     function randomNumber(min, max) {
-    if (typeof min !== 'number' && typeof max !== 'number' ) {
-        return alert('Parametry muszą być liczbami')
-    }
-    return Math.random() * (max - min) + min;
+    console.log(min * max)
 }
 
 randomNumber(1,2);
