@@ -1,14 +1,13 @@
 import randomNumber from './app';
 
-/*describe('randomNumber', () => {
-    describe('no parameters, passes', () => {
-        const result = randomNumber();
 
-        expect(result).toBeDefined();
-    })
-}) */
 
-test('randomNumber', () => {
+/* test('randomNumber', () => {
 
     expect(typeof randomNumber('1', '2')).toBe('number')
+}) */
+
+test('randomNumber without parameters', () => {
+
+    expect(randomNumber()).toBeFalsy()
 })
