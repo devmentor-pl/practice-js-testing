@@ -9,7 +9,7 @@
     
 </body>
 <script>
-    class RanNum {
+    /*class RanNum {
     constructor () {
         this.min = '6',
         this.max = '5'
@@ -22,12 +22,27 @@
             return alert('min musi byc mniejsze od max')
     }
     return Math.random() * (this.max - this.min) + this.min;
-    }
+    } */
 
 
+    class RanNum {
+        constructor () {            
+        }
+     checkProperty(value) {
+        if(typeof value !== 'number') {
+            throw new Error(`Property ${value} have to be a number`);
+        }
+        
+    } 
+
+    randomNumber(min, max) {
+        this.checkProperty(min)
+        this.checkProperty(max)
+        return Math.random() * (max - min) + min;
+    
+} 
 }
-const ranNum = new RanNum;
-ranNum.randomNumber();
+const ranNum = new RanNum();
 
 </script>
 </html>

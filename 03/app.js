@@ -7,12 +7,20 @@
 
 
  export default class RanNum {
-    constructor () {
-        this.min = 1,
-        this.max = 2
+    constructor () {            
     }
-    randomNumber() {
-        return Math.random() * (this.max - this.min) + this.min;
-    }
+    checkProperty(value) {
+        if(typeof value !== 'number') {
+            throw new Error(`Property ${value} have to be a number`);
+        }
+    
+    } 
+
+    randomNumber(min, max) {
+        this.checkProperty(min)
+        this.checkProperty(max)
+        return Math.random() * (max - min) + min;
+
+    } 
 } 
 
