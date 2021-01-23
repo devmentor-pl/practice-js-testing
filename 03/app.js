@@ -11,6 +11,11 @@
         this.checkProperty('min', min)
         this.checkProperty('max', max)            
     }
+    valueInequality (min, max) {
+        if (max < min) {
+            throw new Error('max have to be greater than min')
+        }
+    }
     checkProperty(prop, value) {
         if(typeof value !== 'number') {
             throw new Error(`Property ${value} have to be a number`);
@@ -19,7 +24,7 @@
     } 
 
     randomNumber() {
-        
+        this.valueInequality(this.min, this.max)
         return Math.random() * (this.max - this.min) + this.min;
 
     } 

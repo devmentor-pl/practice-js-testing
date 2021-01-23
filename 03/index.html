@@ -26,23 +26,29 @@
 
 
     class RanNum {
-        constructor () {            
+    constructor (min, max) {
+        this.checkProperty('min', min)
+        this.checkProperty('max', max)            
+    }
+    valueInequality (min, max) {
+        if (max < min) {
+            throw new Error('max have to be greater than min')
         }
-     checkProperty(value) {
+    }
+    checkProperty(prop, value) {
         if(typeof value !== 'number') {
             throw new Error(`Property ${value} have to be a number`);
         }
-        
+        this[prop] = value
     } 
 
-    randomNumber(min, max) {
-        this.checkProperty(min)
-        this.checkProperty(max)
-        return Math.random() * (max - min) + min;
-    
-} 
-}
-const ranNum = new RanNum();
+    randomNumber() {
+        this.valueInequality(this.min, this.max)
+        return Math.random() * (this.max - this.min) + this.min;
 
+    } 
+} 
+const ranNum = new RanNum(1, 2);
+ranNum.randomNumber()
 </script>
 </html>
