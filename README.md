@@ -1,4 +1,4 @@
-# [![](assets/img/logo-readme2.jpg)](https://devmentor.pl) &nbsp; JavaScript: Testowanie
+# [![](assets/img/logo-readme2.jpg)](https://devmentor.pl) &nbsp; JavaScript: Testowanie ??
 
 Umiejętność testowanie i debuggowanie aplikacji jest niezbędna w pracy programisty.
 
