@@ -1,7 +1,8 @@
 import RanNum from './app';
 
 test('does randomNumber exists', () => {
-    expect(randomNumber).toBe(true)
+    const ranNum = new RanNum;
+    expect(ranNum.randomNumber).toBe(true)
 })
 
 
