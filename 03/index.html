@@ -9,10 +9,25 @@
     
 </body>
 <script>
-    function randomNumber(min, max) {
-    console.log(min * max)
-}
+    class RanNum {
+    constructor () {
+        this.min = '6',
+        this.max = '5'
+    }
+    randomNumber() {
+        if (typeof this.min !== 'number' && typeof this.max !== 'number') {
+            return alert('Parametry muszą być liczbami')
+    }
+     if (this.min < this.max === false) {
+            return alert('min musi byc mniejsze od max')
+    }
+    return Math.random() * (this.max - this.min) + this.min;
+    }
 
-randomNumber(1,2);
+
+}
+const ranNum = new RanNum;
+ranNum.randomNumber();
+
 </script>
 </html>

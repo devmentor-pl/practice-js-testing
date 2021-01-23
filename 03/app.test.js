@@ -1,20 +1,22 @@
 import RanNum from './app';
 
+test('does randomNumber exists', () => {
+    expect(randomNumber).toBe(true)
+})
 
 
-/* test('randomNumber', () => {
+/*test('randomNumber numbers', () => {
 
-    expect(typeof randomNumber('1', '2')).toBe('number')
-}) */
+    const ranNum = new RanNum;
 
-/*test('randomNumber without parameters', () => {
+    expect(typeof ranNum.randomNumber('1', '2')).toBe('number')
+}) 
 
-    expect(randomNumber()).toBeDefined()
-}) */
-// wyczerpaly mi sie pomysly, taka implementacja jest chyba wystarczajaca
-// czy po sprawdzeniu tego pierwszego bledu powinienem od razu implementowac ten if
+
+
 
 test('randomNumber parameters', () => {
-    const ranNum = new RanNum;
+    
+
     expect(ranNum.max > ranNum.min).toBe(true)
-}) 
+}) */
