@@ -1,25 +1,28 @@
 import RanNum from './app';
 
 /*test('is randomNumber a function', () => {
-    const ranNum = new RanNum;
-    expect(typeof ranNum.randomNumber(1, 2)).toBe('function')
-}) */ 
-// z pierwsza funckaj ceikawy problem, bo na poczatku sprawdzialem czy  jestr funkcja, potem stworzylem dla niej return
-//podczas rozbudowy funkcji, i teraz zwraca number nie funkcje.
+    const ranNum = new RanNum(1, 2);
+    expect(ranNum.randomNumber).toBe('function')
+
+})  */
+// tu po przebudowaniu funckji w app.js i dodaniu return pojawil sie problem (Expected: "function"
+//    Received: [Function randomNumber])
+//
+
 
 
 test('randomNumber numbers', () => {
 
-    const ranNum = new RanNum;
+    const ranNum = new RanNum(1, 2);
 
-    expect(typeof ranNum.randomNumber(1, 2)).toBe('number')
+    expect(typeof ranNum.min).toBe('number')
 }) 
 
 
 
-/*
+
 test('randomNumber parameters', () => {
-    
+    const ranNum = new RanNum(2, 1);
 
     expect(ranNum.max > ranNum.min).toBe(true)
-}) */
+}) 
