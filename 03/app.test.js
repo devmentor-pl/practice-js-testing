@@ -1,8 +1,8 @@
 import RanNum from './app';
 
-test('does randomNumber exists', () => {
+test('is randomNumber a function', () => {
     const ranNum = new RanNum;
-    expect(ranNum.randomNumber).toBe(true)
+    expect(typeof ranNum.randomNumber).toBe('function')
 })
 
 

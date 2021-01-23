@@ -8,8 +8,8 @@
 
  /*export default class RanNum {
     constructor () {
-        this.min = 1,
-        this.max = 2
+        this.min// = 1,
+        this.max// = 2
     }
     randomNumber() {
         return Math.random() * (this.max - this.min) + this.min;
