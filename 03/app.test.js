@@ -22,7 +22,7 @@ test('randomNumber numbers', () => {
 
 
 test('randomNumber parameters', () => {
-    const ranNum = new RanNum(2, 1);
+    const ranNum = new RanNum(1, 2);
 
     expect(ranNum.max > ranNum.min).toBe(true)
 }) 
