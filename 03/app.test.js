@@ -6,16 +6,16 @@ test('is randomNumber a function', () => {
 })
 
 
-/*test('randomNumber numbers', () => {
+test('randomNumber numbers', () => {
 
     const ranNum = new RanNum;
 
-    expect(typeof ranNum.randomNumber('1', '2')).toBe('number')
+    expect(typeof ranNum.randomNumber()).toBe('number')
 }) 
 
 
 
-
+/*
 test('randomNumber parameters', () => {
     
 
