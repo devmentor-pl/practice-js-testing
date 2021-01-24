@@ -9,46 +9,34 @@
     
 </body>
 <script>
-    /*class RanNum {
-    constructor () {
-        this.min = '6',
-        this.max = '5'
-    }
-    randomNumber() {
-        if (typeof this.min !== 'number' && typeof this.max !== 'number') {
-            return alert('Parametry muszą być liczbami')
-    }
-     if (this.min < this.max === false) {
-            return alert('min musi byc mniejsze od max')
-    }
-    return Math.random() * (this.max - this.min) + this.min;
-    } */
+    
+const number = '5193080150954111';
+
+function getCardProvider (cardNumber) {
+    if (verifyCardNuber(cardNumber))
 
 
-    class RanNum {
-    constructor (min, max) {
-        this.checkProperty('min', min)
-        this.checkProperty('max', max)            
-    }
-    valueInequality (min, max) {
-        if (max < min) {
-            throw new Error('max have to be greater than min')
-        }
-    }
-    checkProperty(prop, value) {
-        if(typeof value !== 'number') {
-            throw new Error(`Property ${value} have to be a number`);
-        }
-        this[prop] = value
-    } 
+}
 
-    randomNumber() {
-        this.valueInequality(this.min, this.max)
-        return Math.random() * (this.max - this.min) + this.min;
+function verifyCardNuber(cardNumber) {
+        const cardNumberSplit = cardNumber.split("");
 
-    } 
-} 
-const ranNum = new RanNum(1, 2);
-ranNum.randomNumber()
+        const filtredFirst = cardNumberSplit.filter((element, index) => {
+        return index % 2 === 0
+    })
+        const firstReversed = filtredFirst.reverse();
+
+        const firstMapped = firstReversed.map(element => element * 2)
+        
+        console.log(firstMapped)
+
+    }
+
+getCardProvider(number)
+
+function getIssuer() {
+
+}
+
 </script>
 </html>
