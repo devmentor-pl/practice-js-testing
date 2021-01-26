@@ -16,10 +16,10 @@ export default class DB {
             }
 
             this.async(() => {
-                if(!data.id) {
-                    data.id = this._rows.reduce((acc, item) => {
-                        return acc <= item.id ? item.id + 1 : acc;
-                    }, 1);
+                if(!data.id) {// nie mam data.id wiec zostaje dodane
+                    data.id = this._rows.reduce((acc, item) => {// pierwsze wywowalnie;
+                        return acc <= item.id ? item.id + 1 : acc; //acc dostaje 1 
+                    }, 1); // za pierwszym data.id=1
                 }
 
                 this._rows.push(data);
@@ -41,16 +41,16 @@ export default class DB {
         });
     }
 
-    remove(id) {
+    remove(id) {//wpuszczam id ktore ma 2
         return new Promise((resolve, reject) => {
             this.async(() => {
-                const lengthBeforeFilter = this._rows.length;
-                this._rows = this._rows.filter(item => item.id !== id);
-                const lengthAfterFilter = this._rows.length;
+                const lengthBeforeFilter = this._rows.length;//dlugosc tej tablicy [2,3] czyli dwa
+                this._rows = this._rows.filter(item => item.id !== id);// tablica przechodzi przez filtr, jej el;ement ma byc rozny od przekazanego id
+                const lengthAfterFilter = this._rows.length;// this rows po przejsciu i jej dlugosc
                 
-                if(lengthBeforeFilter === lengthAfterFilter) {
+                if(lengthBeforeFilter === lengthAfterFilter) { // jesli dlugosc jest taka sama zonacza ze podany item jest rozny i itemy przeszly filtr, 
                     reject('Item not exist!');
-                } else {
+                } else {    // jesli item jest taki sam zostaje wywalony z tablicy
                     resolve('Item was remove!');
                 }
             });
