@@ -5,39 +5,45 @@ export default class DB {
 
     insert(data) {
         return new Promise((resolve, reject) => {
-            if(data.id) {
-                if(typeof data.id !== 'number') {
-                    this.async(reject,'ID can be only number!');
-                    return null; // stop function
-                } else if(this._rows.some(item => item.id === data.id)) {
-                    this.async(reject, 'ID can\'t be duplicated!');
-                    return null; // stop function
-                }
+            if (!data) {
+                reject('data is not defined!')
+                return null
             }
-
-            this.async(() => {
-                if(!data.id) {// nie mam data.id wiec zostaje dodane
-                    data.id = this._rows.reduce((acc, item) => {// pierwsze wywowalnie;
-                        return acc <= item.id ? item.id + 1 : acc; //acc dostaje 1 
-                    }, 1); // za pierwszym data.id=1
+                if(data.id) {
+                    if(typeof data.id !== 'number') {
+                        this.async(reject,'ID can be only number!');
+                        return null; // stop function
+                    } else if(this._rows.some(item => item.id === data.id)) {
+                        this.async(reject, 'ID can\'t be duplicated!');
+                        return null; // stop function
+                    }
                 }
 
-                this._rows.push(data);
-                resolve(data)
-            }); 
+                this.async(() => {
+                    if(!data.id) {// nie mam data.id wiec zostaje dodane
+                        data.id = this._rows.reduce((acc, item) => {// pierwsze wywowalnie;
+                            return acc <= item.id ? item.id + 1 : acc; //acc dostaje 1 
+                        }, 1); // za pierwszym data.id=1
+                    }
+
+                    this._rows.push(data);
+                    resolve(data)
+                }); 
         });
     }
 
     select(id) {
         return new Promise((resolve, reject) => {
-            this.async(() => {
-                const [row = null] = this._rows.filter(item => item.id === id);
-                if(row) {
-                    resolve(row);
-                } else {
-                    reject('ID not found');
-                }
-            });
+            
+                this.async(() => {
+                    const [row = null] = this._rows.filter(item => item.id === id);
+                    if(row) {
+                        resolve(row);
+                    } else {
+                        reject('ID not found');
+                    }
+                });
+                
         });
     }
 
@@ -57,20 +63,20 @@ export default class DB {
         });
     }
 
-    update(data) {
+    update(data) { // wpuszczam obiet {id: 2}
         return new Promise((resolve, reject) => {
             if(!data.id) {
                 this.async(reject, 'ID have to be set!');
             } else {
                 this.async(() => {
                     let updated = null;
-                    this._rows = this._rows.map(item => {
+                    this._rows = this._rows.map(item => {  
                         if(item.id === data.id) {
-                            updated = data
-                            return updated;
+                            updated = data 
+                            return updated; 
                         }
             
-                        return item;
+                        return item; 
                     });
 
                     if(updated) {
