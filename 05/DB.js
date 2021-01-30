@@ -41,34 +41,19 @@ export default class DB {
         });
     }
 
-    // remove(id) {
-    //     return new Promise((resolve, reject) => {
-    //         this.async(() => {
-    //             const lengthBeforeFilter = this._rows.length;
-    //             this._rows = this._rows.filter(item => item.id !== id);
-    //             const lengthAfterFilter = this._rows.length;
-    //             debugger;
-    //             if(lengthBeforeFilter === lengthAfterFilter) {    
-    //                 reject('Item doesn\'t exist!');
-    //             } else {
-    //                 resolve('Item was removed!');
-    //             }
-    //         });
-    //     });
-    // }
     remove(id) {
         return new Promise((resolve, reject) => {
-            // this.async(() => {
+            this.async(() => {
                 const lengthBeforeFilter = this._rows.length;
                 this._rows = this._rows.filter(item => item.id !== id);
                 const lengthAfterFilter = this._rows.length;
-                // debugger;
+                debugger;
                 if(lengthBeforeFilter === lengthAfterFilter) {    
-                    this.async(reject('Item doesn\'t exist!'));
+                    reject('Item doesn\'t exist!');
                 } else {
-                    this.async(resolve('Item was removed!'));
+                    resolve('Item was removed!');
                 }
-            // });
+            });
         });
     }
 

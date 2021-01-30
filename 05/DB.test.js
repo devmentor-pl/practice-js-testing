@@ -15,6 +15,7 @@ describe('DB constructor', () => {
 
 describe('insert', () => {
     it('rejects when id is not a number', async () => {
+        expect.assertions(1);
         const subject = new DB();
         const id = 'NaN'
         const object = {id};
@@ -26,6 +27,7 @@ describe('insert', () => {
         }
     })
     it('rejects when id is duplicated', async () => {
+        expect.assertions(1);
         const subject = new DB();
         const id = 4;
         const object = {id};
@@ -33,7 +35,7 @@ describe('insert', () => {
 
         try {
             await subject.insert(object)
-                    .then(subject.insert(duplicatedIdObject));
+            await subject.insert(duplicatedIdObject);
         }
         catch(err) {
             expect(err).toEqual('ID can\'t be duplicated!');
@@ -66,7 +68,7 @@ describe('insert', () => {
         const startLength = subject._rows.length;
         const user = {parameter: 'value'};
         await subject.insert(user);
-        const endLength = await subject._rows.length;
+        const endLength = subject._rows.length;
 
         expect(endLength).toBeGreaterThan(startLength);
     })
@@ -74,31 +76,33 @@ describe('insert', () => {
 
 describe('select', () => {
     it('rejects when id is not found', async () => {
+        expect.assertions(1);
         const subject = new DB();
 
         try {
-            subject.select(1)
+            await subject.select(1)
         } catch(err) {
             expect(err).toEqual('ID not found');
         }
     })
     it('returns existing user', async () => {
+        expect.assertions(1);
         const subject = new DB();
         const user = {id: 1}
         
-        subject.insert(user)
-            .then(subject.select(1))
+        await subject.insert(user)
+            .then(() => subject.select(1))
             .then(resp => expect(resp).toEqual(user));
     })
 })
 describe('remove', () => {
     it('throws when id doesn\'t exist', async () => {
+        expect.assertions(1);
         const subject = new DB();
         const fakeId = 1;
         try {
             await subject.remove(fakeId);
         } catch(err) {
-            // debugger;
             expect(err).toEqual('Item doesn\'t exist!');
         }
     })
@@ -106,8 +110,61 @@ describe('remove', () => {
         const subject = new DB();
         const user = {id: 1};
         await subject.insert(user);
-        debugger;
-        const message = await subject.remove(user);
+        const message = await subject.remove(1);
         expect(message).toEqual('Item was removed!');
+    })
+})
+describe('update', () => {
+    it('rejects when id is not set', async () => {
+        expect.assertions(1);
+        const subject = new DB();
+        const data = {noIdProperty: 'noIdvalue'};
+        try {
+            await subject.update(data);
+        } catch(err) {
+            expect(err).toEqual('ID has to be set!');
+        }
+    })
+    it('rejects when id not found', async () => {
+        expect.assertions(1);
+        const subject = new DB();
+        const object = {id: 1, someProperty: 'someValue'};
+        await expect(subject.update(object)).rejects.toBe('ID not found!');
+    })
+    it('updates object if data is correct', async () => {
+        expect.assertions(1);
+        const subject = new DB();
+        const object = {id: 1, data: 'old data'};
+        await subject.insert(object);
+        object.data = 'new data';
+        await subject.update(object);
+        const resultObject = await subject.select(object.id);
+
+        expect(resultObject.data).toBe('new data');
+    })
+})
+describe('truncate', () => {
+    it('clears a database', async () => {
+        expect.assertions(1);
+        const subject = new DB();
+        await subject.insert({id:1});
+        await subject.insert({prop: 'some value'});
+        await subject.truncate();
+
+        expect(subject._rows.length).toBe(0);
+    })
+})
+describe('getRows', () => {
+    it('gsefse', async () => {
+        expect.assertions(2);
+        const subject = new DB();
+        let rows = await subject.getRows();
+
+        expect(rows.length).toBe(0);
+
+        const object = {id: 1};
+        await subject.insert(object);
+        rows = await subject.getRows();
+        expect(rows[0]).toEqual(object);
     })
 })
