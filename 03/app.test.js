@@ -1,10 +1,10 @@
 import RanNum from './app';
 
-/*test('is randomNumber a function', () => {
+test('is randomNumber a function', () => {
     const ranNum = new RanNum(1, 2);
-    expect(ranNum.randomNumber).toBe('function')
+    expect(typeof ranNum.randomNumber).toBe('function')
 
-})  */
+})  
 // tu po przebudowaniu funckji w app.js i dodaniu return pojawil sie problem (Expected: "function"
 //    Received: [Function randomNumber])
 //
