@@ -7,10 +7,12 @@ function getProductList() {
 
 function getTotalPrice(productList) {
     return productList.reduce( (product, acc) => {        
-        return ((acc.price * acc.count) - ((acc.price * acc.count) * acc.discount)) + ((product.price * product.count) - ((product.price * product.count) * product.discount));
+        return ( (acc.price * acc.count * (1 - acc.discount)) + (product.price * product.count * (1 - product.discount)))
+        //return ((acc.price * acc.count) - ((acc.price * acc.count) * acc.discount)) + ((product.price * product.count) - ((product.price * product.count) * product.discount));
     });
 }
 
 const totalPrice = getTotalPrice( getProductList() );
-console.log(totalPrice); // prawidłowa wartość: 390.42 (należy zaaokrąglić do 2 miejsc po przecinku)
+const totalPriceFixed = totalPrice.toFixed(2);
+console.log(totalPriceFixed); // prawidłowa wartość: 390.42 (należy zaaokrąglić do 2 miejsc po przecinku)
 
