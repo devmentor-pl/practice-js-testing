@@ -29,10 +29,13 @@ describe('data', () => {
     
 
     it('rejects if data.id is 1', () => {
+        expect.assertions(1);
+
         const db = new DB();
 
         return db.insert({id: 2})
-        .catch((err) => expect(db.select(1)).rejects.toStrictEqual(err))
+
+        .then(() => expect(db.select(1)).rejects.toBe('ID not found'))
 
     })
     it('resolves if passed id was removed', async () => {
