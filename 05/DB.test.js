@@ -47,12 +47,14 @@ describe('insert', () => {
 
 describe('select', () => {
     // scenario
-    it('return row when ID is a found', () => {
+    it('return row when ID is a found', async () => {
+        expect.assertions(1);
+
         // given
         const db = new DB();
         // when
         const data = { a: 1, b: 2 };
-        db.insert(data);
+        await db.insert(data);
 
         const id = 1;
         const promise = db.select(id);
@@ -63,13 +65,16 @@ describe('select', () => {
     });
 
 
-    it('return ID not found', () => {
+    it('return ID not found', async () => {
+        expect.assertions(1);
+
         // given
         const db = new DB();
         // when
-        db._rows = [{ abc: 22 }];
+        const data = { a: 1 };
+        await db.insert(data);
 
-        const id = 1;
+        const id = 3;
         const promise = db.select(id);
 
         //then
@@ -83,12 +88,14 @@ describe('select', () => {
 
 describe('remove', () => {
     // scenario
-    it('return item was remove', () => {
+    it('return item was remove', async () => {
+        expect.assertions(1);
+
         // given
         const db = new DB();
         // when
         const data = { a: 3 };
-        db.insert(data);
+        await db.insert(data);
 
         const id = 1;
         const promise = db.remove(id);
@@ -99,12 +106,14 @@ describe('remove', () => {
     });
 
 
-    it('return item not exist', () => {
+    it('return item not exist', async () => {
+        expect.assertions(1);
+
         // given
         const db = new DB();
         // when
         const data = { a: 3 };
-        db.insert(data);
+        await db.insert(data);
 
         const id = 3;
         const promise = db.remove(id);
@@ -119,15 +128,14 @@ describe('remove', () => {
 
 describe('get', () => {
     // scenario
-    it('return tables rows', () => {
+    it('return tables rows', async () => {
+        expect.assertions(1);
+
         // given
         const db = new DB();
         // when
-        const row1 = { x: 11 };
-        const row2 = { y: 12 };
-
-        db.insert(row1);
-        db.insert(row2);
+        const data = { x: 12 };
+        await db.insert(data);
 
         const promise = db.getRows();
         //then

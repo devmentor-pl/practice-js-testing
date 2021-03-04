@@ -1,6 +1,6 @@
 export default function randomNumber(min, max) {
 
-    if (min === undefined || max === undefined) {
+    if (typeof min === 'undefined' || typeof max === 'undefined') {
         return 0;
     }
 

@@ -8,14 +8,15 @@ function getProductList() {
 /*
 function getTotalPrice(productList) {
     return productList.reduce((product, acc) => {
-        return acc + (product.price * product.count);
+    //źle// return acc + (product.price * product.count);
+        //dobrze// return (acc.price * acc.count - (acc.price * acc.count * acc.discount)) + (product.price * product.count - (product.price * product.count * product.discount));
     });
 }
 */
 
 function getTotalPrice(productList) {
-    return productList.reduce((product, acc) => {
-        return (acc.price * acc.count - (acc.price * acc.count * acc.discount)) + (product.price * product.count - (product.price * product.count * product.discount));
+    return productList.reduce((acc, product) => {
+        return ((1 - acc.discount) * acc.price * acc.count) + ((1 - product.discount) * product.price * product.count);
     });
 }
 
