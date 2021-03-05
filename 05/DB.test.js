@@ -3,6 +3,8 @@ import DB from './DB';
 describe('insert', () => {
     // scenario
     it('return data when ID is a number', () => {
+        expect.assertions(1);
+
         // given
         const db = new DB();
         // when
@@ -16,6 +18,8 @@ describe('insert', () => {
 
 
     it('return ID can be only number', () => {
+        expect.assertions(1);
+
         // given
         const db = new DB();
         // when
@@ -28,13 +32,15 @@ describe('insert', () => {
     });
 
 
-    it('return ID can\'t be duplicated', () => {
+    it('return ID can\'t be duplicated', async () => {
+        expect.assertions(1);
+
         // given
         const db = new DB();
         // when
         const data1 = { id: 1, a: 1, b: 2 };
         const data2 = { id: 1, a: 11, b: 22 };
-        db.insert(data1);
+        await db.insert(data1);
         const promise = db.insert(data2);
         //then
         return promise.catch(err => {

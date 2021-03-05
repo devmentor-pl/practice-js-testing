@@ -5,20 +5,13 @@ function getProductList() {
     ]
 }
 
-/*
-function getTotalPrice(productList) {
-    return productList.reduce((product, acc) => {
-    //źle// return acc + (product.price * product.count);
-        //dobrze// return (acc.price * acc.count - (acc.price * acc.count * acc.discount)) + (product.price * product.count - (product.price * product.count * product.discount));
-    });
-}
-*/
-
 function getTotalPrice(productList) {
     return productList.reduce((acc, product) => {
-        return ((1 - acc.discount) * acc.price * acc.count) + ((1 - product.discount) * product.price * product.count);
-    });
+        return acc + (1 - product.discount) * product.price * product.count;
+    }, 0);
 }
 
-const totalPrice = Math.round(getTotalPrice(getProductList()) * 100) / 100;
+const totalPrice = getTotalPrice(getProductList()).toFixed(2);
 console.log(totalPrice); // prawidłowa wartość: 390.42 (należy zaaokrąglić do 2 miejsc po przecinku)
+
+
