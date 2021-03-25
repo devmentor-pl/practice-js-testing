@@ -1,6 +1,10 @@
 export default class DB {
     constructor() {
-        this._rows = [];
+        this._rows = [
+            {
+                id: 6
+            }
+        ];
     }
 
     insert(data) {
@@ -76,7 +80,7 @@ export default class DB {
                     if(updated) {
                         resolve(updated);
                     } else {
-                        reject('ID not found!');   
+                        reject('ID not found!!');   
                     }
                 });
             }
