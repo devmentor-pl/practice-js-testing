@@ -7,5 +7,5 @@ it('throws error if argument is not a number', () => {
 })
 
 it('returns x if both arguments are equal x', () => {
-    expect(randomNumber(1,1).toBe(1));
+    expect(randomNumber(1,1)).toBe(1);
 })
