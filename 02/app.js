@@ -23,6 +23,28 @@ function setRandomPosition(element, error = null) {
 
 function initEventWithError(element, eventName, error) {
     element.addEventListener(eventName, function() {
-        setRandomPosition(this, error);
+        try {
+            setRandomPosition(this, error);
+        } catch (err) {
+            errorMessage(err);
+        }
+    })
+}
+
+function errorMessage(err) {
+
+    const alertSection = document.querySelector('.alert');
+    alertSection.style.backgroundColor = 'green';
+    const alertMessage = document.querySelector('.alert__message');
+
+    if (alertSection.classList.contains('alert--hidden')) {
+        alertSection.className = 'alert';
+    }
+
+    alertMessage.textContent = `${err.message} Kliknij na zielone tło!`;
+    alertSection.addEventListener('click', e => {
+        if (e.target.className === 'alert') {
+            alertSection.classList.add('alert--hidden');
+        }
     })
 }
