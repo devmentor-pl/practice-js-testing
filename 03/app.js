@@ -28,7 +28,10 @@ function randomNumber(min, max) {
     if (typeof min !== 'number' || isNaN(min) || typeof max !== 'number' || isNaN(max)) {
         throw new RangeError('\"min\" and \"max\" must be numbers!');
     };
-
+    if (result < min || result > max) {
+        throw new RangeError('\"result\" cannot be smaller than \"min\" and \"result\" cannot be bigger than \"max\"!');
+    };
+    
     return result;
 }
 
