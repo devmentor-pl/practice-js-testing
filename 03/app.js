@@ -2,6 +2,11 @@
 function randomNumber(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
+
+    if (min > max) {
+        max = min;
+    }
+
     result = Math.floor(Math.random() * (max - min + 1)) + min;
 
     if (min === max && result !== min) {
