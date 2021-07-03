@@ -17,7 +17,7 @@ function randomNumber(min, max) {
         max = 1;
     }
 
-    result = Math.floor(Math.random() * (max - min + 1)) - min;
+    result = Math.floor(Math.random() * (max - min + 1)) + min;
 
     if (min === max && result !== min) {
         throw new RangeError('If \"min\" and \"max\" are equal, \"result\" must be equal \"min\" and \"max\"');
