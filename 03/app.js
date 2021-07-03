@@ -21,5 +21,5 @@ function randomNumber(min, max) {
 
 console.log('Testing randomNumbers');
 for (let i = 1; i < 21; i++) {
-    console.log(`Result ${i}:  ${randomNumber(4, 3)}`);
+    console.log(`Result ${i}:  ${randomNumber('n', 3)}`);
 }
