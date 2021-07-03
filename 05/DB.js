@@ -6,17 +6,17 @@ export default class DB {
     insert(data) {
         return new Promise((resolve, reject) => {
             if(data.id) {
-                if(typeof data.id !== 'number') {
+                if(typeof data.id !== 'number') { // jeżeli id elementu nie jest numerem
                     this.async(reject,'ID can be only number!');
                     return null; // stop function
-                } else if(this._rows.some(item => item.id === data.id)) {
+                } else if(this._rows.some(item => item.id === data.id)) { // jeżeli id elementu jest już w bazie
                     this.async(reject, 'ID can\'t be duplicated!');
                     return null; // stop function
                 }
             }
 
             this.async(() => {
-                if(!data.id) {
+                if(!data.id) { // jeżeli element nie ma id
                     data.id = this._rows.reduce((acc, item) => {
                         return acc <= item.id ? item.id + 1 : acc;
                     }, 1);
@@ -83,7 +83,7 @@ export default class DB {
         });
     }
 
-    truncate() {
+    truncate() { // wyczyść tablicę
         return new Promise(resolve => {
             this.async(() => {
                 this._rows = [];
