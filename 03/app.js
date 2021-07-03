@@ -4,13 +4,14 @@ function randomNumber(min, max) {
     max = Math.floor(max);
     result = Math.floor(Math.random() * (max - min + 1)) + min;
 
-    if (min === 1 && max === 1 && result !== 1) {
-        throw new RangeError('If min and max are 1, result must be 1')
+    if (min === max && result !== min) {
+        throw new RangeError('If \"min\" and \"max\" are equal, \"result\" must be equal \"min\" and \"max\"');
     };
-
+    
     return result;
 }
 
+console.log('Testing randomNumbers');
 for (let i = 1; i < 21; i++) {
-    console.log(`Result ${i}:  ${randomNumber(1, 1)}`);
+    console.log(`Result ${i}:  ${randomNumber(4, 3)}`);
 }
