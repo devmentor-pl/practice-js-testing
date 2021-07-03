@@ -6,6 +6,16 @@ function randomNumber(min, max) {
     if (min > max) {
         max = min;
     }
+    if ((typeof min !== 'number' || isNaN(min)) && (typeof max === 'number' && !isNaN(max))) {
+        min = max;
+    }
+    if ((typeof max !== 'number' || isNaN(max)) && (typeof min === 'number' && !isNaN(min))) {
+        max = min;
+    }
+    if ((typeof min !== 'number' || isNaN(min)) && (typeof max !== 'number' || isNaN(max))) {
+        min = 1;
+        max = 1;
+    }
 
     result = Math.floor(Math.random() * (max - min + 1)) + min;
 
@@ -24,5 +34,5 @@ function randomNumber(min, max) {
 
 console.log('Testing randomNumbers');
 for (let i = 1; i < 21; i++) {
-    console.log(`Result ${i}:  ${randomNumber('n', 3)}`);
+    console.log(`Result ${i}:  ${randomNumber('p', 'n')}`);
 }
