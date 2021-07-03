@@ -1,5 +1,4 @@
-// export default 
-function randomNumber(min, max) {
+export default function randomNumber(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
 
@@ -17,7 +16,7 @@ function randomNumber(min, max) {
         max = 1;
     }
 
-    result = Math.floor(Math.random() * (max - min + 1)) + min;
+    let result = Math.floor(Math.random() * (max - min + 1)) + min;
 
     if (min === max && result !== min) {
         throw new RangeError('If \"min\" and \"max\" are equal, \"result\" must be equal \"min\" and \"max\"');
