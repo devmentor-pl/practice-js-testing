@@ -15,6 +15,9 @@ function randomNumber(min, max) {
     if (min > max) {
         throw new RangeError('\"min\" cannot be bigger than \"max\"!');
     };
+    if (typeof min !== 'number' || isNaN(min) || typeof max !== 'number' || isNaN(max)) {
+        throw new RangeError('\"min\" and \"max\" must be numbers!');
+    };
 
     return result;
 }
