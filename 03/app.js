@@ -7,7 +7,10 @@ function randomNumber(min, max) {
     if (min === max && result !== min) {
         throw new RangeError('If \"min\" and \"max\" are equal, \"result\" must be equal \"min\" and \"max\"');
     };
-    
+    if (min > max) {
+        throw new RangeError('\"min\" cannot be bigger than \"max\"!');
+    };
+
     return result;
 }
 
