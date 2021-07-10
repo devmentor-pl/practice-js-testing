@@ -30,11 +30,10 @@ export default function randomNumber(min, max) {
     if (result < min || result > max) {
         throw new RangeError('\"result\" cannot be smaller than \"min\" and \"result\" cannot be bigger than \"max\"!');
     };
-    
     return result;
 }
 
 console.log('Testing randomNumbers');
 for (let i = 1; i < 21; i++) {
-    console.log(`Result ${i}:  ${randomNumber('8', '11')}`);
+    console.log(`Result ${i}:  ${randomNumber(3, 4)}`);
 }
