@@ -21,7 +21,12 @@ export default function randomNumber(min, max) {
     if (result < min) {
         result = min;
     }
-    
+
+    // result must be less or equal as parameter max
+    if (result > max) {
+        result = max;
+    }
+
     console.log(result)
 
     return result;
