@@ -16,6 +16,11 @@ export default function randomNumber(min, max) {
     }
 
     let result = Math.floor(Math.random() * (max - min + 1)) + min;
+
+    // result must be greater or equal as parameter min
+    if (result < min) {
+        result = min;
+    }
     
     console.log(result)
 

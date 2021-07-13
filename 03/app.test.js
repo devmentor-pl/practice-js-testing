@@ -19,8 +19,28 @@ it('result must be greater or equal as parameter min', () => {
 
     randomNumber.min = 5;
     randomNumber.max = 10;
-    randomNumber.result = 5;
+    randomNumber.result = 4;
+    if (randomNumber.result < randomNumber.min) {
+        randomNumber.result = randomNumber.min;
+    }
 
     expect(randomNumber.result >= randomNumber.min).toBe(true);
 })
+
+// test with new object randomNumber2
+it('result must be greater or equal as parameter min', () => {
+
+    const randomNumber2 = new randomNumber;
+
+    randomNumber2.min = 5;
+    randomNumber2.max = 10;
+    randomNumber2.result = 2;
+    if (randomNumber2.result < randomNumber2.min) {
+        randomNumber2.result = randomNumber2.min;
+    }
+
+    expect(randomNumber2.result >= randomNumber2.min).toBe(true);
+})
+
+
 
