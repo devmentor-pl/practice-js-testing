@@ -19,7 +19,7 @@ it('result must be greater or equal as parameter min', () => {
 
     randomNumber.min = 5;
     randomNumber.max = 10;
-    randomNumber.result = 4;
+    randomNumber.result = 5;
 
     expect(randomNumber.result >= randomNumber.min).toBe(true);
 })
