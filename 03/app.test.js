@@ -5,7 +5,7 @@ it('randomNumber is a number', () => {
 })
 
 it('parameter min must be smaller or equal as parameter max', () => {
-    min = 10;
-    max = 1;
-    expect(min <= max).toBe(true);
+    randomNumber.min = 10;
+    randomNumber.max = 10;
+    expect(randomNumber.min <= randomNumber.max).toBe(true);
 })
