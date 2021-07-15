@@ -27,4 +27,14 @@ it('result must be greater or equal than parameter min', () => {
     
     expect(result).toBeGreaterThanOrEqual(min);
 
-})    
+})
+
+it('result must be less or equal than parameter max', () => {
+    
+    const min = 1;
+    const max = 10;
+    const result = randomNumber();
+    
+    expect(result).toBeLessThanOrEqual(max);
+
+})
