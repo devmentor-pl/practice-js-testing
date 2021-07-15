@@ -23,7 +23,7 @@ it('result must be greater or equal than parameter min', () => {
     
     const min = 1;
     const max = 10;
-    const result = randomNumber();
+    const result = randomNumber(min, max);
     
     expect(result).toBeGreaterThanOrEqual(min);
 
