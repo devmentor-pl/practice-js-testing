@@ -16,7 +16,7 @@ db.insert({a: 1, b: 2})
     .then(rows => console.log(rows)); // [{id: 1}]
 ```
 
-Poszczególne metody wykonuja asynchornicznie operację: zapisu, odczytu, modyfikacji i usuwania danych z bazy. Przed napisaniem testów postaraj sie zrozumieć kod, którym taj został napisany.
+Poszczególne metody wykonuja asynchronicznie operację: zapisu, odczytu, modyfikacji i usuwania danych z bazy. Przed napisaniem testów postaraj się zrozumieć kod, którym taj został napisany.
 
 Metoda `.async()` udaje tylko kod aynchroniczny. W rzeczywistym rozwiązaniu czego takiego byśmy nie implementowali. Tego elementu nie testujemy.
 

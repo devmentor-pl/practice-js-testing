@@ -6,7 +6,7 @@
 
 To zadanie polega na zaimplementowaniu funkcjonalności na podstawie testów, które są przygotowane w pliku `User.test.js`. Zadanie zostanie wykonane jeśli wszystkie testy będą przechodzić.
 
-PS. Testy możesz uruchomić przy pomocy komenty `npm run test-04`
+PS. Testy możesz uruchomić przy pomocy komendy `npm run test-04`
 
 &nbsp;
 
