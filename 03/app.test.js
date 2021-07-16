@@ -9,31 +9,31 @@ it('randomNumber is a number', () => {
 
 })
 
-it('if min = 1 and max = 1 than result = 1', () => {
+it('if min = 1 and max = 1 than result = 1', () => {
 
-    const min = 1;
-    const max = 1;
-    const result = randomNumber(min, max);
+    const min = 1;
+    const max = 1;
+    const result = randomNumber(min, max);
     
     expect(result).toBe(1);
 
 })
 
-it('result must be greater or equal than parameter min', () => {
+it('result must be greater or equal than parameter min', () => {
     
-    const min = 1;
-    const max = 10;
-    const result = randomNumber(min, max);
+    const min = 1;
+    const max = 10;
+    const result = randomNumber(min, max);
     
     expect(result).toBeGreaterThanOrEqual(min);
 
 })
 
-it('result must be less or equal than parameter max', () => {
+it('result must be less or equal than parameter max', () => {
     
-    const min = 1;
-    const max = 10;
-    const result = randomNumber(min, max);
+    const min = 1;
+    const max = 10;
+    const result = randomNumber(min, max);
     
     expect(result).toBeLessThanOrEqual(max);
 
