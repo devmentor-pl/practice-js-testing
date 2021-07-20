@@ -8,6 +8,12 @@ export default function randomNumber(min, max) {
         return 0;
     }
 
+    if(min > max || max < min) {
+        throw new Error (
+            'min have to be lower than max'
+        )
+    }
+
     const randomNum = Math.floor(Math.random() * (max - min)) + min
     return randomNum;
 }
