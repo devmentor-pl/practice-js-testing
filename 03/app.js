@@ -4,6 +4,10 @@ export default function randomNumber(min, max) {
         return 1;
     }
 
+    if(typeof min === 'undefined' || typeof max === 'undefined') {
+        return 0;
+    }
+
     const randomNum = Math.floor(Math.random() * (max - min)) + min
     return randomNum;
 }
