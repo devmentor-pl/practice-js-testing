@@ -1,4 +1,4 @@
-> :star: *Jeśli będziesz mieć problem z rozwiązaniem tego zadania, poproś o pomoc na odpowiednim kanale na Slacku, tj. `s1e10-js-testing` (dotyczy [mentee](https://devmentor.pl/mentoring-javascript/) oraz posiadaczy [kursu JavaScript](https://devmentor.pl/p/javascript-for-beginners/)) lub na [dedykowanej grupie fb](https://www.facebook.com/groups/155234921740033). Pamiętaj, aby treść Twojego wpisu spełniała [odpowiednie kryteria](https://devmentor.pl/jak-prosic-o-pomoc/).*
+ > :star: *Jeśli będziesz mieć problem z rozwiązaniem tego zadania, poproś o pomoc na odpowiednim kanale na Slacku, tj. `s1e10-js-testing` (dotyczy [mentee](https://devmentor.pl/mentoring-javascript/) oraz posiadaczy [kursu JavaScript](https://devmentor.pl/p/javascript-for-beginners/)) lub na [dedykowanej grupie fb](https://www.facebook.com/groups/155234921740033). Pamiętaj, aby treść Twojego wpisu spełniała [odpowiednie kryteria](https://devmentor.pl/jak-prosic-o-pomoc/).*
 
 &nbsp;
 
@@ -13,7 +13,7 @@ Zastanów się jakie testy musisz po kolei zdefiniować. Następnie napisz pierw
 
 Postaraj się napisać conajmniej 3 testy dla tej funkcji. Możesz skorzystać z poniższej listy podpowiedzi:
 - Jeśli losujesz liczbę z przedzialu od 1 do 1 to funkcja zwróci 1
-- Jeśli podasz jako argument "nie liczbę" to zostanie wyrzucony błąd
+- Jeśli podasz jako argument "nie liczbę" to zostanie wyrzucony błąd 
 - Jeśli przedział będzie się wykluczał (podasz, że chcesz liczbę od 4 do 3, a nie od 3 do 4) to również zostanie zgłoszony błąd
 - Jeśli przekazane argumenty będą poprawne to sprawdzisz czy wylosowana liczba mieści się w zadanym przedziale.
 
