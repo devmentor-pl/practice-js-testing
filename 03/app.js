@@ -1,14 +1,16 @@
 export default function randomNumber(min, max) {
     
-    if(min === 1 && max === 1) {
-        return 1;
+    if(min === max) {
+        return min;
     }
 
-    if(typeof min === 'undefined' || typeof max === 'undefined') {
-        return 0;
+    if (typeof min !== 'number' || typeof max !== 'number') {
+        throw new Error(
+            'Property have to be a number'
+        );
     }
-
-    if(min > max || max < min) {
+    
+    if(max < min) {
         throw new Error (
             'min have to be lower than max'
         )

@@ -29,10 +29,7 @@ function initEventWithError(element, eventName, error) {
         try {
             setRandomPosition(this, error);
         } catch (error) {
-            const alertEl = document.querySelector('.alert');
-            const messageEl = alertEl.querySelector('.alert__message');
-            messageEl.innerText = error;
-            alertEl.classList.remove('alert--hidden');
+            getAlert(error)
         }
     })
 }
@@ -42,4 +39,11 @@ function colseAlert (e) {
     if(alertEl === e.target) {
         alertEl.classList.add('alert--hidden');
     }
+}
+
+function getAlert (error) {
+    const alertEl = document.querySelector('.alert');
+    const messageEl = alertEl.querySelector('.alert__message');
+    messageEl.innerText = error;
+    alertEl.classList.remove('alert--hidden');
 }
