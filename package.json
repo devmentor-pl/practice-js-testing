@@ -1,13 +1,14 @@
 {
   "name": "practice-js-testing",
   "version": "1.0.0",
-  "description": "",
+  "description": "> :dart: *Chcę mieć absolutną pewność, że **darmowe materiały**, które publikuję, spełniają Twoje oczekiwania. Dlatego oferuję Ci ebooka o wartości 39 PLN: `Jak zostać programistą? SKUTECZNY PRZEWODNIK` w zamian za [wypełnienie ankiety](https://devmentor.pl/ankieta).*",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "test-03": "jest 03/app.test.js --watchAll",
     "test-04": "jest 04/User.test.js --watchAll",
-    "test-05": "jest 05/DB.test.js --watchAll"
+    "test-05": "jest 05/DB.test.js --watchAll",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -19,7 +20,11 @@
   "devDependencies": {
     "@babel/core": "^7.11.1",
     "@babel/preset-env": "^7.11.0",
-    "jest": "^26.3.0",
+    "jest": "^27.0.6",
     "jest-babel": "^1.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laurazacharuk/practice-js-testing.git"
   }
 }
