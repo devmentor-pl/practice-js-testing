@@ -2,7 +2,7 @@ export default class DB {
     constructor() {
         this._rows = [];
     }
-
+ 
     insert(data) {
         return new Promise((resolve, reject) => {
             if(data.id) {
