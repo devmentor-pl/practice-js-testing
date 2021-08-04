@@ -16,4 +16,11 @@ it('throws error if arg2 is NaN', () => {
         randomNumber(1, '1');
     }
     expect(testNumber).toThrow();
+});
+
+it('throws error if max is lower than min', () => {
+    function minIsHigher() {
+        randomNumber(4, 3);
+    }
+    expect(minIsHigher).toThrow();
 })
