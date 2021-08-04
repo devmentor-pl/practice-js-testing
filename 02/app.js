@@ -16,13 +16,29 @@ function setRandomPosition(element, error = null) {
     element.style.top = Math.random() * 600 + 'px';
     element.style.left = Math.random() * 800 + 'px';
 
-    if(error) {
+    if (error) {
         throw error;
     }
 }
 
 function initEventWithError(element, eventName, error) {
-    element.addEventListener(eventName, function() {
-        setRandomPosition(this, error);
+    element.addEventListener(eventName, function () {
+        try {
+            setRandomPosition(this, error);
+        } catch (err) {
+            showError(err);
+        }
     })
+}
+
+const showError = (error) => {
+    const alert = document.querySelector('.alert');
+    alert.classList.remove('alert--hidden');
+    const alertMessage = alert.querySelector('.alert__message');
+    alertMessage.textContent = error;
+    alert.addEventListener('click', removeError)
+}
+
+function removeError () {
+    this.classList.add('alert--hidden');
 }
