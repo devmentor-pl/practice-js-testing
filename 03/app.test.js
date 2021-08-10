@@ -21,3 +21,9 @@ it("return error if max is larger than min", () => {
         randomNumber(8, 2);
     }).toThrow("Max cannot be smaller than min");
 });
+
+it("get random number in range [1, 10]", () => {
+    const result = randomNumber(1, 10);
+    expect(result).toBeGreaterThanOrEqual(1);
+    expect(result).toBeLessThanOrEqual(10);
+});
