@@ -1,8 +1,8 @@
 export default function randomNumber(min, max) {
     validateRange(min,max);
-    
+    return Math.ceil(Math.random() *(max-min)) + min;
 }
-
+ 
 
 function validateRange(min, max) {
     if (typeof min !== 'number') {

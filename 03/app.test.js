@@ -24,5 +24,5 @@ it('Should throw exceptation when valid range', () => {
 it('Return number greater than 5 and less than 10', () => {
     const number = randomNumber(5, 10);
     expect(number).toBeGreaterThan(5);
-    expect(number).toBeLessThan(10);
+    expect(number).toBeLessThanOrEqual(10);
 })
