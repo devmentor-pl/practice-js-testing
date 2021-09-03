@@ -6,3 +6,4 @@ export default function randomNumber(min, max) {
         throw new Error('max must be a number')
     }
 }
+

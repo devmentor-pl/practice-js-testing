@@ -13,3 +13,10 @@ it('Should throw exception when max is not a number', () => {
     }
     expect(checkNumber).toThrow()
 })
+
+it('Should throw exceptation when valid range', () =>{
+    function checkRange() {
+        randomNumber(5, 3) 
+    }
+    expect(checkRange).toThrow()
+})
