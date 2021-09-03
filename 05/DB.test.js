@@ -1,6 +1,6 @@
 import DB from './DB';
 
-describe('check ID number', () => {
+describe('insert', () => {
     it('should inform if ID is not a number', () => {
         expect.assertions(1);
         const db = new DB();
@@ -41,4 +41,36 @@ describe('check ID number', () => {
         })
     })
 
+})
+
+describe('select', () => {
+    it('should return row when give an ID', () => {
+        expect.assertions(1);
+        const db = new DB();
+        db._rows = [{
+            name: "name",
+            id: 3
+        }, {
+            name: "name",
+            id: 5
+        }]
+        const id = 5;
+        const promise = db.select(id)
+        return promise.then(result => {
+            expect(result).toBe(db._rows[1]) //?? Nie miałam innego pomyslu :(
+        })
+    })
+    it('should inform when ID is not found', () => {
+        expect.assertions(1);
+        const db = new DB();
+        db._rows = [{
+            name: "name",
+            id: 3
+        }]
+        const id = 1;
+        const promise = db.select(id);
+        return promise.catch(err => {
+            expect(err).toBe('ID not found')
+        })
+    })
 })
