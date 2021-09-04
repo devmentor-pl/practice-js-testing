@@ -133,27 +133,31 @@ describe('update', () => {
             id: 3
         }
         const promise = await db.update(newData);
-        if (db._rows.some(item => item.id === newData.id)) {
+        if (db._rows.some(item => item.id === newData.id)) { // czy ten waruunelk jest potzrebny skoro wyżej zapewniłam że zawsze jest prawdziwy?
             return expect(promise).toBe(newData)
         }
     })
 
-    it('should return when ID is found', () => {
+    it('should return when ID is not found', async () => {
         expect.assertions(1);
         const db = new DB();
         const data = {
             name: "name",
             id: 3
         }
-        db.insert(data);
-        db.remove(3);
+        const data2 = {
+            name: "name",
+            id: 5
+        }
+        await db.insert(data);
+        await db.insert(data2);
+        await db.remove(data.id);
         const newData = {
             name: "newName",
             id: 3
         }
-        const promise = db.update(newData);
-        if (!db._rows.some(item => item.id === newData.id)) {
-            return promise.catch(err => {
+        if (!db._rows.some(item => item.id === newData.id)) { //jw. czy ten warunek jest potzrebny?
+            return db.update(newData).catch(err => {
                 expect(err).toBe('ID not found!')
             })
         }
