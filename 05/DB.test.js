@@ -74,3 +74,37 @@ describe('select', () => {
         })
     })
 })
+describe('remove', () => {
+    it('should return when ID is found', () => {
+        expect.assertions(1);
+        const db = new DB();
+        db._rows = [{
+            name: "name",
+            id: 3
+        }, {
+            name: "name",
+            id: 5
+        }]
+        const id = 5;
+        const promise = db.remove(id)
+        return promise.then(result => {
+            expect(result).toBe('Item was remove!') 
+        })
+    })
+    it('should inform when ID not exist', () => {
+        expect.assertions(1);
+        const db = new DB();
+        db._rows = [{
+            name: "name",
+            id: 3
+        }, {
+            name: "name",
+            id: 5
+        }]
+        const id = 7;
+        const promise = db.remove(id);
+        return promise.catch(err => {
+            expect(err).toBe('Item not exist!')
+        })
+    })
+})
