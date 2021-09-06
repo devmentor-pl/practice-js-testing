@@ -18,7 +18,7 @@ function getProductList() {
 
 function getTotalPrice(productList) {
     return productList.reduce((acc, product) => {
-        return acc + ((product.price - product.discount) * product.count);
+        return acc + ((product.price - product.discount*product.price) * product.count);
     }, 0).toFixed(2);
 }
 
