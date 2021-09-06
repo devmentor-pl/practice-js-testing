@@ -13,18 +13,17 @@ describe('insert', () => {
         })
     })
 
-    it('should inform if ID is not a number', () => {
+    it('should inform when ID try to be duplicated', async () => {
         expect.assertions(1);
         const db = new DB();
-        db._rows = [{
+        await db.insert({
             name: "name",
             id: 3
-        }]
+        })
         const data = {
             id: 3
-        }
-        const promise = db.insert(data);
-        return promise.catch(err => {
+        };
+        return db.insert(data).catch(err => {
             expect(err).toBe('ID can\'t be duplicated!')
         })
     })
@@ -44,29 +43,32 @@ describe('insert', () => {
 })
 
 describe('select', () => {
-    it('should return row when give an ID', () => {
+    it('should return row when give an ID', async () => {
         expect.assertions(1);
         const db = new DB();
-        db._rows = [{ // czy powinnam przekazac id poprzez db.insert???
+        const data1 = {
             name: "name",
             id: 3
-        }, {
+        }
+        await db.insert(data1);
+        const data2 = {
             name: "name",
             id: 5
-        }]
+        }
+        await db.insert(data2)
         const id = 5;
-        const promise = db.select(id)
-        return promise.then(result => {
-            expect(result).toBe(db._rows[1]) //?? Nie miałam innego pomyslu :(
-        })
+        const result = await db.select(id)
+        expect(result).toBe(data2)
     })
+
     it('should inform when ID is not found', () => {
         expect.assertions(1);
         const db = new DB();
-        db._rows = [{
+        const data1 = {
             name: "name",
             id: 3
-        }]
+        }
+        db.insert(data1)
         const id = 1;
         const promise = db.select(id);
         return promise.catch(err => {
@@ -75,30 +77,36 @@ describe('select', () => {
     })
 })
 describe('remove', () => {
-    it('should return when ID is found', async () => {
+    it('should info whenItem was removed and return length of array', async () => {
+        expect.assertions(2);
         const db = new DB();
-        db._rows = [{
+        await db.insert({
             name: "name",
             id: 3
-        }, {
+        })
+        await db.insert({
             name: "name",
             id: 5
-        }]
+        })
         const id = 5;
         const result = await db.remove(id)
         expect(result).toBe('Item was remove!')
+        return db.getRows().then(result => {
+            expect(result.length).toBe(1)
+        })
     })
 
     it('should inform when ID not exist', () => {
         expect.assertions(1);
         const db = new DB();
-        db._rows = [{
+        db.insert({
             name: "name",
             id: 3
-        }, {
+        })
+        db.insert({
             name: "name",
             id: 5
-        }]
+        })
         const id = 7;
         const promise = db.remove(id);
         return promise.catch(err => {
@@ -121,7 +129,7 @@ describe('update', () => {
     })
 
     it('should return when ID is found', async () => {
-        expect.assertions(1);
+        expect.assertions(2);
         const db = new DB();
         const data = {
             name: "name",
@@ -129,13 +137,14 @@ describe('update', () => {
         }
         await db.insert(data);
         const newData = {
-            name: "neName",
+            name: "newName",
             id: 3
         }
         const promise = await db.update(newData);
-        if (db._rows.some(item => item.id === newData.id)) { // czy ten waruunelk jest potzrebny skoro wyżej zapewniłam że zawsze jest prawdziwy?
-            return expect(promise).toBe(newData)
-        }
+        expect(promise).toBe(newData)
+        return db.select(3).then(result => {
+            expect(result.name).toBe('newName')
+        })
     })
 
     it('should return when ID is not found', async () => {
@@ -156,10 +165,8 @@ describe('update', () => {
             name: "newName",
             id: 3
         }
-        if (!db._rows.some(item => item.id === newData.id)) { //jw. czy ten warunek jest potzrebny?
-            return db.update(newData).catch(err => {
-                expect(err).toBe('ID not found!')
-            })
-        }
+        return db.update(newData).catch(err => {
+            expect(err).toBe('ID not found!')
+        })
     })
 })
