@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', init);
 
-function init() {
+function init(e) {
     const clickEl = document.querySelector('.error--click');
     const enterEl = document.querySelector('.error--enter');
 
@@ -23,6 +23,33 @@ function setRandomPosition(element, error = null) {
 
 function initEventWithError(element, eventName, error) {
     element.addEventListener(eventName, function() {
-        setRandomPosition(this, error);
+       try {
+           setRandomPosition(this, error);
+        }
+       catch(e) {
+           setErrorinErrorPanel(e);
+        }
+        finally {
+            closeErrorPanel();
+        }
     })
+}
+
+function setErrorinErrorPanel(error) {
+
+    const alertPanel = document.querySelector('.alert')
+    alertPanel.setAttribute('style' , 'display:flex')
+
+    const alertMessage = alertPanel.querySelector('.alert__message');
+    alertMessage.innerText = error;
+
+}
+
+function closeErrorPanel() {
+
+    const alertPanel = document.querySelector('.alert');
+    alertPanel.addEventListener('click' , (e) => {
+        if(e.target === alertPanel) {
+            alertPanel.setAttribute('style' , 'display:none');
+    }});
 }
