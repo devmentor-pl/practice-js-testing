@@ -47,11 +47,11 @@ export default class DB {
                 const lengthBeforeFilter = this._rows.length;
                 this._rows = this._rows.filter(item => item.id !== id);
                 const lengthAfterFilter = this._rows.length;
-                
-                if(lengthBeforeFilter === lengthAfterFilter) {
-                    reject('Item not exist!');
+                debugger;
+                if(lengthBeforeFilter === lengthAfterFilter) {    
+                    reject('Item doesn\'t exist!');
                 } else {
-                    resolve('Item was remove!');
+                    resolve('Item was removed!');
                 }
             });
         });
@@ -60,7 +60,7 @@ export default class DB {
     update(data) {
         return new Promise((resolve, reject) => {
             if(!data.id) {
-                this.async(reject, 'ID have to be set!');
+                this.async(reject, 'ID has to be set!');
             } else {
                 this.async(() => {
                     let updated = null;

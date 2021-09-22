@@ -23,6 +23,25 @@ function setRandomPosition(element, error = null) {
 
 function initEventWithError(element, eventName, error) {
     element.addEventListener(eventName, function() {
-        setRandomPosition(this, error);
+        try {
+            setRandomPosition(this, error);
+        }
+        catch(error) {
+            showPopup(error);
+        }
     })
+}
+
+function showPopup(error) {
+    const alertEl = document.querySelector('.alert');
+    const messageEl = alertEl.querySelector('.alert__message');
+    
+    messageEl.innerText = error.message;
+    alertEl.classList.remove('alert--hidden');
+    alertEl.addEventListener('click', closePopup);
+}
+
+function closePopup(event) {
+    const alertEl = event.currentTarget;
+    alertEl.classList.add('alert--hidden');
 }
