@@ -22,4 +22,12 @@ describe("Random number generator", () => {
 
     expect(result).toBe(1);
   });
+
+  it("should throw an error if arguments are not numbers", () => {
+    function useGenerator() {
+      randomNumber("a", "b");
+    }
+
+    expect(useGenerator).toThrow();
+  });
 });
