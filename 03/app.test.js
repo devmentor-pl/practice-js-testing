@@ -8,4 +8,12 @@ describe("Random number generator", () => {
 
     expect(useGenerator).toThrow();
   });
+
+  it("should throw an error if max is greater than min", () => {
+    function useGenerator() {
+      randomNumber(2, 1);
+    }
+
+    expect(useGenerator).toThrow();
+  });
 });
