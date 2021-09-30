@@ -7,6 +7,10 @@ export default function randomNumber(min, max) {
     throw new Error("Min must be greater than max");
   }
 
+  if (typeof min !== "number" && typeof max !== "number") {
+    throw new Error("Arguments must be a numbers");
+  }
+
   const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
 
   return randomNumber;
