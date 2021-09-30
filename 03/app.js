@@ -7,7 +7,7 @@ export default function randomNumber(min, max) {
     throw new Error("Min must be greater than max");
   }
 
-  if (typeof min !== "number" && typeof max !== "number") {
+  if (isArgumentsValid(min, max)) {
     throw new Error("Arguments must be a numbers");
   }
 
@@ -22,4 +22,8 @@ function isArgumentsProvided(min, max) {
 
 function isMinGreater(min, max) {
   return min > max ? true : false;
+}
+
+function isArgumentsValid(min, max) {
+  return typeof min !== "number" && typeof max !== "number" ? true : false;
 }
