@@ -1,6 +1,10 @@
 export default function randomNumber(min, max) {
 
     if(min === max) {
-        return 1;
+        return min;
+    }
+
+    if(typeof min !== 'number' || typeof max !=='number') {
+        throw new Error('Property have to be a number');
     }
 }
