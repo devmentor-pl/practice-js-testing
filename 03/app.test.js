@@ -17,7 +17,7 @@ it('throw error if parametr is not a number' , () => {
 });
 
 
-it('throw error if max > min' , () => {
+it('throw error if max < min' , () => {
 
     function compareNumber() {
         const min = 4;
