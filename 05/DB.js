@@ -24,7 +24,7 @@ export default class DB {
 
                 this._rows.push(data);
                 resolve(data)
-            }); 
+            });
         });
     }
 
@@ -47,7 +47,7 @@ export default class DB {
                 const lengthBeforeFilter = this._rows.length;
                 this._rows = this._rows.filter(item => item.id !== id);
                 const lengthAfterFilter = this._rows.length;
-                
+
                 if(lengthBeforeFilter === lengthAfterFilter) {
                     reject('Item not exist!');
                 } else {
@@ -69,14 +69,14 @@ export default class DB {
                             updated = data
                             return updated;
                         }
-            
+
                         return item;
                     });
 
                     if(updated) {
                         resolve(updated);
                     } else {
-                        reject('ID not found!');   
+                        reject('ID not found!');
                     }
                 });
             }
@@ -89,7 +89,6 @@ export default class DB {
                 this._rows = [];
                 resolve(true);
             });
-            
         })
     }
 
