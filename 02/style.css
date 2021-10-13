@@ -29,7 +29,7 @@ body {
     background-color: rgb(197, 75, 75);
     width: 30%;
     padding: 20px;
-    box-shadow: 0 0 5px 0 rgba(255,255,255);
+    box-shadow: 0 0 5px 0 rgba(255, 255, 255);
 }
 
 .alert__message {
