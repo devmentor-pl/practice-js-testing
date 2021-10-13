@@ -28,9 +28,7 @@ function initEventWithError(element, eventName, error) {
         }
        catch(e) {
            setErrorinErrorPanel(e);
-        }
-        finally {
-            closeErrorPanel();
+           closeErrorPanel();
         }
     })
 }

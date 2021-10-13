@@ -35,7 +35,9 @@ describe('insert method' , () => {
 
         await subject.insert(data)
 
-        await expect( subject._rows[0].id ).toBe(1);
+        const rows = await subject.getRows();
+
+        expect( rows[0].id ).toBe(1);
     })
 })
 
@@ -104,7 +106,9 @@ describe('remove method' , () => {
         await subject.insert(data2);
         await subject.remove(2);
 
-        await expect( subject._rows.length ).toBe(1);
+        const rows = await subject.getRows();
+
+        expect( rows.length ).toBe(1);
     })
 })
 
@@ -160,7 +164,9 @@ describe('trunscate method' , () => {
         await subject.insert(data);
         await subject.truncate();
 
-        await expect(subject._rows.length).toBe(0);
+        const rows = await subject.getRows()
+
+        expect( rows.length ).toBe(0);
     })
 })
 

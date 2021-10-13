@@ -27,3 +27,11 @@ it('throw error if max < min' , () => {
 
     expect(compareNumber).toThrow();
 })
+
+it('should return a number within the given range' , () => {
+
+    const drawNumber = randomNumber(10,100);
+
+    expect(drawNumber).toBeGreaterThanOrEqual(10);
+    expect(drawNumber).toBeLessThanOrEqual(100);
+})
