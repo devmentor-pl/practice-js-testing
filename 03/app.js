@@ -1,5 +1,9 @@
 export default function randomNumber(min, max) {
-    if (typeof min !== 'number') {
+    if (!isVariableType(min, 'number')) {
         throw new Error('Argument have to be a number');
     }
+}
+
+function isVariableType(variable, type) {
+    return typeof variable === type;
 }
