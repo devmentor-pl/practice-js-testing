@@ -21,7 +21,7 @@ it('throw exception when second arg is not a number', () => {
 it('throw exception when one of arg is NaN', () => {
     function drawNumber() {
         const min = NaN;
-        const max = 1;
+        const max = 5;
         randomNumber(min, max);
     }
     expect(drawNumber).toThrow();

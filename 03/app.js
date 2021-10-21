@@ -5,5 +5,5 @@ export default function randomNumber(min, max) {
 }
 
 function isVariableType(variable, type = 'number') {
-    return typeof variable === type;
+    return (typeof variable === type && variable === variable);
 }
