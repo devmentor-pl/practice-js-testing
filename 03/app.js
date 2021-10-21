@@ -5,5 +5,5 @@ export default function randomNumber(min, max) {
 }
 
 function isVariableValid(variable, type = 'number') {
-    return (typeof variable === type && variable === variable);
+    return (typeof variable === type && !Number.isNaN(variable));
 }

@@ -25,4 +25,22 @@ it('throw exception when one of arg is NaN', () => {
         randomNumber(min, max);
     }
     expect(drawNumber).toThrow();
+});
+
+it('throw exception when both args are NaN', () => {
+    function drawNumber() {
+        const min = NaN;
+        const max = NaN;
+        randomNumber(min, max);
+    }
+    expect(drawNumber).toThrow();
+});
+
+it('throw exception when min > max', () => {
+    function drawNumber() {
+        const min = 7;
+        const max = 3;
+        randomNumber(min, max);
+    }
+    expect(drawNumber).toThrow();
 })
