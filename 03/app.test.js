@@ -43,4 +43,9 @@ it('throw exception when min > max', () => {
         randomNumber(min, max);
     }
     expect(drawNumber).toThrow();
+});
+
+it('return 1 when min = max = 1', () => {
+    const result = randomNumber(1, 1);
+    expect(result).toBe(1);
 })
