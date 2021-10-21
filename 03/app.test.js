@@ -48,4 +48,12 @@ it('throw exception when min > max', () => {
 it('return 1 when min = max = 1', () => {
     const result = randomNumber(1, 1);
     expect(result).toBe(1);
+});
+
+it('return num greater than or equal min and less than or equal max', () => {
+    const min = 10;
+    const max = 14;
+    const result = randomNumber(min, max);
+    expect(result).toBeGreaterThanOrEqual(min);
+    expect(result).toBeLessThanOrEqual(max);
 })
