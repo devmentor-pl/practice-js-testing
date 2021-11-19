@@ -17,3 +17,12 @@ it ('throw error, when prop min is bigger than prop max', () => {
     }
     expect(checkingValues).toThrow();
 })
+
+it ('return 1, when min and max is the same', () => {
+    function checkingValues() {
+        const min = 1;
+        const max = 1;
+        randomNumber(min, max);
+    }
+    expect(checkingValues).toBe(1);
+})
