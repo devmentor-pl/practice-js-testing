@@ -5,4 +5,8 @@ export default function randomNumber(min, max) {
     function typeOfValue(value, type) {
         return typeof value === type;
     }
+
+    if (min > max) {
+        throw new Error ('Minimum number cannot be bigger than max(scope)');
+    }
 }
