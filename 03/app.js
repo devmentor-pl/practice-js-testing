@@ -7,6 +7,9 @@ export default function randomNumber(min, max) {
     }
 
     if (min > max) {
-        throw new Error ('Minimum number cannot be bigger than max(scope)');    //tu chyba bez refaktoryzacji
+        throw new Error ('Minimum number cannot be bigger than max(scope)');    //tu chyba bez refaktoryzacja
     }
+
+    let random = Math.floor(Math.random() * (max - min)) + min;
+    return random;
 }
