@@ -1,9 +1,10 @@
 import randomNumber from './app';
-it('return 0 while prop min is the same as prop max', () => {
-    function sameNumbers() {
-        const min = 1;
-        const max = 1;
-        randomNumber(min, max);
+
+it ('throw error, when prop min or prop max is NaN', () => {
+    function numberValue() {
+        const min = 2;
+        const max = '2';
+        randomNumber (min, max);
     }
-    expect(sameNumbers).toBe(0);
+    expect(numberValue).toThrow();
 })
