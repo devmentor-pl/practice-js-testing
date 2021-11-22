@@ -7,7 +7,7 @@ it ('throw error, when prop min or prop max is NaN', () => {
         randomNumber(min, max);
     }
     expect(checkingValues).toThrow();
-})
+});
 
 it ('throw error, when prop min is bigger than prop max', () => {
     function checkingValues() {
@@ -16,13 +16,18 @@ it ('throw error, when prop min is bigger than prop max', () => {
         randomNumber(min, max);
     }
     expect(checkingValues).toThrow();
-})
+});
 
 it ('return 1, when min and max is the same', () => {
-    function checkingValues() {
-        const min = 1;
-        const max = 1;
-        randomNumber(min, max);
-    }
-    expect(checkingValues).toBe(1);
-})
+    expect(randomNumber(1, 1)).toBe(1);
+});
+
+it ('return number from the given range', () => {
+
+    const min = 3;
+    const max = 10;
+    const number = randomNumber(min,max);
+
+    expect(number).toBeGreaterThanOrEqual(min);
+    expect(number).toBeLessThanOrEqual(max);
+});
