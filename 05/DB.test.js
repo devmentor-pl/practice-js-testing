@@ -2,26 +2,24 @@ import DB from './DB';
 
 describe ('Insert method', () => {
     it ('Return message "ID can be only number", when data.id is not a number', async () => {
-        //Czy wymagane w tym miejscu jest w tym przypadku expect.assertions(1); , skoro test przechodzi?
+        expect.assertions(1);
         const subject = new DB();
 
         try {
             await subject.insert({id:'a'});
         }
         catch (err){
-            expect(err).toBe('ID can be only number!')
+            await expect(err).toBe('ID can be only number!')
         }
-    })
+    });
 
     it('Return message "ID can\'t be duplicated!", whe ID is duplicated', async () => {
-        // Tu podobne pytanie: expect.assertions(1); stwierdziłem że będę dodawał
-        //tylko tam gdzie jest rejects ale nie wiem czy to dobrze :D
         const subject = new DB();
         subject.insert({id:1});
 
-        await subject.insert({id:1})
+        await subject.insert({id:1});
 
-        await expect(subject.insert({id:1})).rejects.toBe('ID can\'t be duplicated!');
+        return expect(subject.insert({id:1})).rejects.toBe('ID can\'t be duplicated!');
     });
 
     it ('Return automatically assign ID, when ID is not insert', async () => {
@@ -31,7 +29,7 @@ describe ('Insert method', () => {
         
         const newUserRow = await subject.getRows();
 
-        await expect(newUserRow[0].id).toBe(1);
+        return expect(newUserRow[0].id).toBe(1);
     });
 });
 
@@ -52,7 +50,7 @@ describe ('Select method', () => {
     it ('Reject, when ID is not found', async () => {
         expect.assertions(1)
         const subject = new DB();
-        await expect(subject.select(2)).rejects.toBe('ID not found');
+        return expect(subject.select(2)).rejects.toBe('ID not found');
     });
 });
 
@@ -62,7 +60,7 @@ describe ('Remove method', () => {
         expect.assertions(1);
         const subject = new DB();
 
-        await expect(subject.remove(1)).rejects.toBe('Item not exist!');
+        return expect(subject.remove(1)).rejects.toBe('Item not exist!');
     })
 
     it ('Chek if item was remove', async () => {
@@ -71,7 +69,7 @@ describe ('Remove method', () => {
         const newUser = {name:'Dawid'}
 
         await subject.insert(newUser);
-        await expect(subject.remove(1)).resolves.toBe('Item was remove!');
+        return expect(subject.remove(1)).resolves.toBe('Item was remove!');
 
     });
 });
@@ -85,7 +83,7 @@ describe ('Update method', () => {
 
         await subject.insert(newUser);
 
-        await expect(subject.update({name:'Dawid'})).rejects.toBe('ID have to be set!');
+        return expect(subject.update({name:'Dawid'})).rejects.toBe('ID have to be set!');
     });
 
     it ('Reject when ID is not found', async () => {
@@ -96,7 +94,7 @@ describe ('Update method', () => {
         await subject.insert(newUser);
 
         const wrongIDUser = {name:'Dawid', id:2};
-        await expect(subject.update(wrongIDUser)).rejects.toBe('ID not found!');
+        return expect(subject.update(wrongIDUser)).rejects.toBe('ID not found!');
     });
 
     it ('Resolve when item was updated', async () => {
@@ -107,22 +105,21 @@ describe ('Update method', () => {
         await subject.insert(newUser);
         const updatedUser = {name:'innyDawid', id:1};
 
-        await expect(subject.update(updatedUser)).resolves.toBe(updatedUser);
+        return expect(subject.update(updatedUser)).resolves.toBe(updatedUser);
     });
 });
 
 describe('Truncate method', () => {
 
     it('Return true when resolved', async () => {
-        // expect.assertions(1)
         const subject = new DB();
         const firstUser = {name:'Dawid', id:1};
-        
 
         await subject.insert(firstUser);
-        // await subject.insert(secondUser);
+        await subject.truncate();
+        const expectArray = [];
 
-       await expect(subject.truncate()).resolves.toBe(true);
+        return expect(subject.getRows()).resolves.toEqual(expectArray);
     });
 
     it('Check if this clear database', async () => {
@@ -138,7 +135,7 @@ describe('Truncate method', () => {
 
         const checkDB = await subject.getRows();
 
-        await expect(checkDB.length).toBe(0);
+        return expect(checkDB.length).toBe(0);
     });
 });
 
@@ -152,7 +149,7 @@ describe('getRows method', () => {
         await subject.insert(newUser);
         const test = [newUser];
 
-        await expect(subject.getRows()).resolves.toEqual(test);
+        return expect(subject.getRows()).resolves.toEqual(test);
     });
 
     it('Should return empty array', async () => {
@@ -160,8 +157,6 @@ describe('getRows method', () => {
         const subject = new DB();
         const expectArray = [];
 
-        await expect(subject.getRows()).resolves.toEqual(expectArray);
-
+        return expect(subject.getRows()).resolves.toEqual(expectArray);
     });
-
 });

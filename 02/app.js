@@ -14,9 +14,11 @@ function init() {
 }
 
 function setRandomPosition(element, error = null) {
+
+    element.style.top = Math.random() * 600 + 'px';
+    element.style.left = Math.random() * 800 + 'px';    
+    
     try{
-        element.style.top = Math.random() * 600 + 'px';
-        element.style.left = Math.random() * 800 + 'px';
     
         if(error) {
             throw error;
