@@ -7,7 +7,14 @@ it("return 1 when min and max are 1", () => {
 
 it("error if isNaN", () => {
   function randomNumberNaN(min, max) {
-    min === NaN || max === NaN;
+    randomNumber(NaN, max);
   }
-  expect(randomNumber).toThrow();
+  expect(randomNumberNaN).toThrow();
+});
+
+it("min cannot be higher than max", () => {
+  function minHigherThanMax(min, max) {
+    randomNumber(max, min);
+  }
+  expect(minHigherThanMax).toThrow();
 });
