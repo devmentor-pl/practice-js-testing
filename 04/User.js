@@ -24,8 +24,7 @@ export default class User {
     if (this.email.includes("devmentor.pl")) {
       return true;
     }
-    if (!this.email.includes("devmentor.pl")) {
-      return false;
-    }
+
+    return false;
   }
 }

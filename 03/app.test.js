@@ -6,15 +6,15 @@ it("return 1 when min and max are 1", () => {
 });
 
 it("error if isNaN", () => {
-  function randomNumberNaN(min, max) {
-    randomNumber(NaN, max);
+  function randomNumberNaN() {
+    randomNumber(NaN, 3);
   }
   expect(randomNumberNaN).toThrow();
 });
 
 it("min cannot be higher than max", () => {
-  function minHigherThanMax(min, max) {
-    randomNumber(max, min);
+  function minHigherThanMax() {
+    randomNumber(5, 4);
   }
   expect(minHigherThanMax).toThrow();
 });

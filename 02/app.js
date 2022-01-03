@@ -18,28 +18,28 @@ function setRandomPosition(element, error = null) {
   element.style.top = Math.random() * 600 + "px";
   element.style.left = Math.random() * 800 + "px";
 
-  try {
-    if (error) {
-      throw error;
-    }
-  } catch (e) {
-    alertWindow.classList.remove("alert--hidden");
-
-    if (e.name === "TypeError") {
-      alertMessage.innerText = e.message;
-      alertWindow.classList.add("error--enter");
-    }
-
-    if (e.name === "RangeError") {
-      alertMessage.innerText = e.message;
-      alertWindow.classList.add("error--click");
-    }
+  if (error) {
+    throw error;
   }
 }
 
 function initEventWithError(element, eventName, error) {
   element.addEventListener(eventName, function () {
-    setRandomPosition(this, error);
+    try {
+      setRandomPosition(this, error);
+    } catch (e) {
+      alertWindow.classList.remove("alert--hidden");
+
+      if (e.name === "TypeError") {
+        alertMessage.innerText = e.message;
+        alertWindow.classList.add("error--enter");
+      }
+
+      if (e.name === "RangeError") {
+        alertMessage.innerText = e.message;
+        alertWindow.classList.add("error--click");
+      }
+    }
   });
 }
 
