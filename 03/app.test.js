@@ -2,5 +2,5 @@ import randomNumber from './app';
 
 it('if number min = 1 and number max = 1', () => {
     const randomNo = new randomNumber();
-    expect(randomNo.num1,randomNo.num2).toBe(1);
+    expect(randomNo(1,1)).toBe(1);
 })
