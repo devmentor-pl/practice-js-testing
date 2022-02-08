@@ -19,3 +19,11 @@ it('if value min is greater than value max', () => {
     }
     expect(checkingValues).toThrow(Error);
 });
+
+it('if random number is from given range', () => {
+    const min = 3;
+    const max = 14;
+    const randomValue = randomNumber(min,max);
+    expect(randomValue).toBeGreaterThanOrEqual(min);
+    expect(randomValue).toBeLessThanOrEqual(max);
+});
