@@ -5,8 +5,8 @@ export default function randomNumber(min, max) {
     if(typeof max !== 'number') {
         throw new Error ('value: max is not a number')
     }
-    else{
-    return Math.floor(Math.random() * (max - min + 1)) + min
+    else {
+        return Math.floor(Math.random() * (max - min + 1)) + min
     }
 }
 
