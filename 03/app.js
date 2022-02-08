@@ -1,12 +1,22 @@
 export default function randomNumber(min, max) {
+    if(min === max) {
+        return min;
+    }
+
     if(typeof min !== 'number'){
         throw new Error ('value: min is not a number')
     }
+
     if(typeof max !== 'number') {
         throw new Error ('value: max is not a number')
     }
-    else {
-        return Math.floor(Math.random() * (max - min + 1)) + min
+
+    if(min > max) {
+        throw new Error('value min can be greater than value max')
+    }
+    
+    else{
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 }
 
