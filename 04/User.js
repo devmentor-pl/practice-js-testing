@@ -26,4 +26,11 @@ export default class User {
         }
     }
 
+    login(){
+        const regExpEmailDomain = /^[A-Za-z0-9._%+-]+@devmentor.pl$/;
+        if(this.email.match(regExpEmailDomain)){
+            return true;
+        }
+        return false;
+    }
 }
