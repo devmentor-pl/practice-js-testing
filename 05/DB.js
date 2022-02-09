@@ -9,7 +9,7 @@ export default class DB {
                 if(typeof data.id !== 'number') {
                     this.async(reject,'ID can be only number!');
                     return null; // stop function
-                } else if(this._rows.some(item => item.id === data.id)) {
+                } else if(this._rows.some(item => item.id === data.id)) { // some - Sprawdza, czy jakikolwiek element tablicy zalicza test zaimplementowany przez dostarczoną funkcję .
                     this.async(reject, 'ID can\'t be duplicated!');
                     return null; // stop function
                 }
@@ -18,13 +18,13 @@ export default class DB {
             this.async(() => {
                 if(!data.id) {
                     data.id = this._rows.reduce((acc, item) => {
-                        return acc <= item.id ? item.id + 1 : acc;
+                        return acc <= item.id ? item.id + 1 : acc; // ? = wykonaj jesli true, : = wykonaj jesli false
                     }, 1);
                 }
 
                 this._rows.push(data);
                 resolve(data)
-            }); 
+            });
         });
     }
 
@@ -47,7 +47,7 @@ export default class DB {
                 const lengthBeforeFilter = this._rows.length;
                 this._rows = this._rows.filter(item => item.id !== id);
                 const lengthAfterFilter = this._rows.length;
-                
+
                 if(lengthBeforeFilter === lengthAfterFilter) {
                     reject('Item not exist!');
                 } else {
@@ -69,14 +69,13 @@ export default class DB {
                             updated = data
                             return updated;
                         }
-            
                         return item;
                     });
 
                     if(updated) {
                         resolve(updated);
                     } else {
-                        reject('ID not found!');   
+                        reject('ID not found!');
                     }
                 });
             }
@@ -89,7 +88,6 @@ export default class DB {
                 this._rows = [];
                 resolve(true);
             });
-            
         })
     }
 
