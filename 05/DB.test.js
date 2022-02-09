@@ -23,3 +23,5 @@ describe('insert method', () => {
     })
 
 });
+
+// nie ogarniam tego zadania, te dwa testy mnie zmeczyły, raczej to jest przepisywanie z materiałów i sieci niz jakies moje logiczne rozwiązania wiec sie poddaje bo nic sie nie naucze
