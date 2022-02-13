@@ -11,19 +11,13 @@ describe('User', () => {
     });
 
     it('should throw exception when email is incorrect', () => {
-        function createWrongUserData() {
-            new User({email: 'devmentor.pl', password: 'pw123456'});
-        }
-
-        expect(createWrongUserData).toThrow();
+        const user = new User({email: 'devmentor.pl', password: 'pw123456'});
+        expect(()=>{user.checkEmail()}).toThrow('email is incorrect');
     });
 
     it('should throw exception when password is incorrect', () => {
-        function createWrongUserData() {
-            new User({email: 'koder@devmentor.pl', password: '123'});
-        }
-
-        expect(createWrongUserData).toThrow();
+        const user = new User({email: 'koder@devmentor.pl', password: '123'});
+        expect(()=>{user.checkPassword()}).toThrow('password should has latters and characters');
     });
 
     describe('.login()', () => {
