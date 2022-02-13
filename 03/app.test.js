@@ -10,14 +10,14 @@ it('if value is not a number', () => {
         const max ="dom";
         randomNumber(min,max)
     }
-    expect(checkingValues).toThrow(Error);
+    expect(checkingValues).toThrow('value: min AND max have to be a number');
 });
 
 it('if value min is greater than value max', () => {
     function checkingValues(){
         randomNumber(5,2)
     }
-    expect(checkingValues).toThrow(Error);
+    expect(checkingValues).toThrow('value min can not be greater than value max');
 });
 
 it('if random number is from given range', () => {
