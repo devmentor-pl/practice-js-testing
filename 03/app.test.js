@@ -11,8 +11,18 @@ it('return 1 when randomized numbers are in the range 1 and 1' , () => {
 /* jeśli podasz jako argument "nie liczbę", to zostanie rzucony błąd, */
 
 it('throws an error if one of the arguments is NaN', () => {
-    function checkNumber() {
+    function checkNumbers() {
         randomNumber('NaN', 5);
     }
-    expect(checkNumber).toThrow()
+    expect(checkNumbers).toThrow()
 }) 
+
+// jeśli przedział będzie się wykluczał (podasz, że chcesz liczbę od 4 do 3, a nie od 3 do 4), to również zostanie rzucony błąd
+
+it('throws an error if max number is lower than min' , () => {
+
+    function checkNumbers () {
+        randomNumber(5, 1);
+    }
+    expect(checkNumbers).toThrow();
+});
