@@ -26,3 +26,12 @@ it('throws an error if max number is lower than min' , () => {
     }
     expect(checkNumbers).toThrow();
 });
+
+// jeśli przekazane argumenty będą poprawne, to sprawdzisz, czy wylosowana liczba mieści się w zadanym przedziale
+
+it('throws an error if the returned number is not within the given range', () => {
+    function isWithinRange () {
+        randomNumber(4, 7);
+    }
+    expect(isWithinRange).toThrow
+});
