@@ -15,3 +15,9 @@ it('return 1 if both arguments = 1', () => {
 it('throw error if "min" greater than "max"', () => {
     expect( () => randomNumber(2,1) ).toThrow();
 });
+
+it('result smaller or equal "max"', () => {
+    const result = randomNumber(1, 5)
+    const smaller = result <= 5;
+    expect(smaller).toBe(true);
+});

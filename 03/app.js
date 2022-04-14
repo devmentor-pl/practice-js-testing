@@ -14,5 +14,6 @@ export default function randomNumber(min, max) {
     if(min > max) {
         throw new Error('argument "min" greater than argument "max"');
     }
+
     
 }
