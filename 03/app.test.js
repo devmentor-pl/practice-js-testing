@@ -9,5 +9,5 @@ it('throw error if "max" is not a number', () => {
 });
 
 it('return 1 if both arguments = 1', () => {
-    expect( () => randomNumber(1,1) ).toBe(1);
+    expect( randomNumber(1, 1) ).toBe(1);
 });

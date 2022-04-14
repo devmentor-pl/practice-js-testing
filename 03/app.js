@@ -6,4 +6,8 @@ export default function randomNumber(min, max) {
     if(typeof max !== 'number') {
         throw new Error('"max argument is not a number');
     }
+
+    if((min = 1) && (max = 1)) {
+        return 1;
+    }
 }
