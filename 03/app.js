@@ -15,5 +15,5 @@ export default function randomNumber(min, max) {
         throw new Error('argument "min" greater than argument "max"');
     }
 
-    
+    return Math.random() * (max - min) + min;
 }
