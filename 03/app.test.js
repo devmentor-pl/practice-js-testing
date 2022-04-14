@@ -11,3 +11,7 @@ it('throw error if "max" is not a number', () => {
 it('return 1 if both arguments = 1', () => {
     expect( randomNumber(1, 1) ).toBe(1);
 });
+
+it('throw error if "min" greater than "max"', () => {
+    expect( () => randomNumber(2,1) ).toThrow();
+});
