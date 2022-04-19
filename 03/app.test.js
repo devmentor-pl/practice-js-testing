@@ -21,3 +21,9 @@ it('result smaller or equal "max"', () => {
     const smaller = result <= 5;
     expect(smaller).toBe(true);
 });
+
+it('result greater or equal "min"', () => {
+    const result = randomNumber(1, 5)
+    const greater = result >= 1;
+    expect(greater).toBe(true);
+});
