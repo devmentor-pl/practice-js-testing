@@ -15,7 +15,7 @@ describe('User', () => {
             new User({email: 'devmentor.pl', password: 'pw123456'});
         }
 
-        expect(createWrongUserData).toThrow();
+        expect(createWrongUserData).toThrow('incorrect email');
     });
 
     it('should throw exception when password is incorrect', () => {
@@ -23,7 +23,7 @@ describe('User', () => {
             new User({email: 'koder@devmentor.pl', password: '123'});
         }
 
-        expect(createWrongUserData).toThrow();
+        expect(createWrongUserData).toThrow('incorrect password');
     });
 
     describe('.login()', () => {
@@ -32,7 +32,7 @@ describe('User', () => {
             const password = 'pw123456';
             const user = new User({email, password});
 
-            expect(user.login()).toBe(true);
+            expect(user.login()).toBeTruthy();
         });
 
         it('should return false when email not contain domain  devmentor.pl', () => {
@@ -40,7 +40,7 @@ describe('User', () => {
             const password = 'pw123456';
             const user = new User({email, password});
 
-            expect(user.login()).toBe(false);
+            expect(user.login()).toBeFalsy();
         });
     });
 });

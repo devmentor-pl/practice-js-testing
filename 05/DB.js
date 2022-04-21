@@ -8,10 +8,10 @@ export default class DB {
             if(data.id) {
                 if(typeof data.id !== 'number') {
                     this.async(reject,'ID can be only number!');
-                    return null; // stop function
+                    return null;
                 } else if(this._rows.some(item => item.id === data.id)) {
                     this.async(reject, 'ID can\'t be duplicated!');
-                    return null; // stop function
+                    return null;
                 }
             }
 
@@ -66,7 +66,7 @@ export default class DB {
                     let updated = null;
                     this._rows = this._rows.map(item => {
                         if(item.id === data.id) {
-                            updated = data
+                            updated = data;
                             return updated;
                         }
             
@@ -89,7 +89,6 @@ export default class DB {
                 this._rows = [];
                 resolve(true);
             });
-            
         })
     }
 
