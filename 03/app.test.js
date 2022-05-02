@@ -7,3 +7,11 @@ it('return 1 when the number to be drawn is between 1 and 1', () => {
 
     expect(result).toBe(1);
 });
+
+it('throw exception when argument is not a number', () => {
+    function getRandomNumber() {
+        randomNumber('1', 5);
+    }
+
+    expect(getRandomNumber).toThrow()
+})
