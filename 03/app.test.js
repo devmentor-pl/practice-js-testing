@@ -15,3 +15,11 @@ it('throw exception when argument is not a number', () => {
 
     expect(getRandomNumber).toThrow()
 })
+
+it('throw exception when min is bigger than max', () => {
+    function getRandomNumber() {
+        randomNumber(10, 5);
+    }
+
+    expect(getRandomNumber).toThrow()
+});
