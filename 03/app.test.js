@@ -14,3 +14,13 @@ it('if you provide NaN as an argument, an error will be returned', () => {
     expect(drawNumber).toThrow()
     
 })
+
+it('if the first argument is greater than the second argument, an error will be returned', () => {
+    function drawNumber() {
+        const min = 10
+        const max = 2
+        randomNumber(min,max)
+    }
+    expect(drawNumber).toThrow()
+    
+})
