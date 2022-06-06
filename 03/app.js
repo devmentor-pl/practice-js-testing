@@ -9,5 +9,3 @@ console.log( randomNumber(1,2) )
 
 
 
-
-
