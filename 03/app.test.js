@@ -18,6 +18,11 @@ test('test check if there are no args', () => {
 })
 
 
+test('test check if min > max', () => {
+    expect( () => randomNumber(3, 1) ).toThrow()
+})
+
+
 
 
 

@@ -21,15 +21,28 @@
 // export default randomNumber
 
 
+// function randomNumber(min, max) {
+//         if(typeof min !== 'number' || typeof max !== 'number') {
+//             throw new Error('min or max undefined')
+//         }
+//         const random = Math.floor(Math.random() * (max - min + 1) + min)    
+//         console.log( random )
+//         return random        
+// }
+// export default randomNumber
+
+
 function randomNumber(min, max) {
         if(typeof min !== 'number' || typeof max !== 'number') {
             throw new Error('min or max undefined')
         }
+        if(min > max) {
+            throw new Error('min larger then max')
+        }
+        // throw new Error('min larger then max')
         const random = Math.floor(Math.random() * (max - min + 1) + min)    
         console.log( random )
         return random        
 }
 export default randomNumber
-
-
 
