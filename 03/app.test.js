@@ -8,7 +8,14 @@ test('test fn', () => {
     expect(randomNumber(1,1)).toBe(1)
 })
 
-
+test('test check if there are no args', () => {
+    function createRandomFn() {
+        randomNumber()
+    }
+    expect( createRandomFn ).toThrow()
+    // expect( () => createRandomFn() ).toThrow()
+    // expect( () => randomNumber() ).toThrow()
+})
 
 
 
