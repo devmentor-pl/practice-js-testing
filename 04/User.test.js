@@ -9,13 +9,12 @@ describe('User', () => {
         expect(user.getPassword()).toBe(password);
     })
 
-    // it('should throw exception when email is incorrect', () => {
-    //     function createWrongUserData() {
-    //         new User({email: 'devmentor.pl', password: 'pw123456'});
-    //     }
-
-    //     expect(createWrongUserData).toThrow();
-    // });
+    it('should throw exception when email is incorrect', () => {
+        function createWrongUserData() {
+            new User({email: '@devmentor.pl', password: '123456'});
+        }
+        expect(createWrongUserData)
+    });
 
     // it('should throw exception when password is incorrect', () => {
     //     function createWrongUserData() {
