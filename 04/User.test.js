@@ -31,12 +31,12 @@ describe('User', () => {
             expect(user.login()).toBe(true);
         });
 
-        // it('should return false when email not contain domain  devmentor.pl', () => {
-        //     const email = 'koder@gmail.com';
-        //     const password = 'pw123456';
-        //     const user = new User({email, password});
+        it('should return false when email not contain domain  devmentor.pl', () => {
+            const email = 'koder@gmail.com';
+            const password = 'pw123456';
+            const user = new User({email, password});
 
-        //     expect(user.login()).toBe(false);
-        // });
+            expect(user.login()).toBe(false);
+        });
     });
 });

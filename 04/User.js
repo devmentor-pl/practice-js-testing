@@ -47,7 +47,7 @@
 // // const user1 = new User({email, password})
 // // console.log( user1.getEmail() )
 
-// login - test 1
+// login - test 1 & 2
 // -----------------
 class User {
     constructor({email, password}) {
