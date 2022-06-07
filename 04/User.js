@@ -20,7 +20,7 @@
 // // console.log( user1.getEmail() )
 
 
-// User - test 2
+// User - test 2, test 3
 // -----------------
 class User {
     constructor({email, password}) {
