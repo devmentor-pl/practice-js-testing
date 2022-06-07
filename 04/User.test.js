@@ -24,13 +24,12 @@ describe('User', () => {
     });
 
     describe('.login()', () => {
-        // it('should return true when email contain domain devmentor.pl', () => {
-        //     const email = 'koder@devmentor.pl';
-        //     const password = 'pw123456';
-        //     const user = new User({email, password});
-
-        //     expect(user.login()).toBe(true);
-        // });
+        it('should return true when email contain domain devmentor.pl', () => {
+            const email = 'koder@devmentor.pl';
+            const password = 'pw123456';
+            const user = new User({email, password});
+            expect(user.login()).toBe(true);
+        });
 
         // it('should return false when email not contain domain  devmentor.pl', () => {
         //     const email = 'koder@gmail.com';
