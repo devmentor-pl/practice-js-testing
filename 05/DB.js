@@ -24,7 +24,7 @@ export default class DB {
 
                 this._rows.push(data)
                 resolve(data)
-            }); 
+            }) 
         });
     }
 
@@ -53,7 +53,7 @@ export default class DB {
                 } else {
                     resolve('Item was remove!');
                 }
-            });
+            })
         });
     }
 
@@ -105,5 +105,9 @@ export default class DB {
         setTimeout(() => {
             callback(...params);
         }, Math.random() * 100);
+    }
+
+    reset() {
+        this._rows = []
     }
 }

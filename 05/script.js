@@ -38,18 +38,31 @@ console.log('script')
 
 // update
 // ---------------
+// import DB from './DB.js'
+// const db = new DB()
+// console.log( db._rows )
+
+// db.insert({c: 3, id: 1})
+// .then(rows => {
+//     console.log(rows)
+//     db.update({d: 4, id: 1}).then( data => console.log( data ) )
+// })
+
+
+// insert
+// --------------
 import DB from './DB.js'
 const db = new DB()
 console.log( db._rows )
 
 db.insert({c: 3, id: 1})
-.then(rows => {
-    console.log(rows)
-    db.update({d: 4, id: 1}).then( data => console.log( data ) )
-})
-
-
-
+    .then(rows => console.log(rows))
+    .then( () => {
+        db.reset()
+    })
+    .then( () => {
+        console.log( db._rows )
+    })
 
 
 
