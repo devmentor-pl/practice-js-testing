@@ -16,4 +16,8 @@ describe('randomNumber()', () => {
     it(`first argument is greater then second one, throw error information`, () => {
         expect(() => { randomNumber(4, 2) }).toThrow();
     })
+    it(`if the arguments are passed correctly, show the right value`, () => {
+        expect(randomNumber(1, 5)).toBeGreaterThanOrEqual(1);
+        expect(randomNumber(1, 5)).toBeLessThanOrEqual(5);
+    })
 });
