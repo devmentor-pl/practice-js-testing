@@ -32,30 +32,30 @@ export default class DB {
     }
 
     select(id) {
-        if (typeof id !== 'number') {
-            throw new Error('Id has to be a number');
-        };
         if (typeof id === 'undefined') {
-            throw new Error('this method should contains one argument');
+            return Promise.reject('Id has to be a number');
+        };
+        if (typeof id !== 'number') {
+            return Promise.reject('Id has to be a number');
         };
         return new Promise((resolve, reject) => {
             this.async(() => {
                 const [row = null] = this._rows.filter(item => item.id === id);
                 if(row) {
-                    resolve(row);
+                   return resolve(row);
                 } else {
-                    reject('ID not found');
+                   return reject('ID not found');
                 }
             });
         });
     }
 
     remove(id) {
-        if (typeof id !== 'number') {
-            throw new Error('Id has to be a number');
-        };
         if (typeof id === 'undefined') {
-            throw new Error('this method should contains one argument');
+            return Promise.reject('this method should contains one argument');
+        };
+        if (typeof id !== 'number') {
+            return Promise.reject('Id has to be a number');
         };
         return new Promise((resolve, reject) => {
             this.async(() => {
@@ -64,9 +64,9 @@ export default class DB {
                 const lengthAfterFilter = this._rows.length;
 
                 if(lengthBeforeFilter === lengthAfterFilter) {
-                    reject('Item not exist!');
+                   return reject('Item not exist!');
                 } else {
-                    resolve('Item was remove!');
+                   return resolve('Item was remove!');
                 }
             });
         });
@@ -92,9 +92,9 @@ export default class DB {
                     });
 
                     if(updated) {
-                        resolve(updated);
+                       return resolve(updated);
                     } else {
-                        reject('ID not found!');
+                       return reject('ID not found!');
                     }
                 });
             }
