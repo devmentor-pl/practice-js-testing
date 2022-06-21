@@ -26,15 +26,15 @@ console.log('script')
 
 // select
 // ---------------
-// import DB from './DB.js'
-// const db = new DB()
-// console.log( db._rows )
+import DB from './DB.js'
+const db = new DB()
+console.log( db._rows )
 
-// db.insert({c: 3, id: 1})
-// .then(rows => {
-//     console.log(rows)
-//     db.select(1).then( data => console.log( data ) )
-// })
+db.insert({c: 3, id: 1})
+.then(rows => {
+    console.log(rows)
+    db.select(1).then( data => console.log( data ) )
+})
 
 // update
 // ---------------
@@ -51,18 +51,18 @@ console.log('script')
 
 // insert
 // --------------
-import DB from './DB.js'
-const db = new DB()
-console.log( db._rows )
+// import DB from './DB.js'
+// const db = new DB()
+// console.log( db._rows )
 
-db.insert({c: 3, id: 1})
-    .then(rows => console.log(rows))
-    .then( () => {
-        db.reset()
-    })
-    .then( () => {
-        console.log( db._rows )
-    })
+// db.insert({c: 3, id: 1})
+//     .then(rows => console.log(rows))
+//     .then( () => {
+//         db.reset()
+//     })
+//     .then( () => {
+//         console.log( db._rows )
+//     })
 
 
 
