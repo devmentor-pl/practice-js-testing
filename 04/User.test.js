@@ -5,16 +5,14 @@ describe('User', () => {
         const email = 'koder@devmentor.pl';
         const password = 'pw123456';
         const user = new User({email, password});
-
-        expect(user.getEmail()).toBe(email);
+        expect(user.getEmail()).toBe(email)
         expect(user.getPassword()).toBe(password);
-    });
+    })
 
     it('should throw exception when email is incorrect', () => {
         function createWrongUserData() {
             new User({email: 'devmentor.pl', password: 'pw123456'});
         }
-
         expect(createWrongUserData).toThrow();
     });
 
@@ -22,7 +20,6 @@ describe('User', () => {
         function createWrongUserData() {
             new User({email: 'koder@devmentor.pl', password: '123'});
         }
-
         expect(createWrongUserData).toThrow();
     });
 
@@ -31,7 +28,6 @@ describe('User', () => {
             const email = 'koder@devmentor.pl';
             const password = 'pw123456';
             const user = new User({email, password});
-
             expect(user.login()).toBe(true);
         });
 
