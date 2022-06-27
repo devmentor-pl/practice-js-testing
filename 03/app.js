@@ -7,6 +7,10 @@ export default function randomNumber(min, max) {
         throwError('"max" must be a number')
     }
 
+    if(min > max) {
+        throwError('"min" cannot be greater than "max"')
+    }
+
     return Math.random() * (max - min) + min
 }
 
