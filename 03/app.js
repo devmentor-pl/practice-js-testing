@@ -7,6 +7,10 @@ export default function randomNumber(min, max) {
     if (min === max) {        
         return max;
     }    
+
+    if (max < min) {
+        throw new RangeError('Max must be greater than min');
+    }
     
     function isNumber(value) { 
         return (typeof value === 'number');
