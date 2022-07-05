@@ -12,8 +12,10 @@ export default function randomNumber(min, max) {
         throw new RangeError('Max must be greater than min');
     }
     
-    function isNumber(value) { 
-        return (typeof value === 'number');
-    }
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function isNumber(value) { 
+    return (typeof value === 'number');
 }
 
