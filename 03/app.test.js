@@ -19,3 +19,11 @@ it ('throw exception when max is not number' , () => {
     
     expect(drawNumber).toThrow();
 });
+
+it ('throw exception when max < min ', () => {
+    function drawNumber() {
+        randomNumber(10, 5);
+    }
+
+    expect(drawNumber).toThrow();
+});
