@@ -1,7 +1,7 @@
 export default function randomNumber(min, max) {
     
-    if (!isNumber(min)) {
-        throw new Error('Min is not a number');
+    if (!isNumber(min) || !isNumber(max)) {
+        throw new Error('Min or max is not a number');
     }
 
     if (min === max) {        
