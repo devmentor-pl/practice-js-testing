@@ -18,4 +18,3 @@ export default function randomNumber(min, max) {
 function isNumber(value) { 
     return (typeof value === 'number');
 }
-

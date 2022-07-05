@@ -30,7 +30,7 @@ it ('throw exception when max < min ', () => {
 
 it ('when min and max is correct return number in range (min, max)', () => {    
     const num = randomNumber(5, 10);
-    
+
     expect(num).toBeGreaterThanOrEqual(5);
     expect(num).toBeLessThanOrEqual(10);
 })
