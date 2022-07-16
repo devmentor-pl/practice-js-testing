@@ -11,3 +11,10 @@ it('should throw exception when insert not a number', () => {
     }
     expect(drawNumber).toThrow();
 });
+
+it('should throw exception when interval is not correct', () => {
+    function drawNumber() {
+        randomNumber(4, 3);
+    }
+    expect(drawNumber).toThrow();
+});
