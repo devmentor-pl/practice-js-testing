@@ -18,3 +18,9 @@ it('should throw exception when interval is not correct', () => {
     }
     expect(drawNumber).toThrow();
 });
+
+it('should check if the interval includes drawn number ', () => {
+    const drawnNumber = randomNumber(1, 3);
+    expect(drawnNumber).toBeGreaterThanOrEqual(1);
+    expect(drawnNumber).toBeLessThanOrEqual(3);
+});

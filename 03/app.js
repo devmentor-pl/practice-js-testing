@@ -5,7 +5,6 @@ export default function randomNumber(min, max) {
     }
     else if(min > max) {
         throw new Error('Max has to be larger than min');
-
     }
     return drawnNumber;
 }
