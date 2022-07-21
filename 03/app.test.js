@@ -5,9 +5,16 @@ it('return 1 if min and max are set to 1', () => {
     expect(number).toBe(1)
 })
 it('throw exception when argument is not a number', () => {
-    function dwarNumber() {
+    function generateNumber() {
         randomNumber('abc', 2)
     }
 
-    expect(dwarNumber).toThrow()
+    expect(generateNumber).toThrow()
+})
+
+it('throw exception when min is higher than max', () => {
+    function checkIfCorrectNumbers() {
+        randomNumber(5, 4)
+    }
+    expect(checkIfCorrectNumbers).toThrow()
 })
