@@ -1,4 +1,4 @@
-//export default 
+export default 
 class DB {
     constructor() {
         this._rows = [];
@@ -111,11 +111,13 @@ class DB {
     }
 }
 
-const db = new DB();
+/*const db = new DB();
 db.insert({a: 1, b: 2})
     .then(() => db.insert({a: 3, b: 4}))
     .then(res => console.log(res))
     .then(() => db.select(2))
+    .then(res => console.log(res))
+    .then(() => db.truncate())
     .then(res => console.log(res))
     .then(() => db.getRows())
     .then(rows => console.log(rows.length));
