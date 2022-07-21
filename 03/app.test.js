@@ -18,3 +18,7 @@ it('throw exception when min is higher than max', () => {
     }
     expect(checkIfCorrectNumbers).toThrow()
 })
+
+it('return number between min and max if both are correct', () => {
+    randomNumber(20, 50)
+})
