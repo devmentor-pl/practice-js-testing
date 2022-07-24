@@ -114,6 +114,8 @@ class DB {
 const db = new DB();
 db.insert({a: 1, b: 2})
     .then(() => db.insert({a: 3, b: 4}))
+    .then(() => db.update({a: 7, b: 11, id:1}))
+    
     //.then(() => db.remove(2))
     //.then(() => db.update({a: 3, b:4, id: 1}))
     //.then(result => console.log(result))
@@ -124,8 +126,8 @@ db.insert({a: 1, b: 2})
     //.then(result => console.log(result))
     .then(() => db.getRows())
     .then(rows => console.log(rows))   
-    .then(() => db.truncate())
-    .then(() => db.getRows())
-    .then(rows => console.log(rows.length))      
+    //.then(() => db.truncate())
+    //.then(() => db.getRows())
+    //.then(rows => console.log(rows.length))      
     
     

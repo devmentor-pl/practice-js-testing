@@ -9,7 +9,6 @@ class DB {
             if(data.id) {
                 if((typeof data.id) !== 'number') {
                     this.async(reject,'ID can be only number!');
-                    //this.async(reject(new Error('ID can be only number!')));
                     return null; // stop function
                 } else if(this._rows.some(item => item.id === data.id)) {
                     this.async(reject, 'ID can\'t be duplicated!');
@@ -111,38 +110,3 @@ class DB {
     }
 }
 
-/*const db = new DB();
-db.insert({a: 1, b: 2})
-    .then(() => db.insert({a: 3, b: 4}))
-    .then(res => console.log(res))
-    .then(() => db.select(2))
-    .then(res => console.log(res))
-    .then(() => db.truncate())
-    .then(res => console.log(res))
-    .then(() => db.getRows())
-    .then(rows => console.log(rows.length));
-    //.then(result => {
-        //console.log(result);
-    //})
-    //console.log(db._rows);
-
-
-       
-
-    class newArray {
-        constructor() {
-            this.array = [];
-        }
-        add(item) {
-            this.array.push(item);
-        }
-    }
-
-    const nArray = new newArray();
-    nArray.add({Kasia: 1});
-    nArray.add({Ola: 2});
-    nArray.add({Iza: 3});
-    console.log(nArray.array);
-    console.log(nArray.array[0].Kasia);
-
-    //console.log(nArray.array[0]);*/
