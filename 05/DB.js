@@ -1,4 +1,5 @@
-export default class DB {
+export default 
+class DB {
     constructor() {
         this._rows = [];
     }
@@ -6,7 +7,7 @@ export default class DB {
     insert(data) {
         return new Promise((resolve, reject) => {
             if(data.id) {
-                if(typeof data.id !== 'number') {
+                if((typeof data.id) !== 'number') {
                     this.async(reject,'ID can be only number!');
                     return null; // stop function
                 } else if(this._rows.some(item => item.id === data.id)) {
@@ -23,7 +24,8 @@ export default class DB {
                 }
 
                 this._rows.push(data);
-                resolve(data)
+                resolve(data);
+                //resolve(this._rows.push(data));
             }); 
         });
     }
@@ -104,6 +106,7 @@ export default class DB {
     async(callback, ...params) {
         setTimeout(() => {
             callback(...params);
-        }, Math.random() * 100);
+        }, Math.random() * 1000);
     }
 }
+
