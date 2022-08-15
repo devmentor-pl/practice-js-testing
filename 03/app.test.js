@@ -9,3 +9,9 @@ it("throw error when min or max is not a number", () => {
 	}
 	expect(createNumber).toThrow();
 });
+it("throw error if min is greater than max", () => {
+	function createNumber() {
+		randomNumber(10, 5);
+	}
+	expect(createNumber).toThrow();
+});
