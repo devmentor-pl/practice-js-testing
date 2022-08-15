@@ -12,3 +12,7 @@ it('throws error if number is Nan', () => {
 it('throws error if second number is Nan', () => {
 	expect(randomNumber(1, '1').toThrow());
 });
+
+it('throws error if max is lower than min', () => {
+	expect(randomNumber(2, 1).toThrow());
+});
