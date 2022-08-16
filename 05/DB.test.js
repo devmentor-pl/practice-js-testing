@@ -48,7 +48,7 @@ describe('DB', () => {
 		it('reject when ID is not set', async () => {
 			expect.assertions(1);
 			const db = new DB();
-			const data = { name: Michael };
+			const data = { name: 'Michael' };
 			await db.update(data).catch(err => expect(err).toBe('ID have to be set!'));
 		});
 
