@@ -1,5 +1,9 @@
 export default function randomNumber(min, max) {
-	if (typeof min !== 'number' || typeof max !== 'number') {
+	if (typeof min !== 'number') {
+		throw new Error('Arg must be a number!');
+	}
+
+	if ( typeof max !== 'number') {
 		throw new Error('Arg must be a number!');
 	}
 
