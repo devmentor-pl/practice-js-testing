@@ -69,7 +69,7 @@ export default class DB {
                             updated = data
                             return updated;
                         }
-            
+
                         return item;
                     });
 
