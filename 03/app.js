@@ -4,7 +4,7 @@ export default function randomNumber(min, max) {
     }
 
     if(max > min) {
-        throw new Error('Max cannot be bigger than min')
+        throw new Error('Min cannot be bigger than max')
     }
     
     return Math.round(Math.random() * (max-min) + min )
