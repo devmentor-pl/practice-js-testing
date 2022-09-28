@@ -13,20 +13,30 @@ describe("Tests for min and max", () => {
   });
 });
 
-describe("Test for min", () => {
+describe("Tests for min", () => {
   it("throw exception when min is not a number", () => {
     function useRandomNumber() {
       randomNumber("string", 1);
     }
     expect(useRandomNumber).toThrow();
   });
+
+  it("check if drawn numer is equal or grater then min", () => {
+    const drawnNumber = randomNumber(1, 6);
+    expect(drawnNumber).toBeGreaterThanOrEqual(1);
+  });
 });
 
-describe("Test for max", () => {
+describe("Tests for max", () => {
   it("throw exception when max is not a number", () => {
     function useRandomNumber() {
       randomNumber(1, "string");
     }
     expect(useRandomNumber).toThrow();
+  });
+
+  it("check if drawn numer is equal or less then max", () => {
+    const drawnNumber = randomNumber(1, 6);
+    expect(drawnNumber).toBeLessThanOrEqual(6);
   });
 });
