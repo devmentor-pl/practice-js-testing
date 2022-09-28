@@ -1,3 +1,7 @@
 export default function randomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+  if (typeof min !== "number") {
+    throw new Error("Property min have to be a number");
+  } else {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
 }
