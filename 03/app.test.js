@@ -11,5 +11,11 @@ it('should "min" shoud be a number otherwise will throw error', ()=>{
 
     expect(()=> randomNumber('a', 2)).toThrow('"min " is not a number')
 
+})
+
+it('should "max" shoud be a number otherwise will throw error', ()=>{
+
+    expect(()=> randomNumber('a', 2)).toThrow('"max " is not a number')
+
 
 })
