@@ -7,7 +7,7 @@ export default function randomNumber(min, max) {
 
     }
 
-    if (typeof max !== 'number') {
+    if (isNumber(max)) {
 
         errorMessage('"max " is not a number')
 
