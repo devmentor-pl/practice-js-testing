@@ -1,5 +1,12 @@
 export default function randomNumber(min, max) {
 
-return Math.random() * (max - min) + min
+
+    if (typeof min !== 'number') {
+
+        throw new Error('"min " is not a number')
+
+    }
+
+    return Math.random() * (max - min) + min
 
 }
