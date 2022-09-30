@@ -9,7 +9,7 @@ describe("Tests for min and max", () => {
     function useRandomNumber() {
       randomNumber(2, 1);
     }
-    expect(useRandomNumber).toThrow();
+    expect(useRandomNumber).toThrow("Property min is higher than propety max");
   });
 });
 
@@ -18,7 +18,7 @@ describe("Tests for min", () => {
     function useRandomNumber() {
       randomNumber("string", 1);
     }
-    expect(useRandomNumber).toThrow();
+    expect(useRandomNumber).toThrow("Property min have to be a number");
   });
 
   it("check if drawn numer is equal or grater then min", () => {
@@ -32,7 +32,7 @@ describe("Tests for max", () => {
     function useRandomNumber() {
       randomNumber(1, "string");
     }
-    expect(useRandomNumber).toThrow();
+    expect(useRandomNumber).toThrow("Property max have to be a number");
   });
 
   it("check if drawn numer is equal or less then max", () => {

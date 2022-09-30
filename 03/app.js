@@ -4,7 +4,7 @@ export default function randomNumber(min, max) {
     throw new Error("Property min have to be a number");
   }
   if (typeof max !== "number") {
-    throw new Error("Property min have to be a number");
+    throw new Error("Property max have to be a number");
   }
   if (max < min) {
     throw new Error("Property min is higher than propety max");

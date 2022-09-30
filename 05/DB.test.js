@@ -13,12 +13,12 @@ it("check if id is a number", async () => {
 });
 
 it("check if id is not duplicated", async () => {
+  expect.assertions(1);
   const db = new DB();
-  const rowsLength = db.getRows().length;
-  expect.assertions(rowsLength);
   const id = 3;
 
   try {
+    await db.insert({ id: id });
     await db.insert({ id: id });
   } catch (err) {
     expect(err).toBe("ID can't be duplicated!");
@@ -38,9 +38,8 @@ it("check if id found", async () => {
 });
 
 it("check if item exist", async () => {
+  expect.assertions(1);
   const db = new DB();
-  const rowsLength = db.getRows().length;
-  expect.assertions(rowsLength);
   const id = 3;
 
   try {
@@ -72,4 +71,27 @@ it("check if id found", async () => {
   } catch (err) {
     expect(err).toBe("ID not found!");
   }
+});
+
+it("check if function getRows works", async () => {
+  expect.assertions(1);
+  const db = new DB();
+
+  await db.insert({ id: 1 });
+  await db.insert({ id: 2 });
+  const rows = await db.getRows();
+
+  expect(rows.length).toBe(2);
+});
+
+it("check if function truncate works", async () => {
+  expect.assertions(1);
+  const db = new DB();
+
+  await db.insert({ id: 1 });
+  await db.insert({ id: 2 });
+  await db.truncate();
+  const rows = await db.getRows();
+
+  expect(rows.length).toBe(0);
 });
