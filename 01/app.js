@@ -8,13 +8,21 @@ function getProductList() {
 function getTotalPrice(productList) {
     let acc = 0
     productList.forEach(element => {
+        console.groupCollapsed(element.name)
+        console.time('Time to calculate element')
         const count = Number(element.count)
         const price = Number(element.price)
         const discount = Number(element.discount)
-        acc = acc + count * price * (1 - discount)
-        return acc = Math.round(acc * 100) / 100
+        const sum = Math.round((count * price * (1 - discount)) * 100) / 100
+        console.log('wartość pozycji: ' + sum + 'zł')
+        acc = acc + sum
+        console.log('wartość koszyka: ' + acc + 'zł')
+        console.timeEnd('Time to calculate element')
+        console.groupEnd()
+        return acc
     })
     return acc
+    
     // return productList.reduce((product, acc) => {
     //     return acc + (product.price * product.count);
     // });
