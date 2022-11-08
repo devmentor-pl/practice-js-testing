@@ -7,10 +7,14 @@ describe('RandomNumber', () => {
     });
 
     it('should throw exception when any of args isnt a number', () => {
-        const arg1 = '';
-        const arg2 = [];
-        expect(function(){randomNumber(arg1, arg2)}).toThrow('Property has to be a number');
+        const min = '';
+        const max = 6;
+        expect(function(){randomNumber(min, max)}).toThrow('Property has to be a number');
     });
 
-    it
+    it('should throw exception when max range is smaller than min range', () => {
+        const min = 10;
+        const max = 9;
+        expect(function(){randomNumber(min, max)}).toThrow();
+    })
 })
