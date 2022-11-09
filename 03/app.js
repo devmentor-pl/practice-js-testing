@@ -5,8 +5,9 @@ export default function randomNumber(min, max) {
         
     }else if(max < min){
         throw new Error('Max range cannot be smaller than min range');
+    }else if(!Number.isInteger(min) || !Number.isInteger(max)){
+        throw new Error('Provided number has to be an integer');
     }
-
     return Math.floor(Math.random() * (max - min + 1) + min)
 } 
 
