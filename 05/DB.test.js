@@ -87,8 +87,11 @@ describe('DB', () => {
         })
     })
     describe('getRows', () => {
-        it('', () => {
+        it('should resolves when function called', async () => {
+            const subject = new DB;
+            const promise = subject.getRows();
 
+            await expect(promise).resolves.toBe(subject._rows);
         })
     })
 })
