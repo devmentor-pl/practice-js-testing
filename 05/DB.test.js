@@ -57,9 +57,8 @@ describe('DB', () => {
     describe('update', () => {
         it('should resolve when data id matches new provided data', async () => {
             const subject = new DB;
-            const data = {a: 2, b: 3, id:1};
-            const newData = {a:4, b: 11, id:1}
-            await subject.insert(data);
+            const data = await subject.insert({a: 2, b: 3, id:1});
+            const newData = {...data, a:6}
             const promise = subject.update(newData);
 
             await expect(promise).resolves.toBe(newData);
