@@ -21,8 +21,11 @@ export default class User {
     getPassword() {
         return this.password;
     }
+
+    login () {
+        return this.email.includes ('devmentor.pl');
+    
+    }
 }
 
-login () {
-    return this.email.include('devmentor.pl');
-}
+
