@@ -13,4 +13,13 @@ describe('check range', () => {
         }
         expect(checkNumbers).toThrow('value of min cannot be greater than value of max');
     });
+
+    it('if given value is not a number', () => {
+        function checkNumbers() {
+            const min = 'abc';
+            const max = 'xyz';
+            randomNumber(min, max)
+        }
+        expect(checkNumbers).toThrow('given value is not a number')
+    });
 })
