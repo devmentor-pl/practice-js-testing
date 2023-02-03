@@ -22,4 +22,12 @@ describe('check range', () => {
         }
         expect(checkNumbers).toThrow('given value is not a number')
     });
-})
+});
+
+describe('check if fits given range', () => {
+    it('if given numbers are between 1 and 10', () => {
+        const num = randomNumber(1, 10);
+        expect(num).toBeGreaterThanOrEqual(1);
+        expect(num).toBeLessThanOrEqual(10);
+    });
+});
