@@ -19,3 +19,11 @@ describe('test for insert method', () => {
         })
     })
 })
+
+describe('test for select method', () => {
+    it('if ID exists', () => {
+        const db = new DB();
+        const data = {id: 4};
+        return expect(db.select(data)).rejects.toBe('ID not found');
+    })
+})
