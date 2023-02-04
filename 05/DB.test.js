@@ -46,3 +46,15 @@ describe('test for remove method', () => {
         expect(db.remove(id.id)).resolves.toBe('Item was removed!')
     })
 })
+
+describe('test for update method', () => {
+    it('if ID is set', () => {
+        const db = new DB();
+        const data = {name: 'abc'};
+        const promise = db.update(data);
+        return promise.catch(err => {
+            expect(err).toBe('ID have to be set!')
+        })
+    })
+})
+
