@@ -21,9 +21,28 @@ describe('test for insert method', () => {
 })
 
 describe('test for select method', () => {
-    it('if ID exists', () => {
+    it('if ID is found', () => {
         const db = new DB();
         const data = {id: 4};
         return expect(db.select(data)).rejects.toBe('ID not found');
+    })
+})
+
+describe('test for remove method', () => {
+    it('if ID exists', async () => {
+        const db = new DB();
+        db.insert({id: 4})
+        db.insert({id: 5})
+        const id = 6;
+        const promise = db.remove(id);
+        return promise.catch(err => {
+            expect(err).toBe('Item not exist!')
+        })
+    })
+    it('if item with ID was removed', async () => {
+        const db = new DB();
+        const id = {id: 4};
+        await db.insert(id);
+        expect(db.remove(id.id)).resolves.toBe('Item was removed!')
     })
 })
