@@ -1,4 +1,4 @@
-clearimport User from './User';
+import User from './User';
 
 describe('User', () => {
     it('should had set email and password when create instance', () => {

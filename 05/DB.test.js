@@ -29,7 +29,7 @@ describe('test for select method', () => {
 })
 
 describe('test for remove method', () => {
-    it('if ID exists', async () => {
+    it('rejects when ID not exist', async () => {
         const db = new DB();
         db.insert({id: 4})
         db.insert({id: 5})
@@ -39,7 +39,7 @@ describe('test for remove method', () => {
             expect(err).toBe('Item not exist!')
         })
     })
-    it('if item with ID was removed', async () => {
+    it('resolves when ID exists', async () => {
         const db = new DB();
         const id = {id: 4};
         await db.insert(id);
@@ -58,3 +58,4 @@ describe('test for update method', () => {
     })
 })
 
+ 

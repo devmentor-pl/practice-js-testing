@@ -14,7 +14,7 @@ export default class User {
         return this.password;
     }
 
-    checkLogin() {
+    login() {
         if(this.email.includes('devmentor.pl')) {
             return true;
         } else {
@@ -37,4 +37,3 @@ export default class User {
 }
 
 
-// wydaje mi się, że jest okej ale nie przechodzi testów, I don't know why?

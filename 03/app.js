@@ -6,14 +6,14 @@ export default function randomNumber(min, max) {
 
 function validateData(min, max) {
     if( min === max) {
-        return min
+        return 1
     }
     
     if(min > max) {
         throw new Error('value of min cannot be greater than value of max')
     }
     
-    if((typeof min !== 'number') && (typeof max !== 'number')) {
+    if(Number.isNaN(min) && Number.isNaN(max)) {
         throw new Error('given value is not a number')
     }
 }
