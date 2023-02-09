@@ -19,4 +19,11 @@ describe('randomNumber', () => {
 		const number = randomNumber(1, 1);
 		expect(number).toBe(1);
 	});
+
+	it('should pass if drawing number is from given range ', () => {
+		const number = randomNumber(10, 43);
+
+		expect(number).toBeGreaterThanOrEqual(10);
+		expect(number).toBeLessThanOrEqual(43);
+	});
 });
