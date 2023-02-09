@@ -26,4 +26,13 @@ describe('randomNumber', () => {
 		expect(number).toBeGreaterThanOrEqual(10);
 		expect(number).toBeLessThanOrEqual(43);
 	});
+
+	it('should throw exception if min value is greater than max value', () => {
+		function getRandomNumber() {
+			randomNumber(5, 2);
+		}
+		expect(getRandomNumber).toThrow(
+			'Min value cannot be greater than max value!'
+		);
+	});
 });
