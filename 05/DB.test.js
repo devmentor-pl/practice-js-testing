@@ -25,12 +25,13 @@ describe('DB', () => {
 			}
 		});
 
-		it('should return 1 when insert data to empty array', async () => {
+		it('should resolve to data when insert data to empty array', async () => {
 			const db = new DB();
 			const data = { a: 1, b: 2 };
 			await db.insert(data);
+			const row = await db.getRows();
 
-			expect(db._rows.length).toEqual(1);
+			expect(row).toStrictEqual([{ a: 1, b: 2, id: 1 }]);
 		});
 	});
 
@@ -65,12 +66,13 @@ describe('DB', () => {
 			}
 		});
 
-		it('should return 0 when the only element of array is removed', async () => {
+		it('should return empty array when the only element of array is removed', async () => {
 			const db = new DB();
 			await db.insert({ a: 1, b: 2 });
 			await db.remove(1);
+			const row = await db.getRows();
 
-			expect(db._rows.length).toEqual(0);
+			expect(row).toEqual([]);
 		});
 	});
 
@@ -95,14 +97,17 @@ describe('DB', () => {
 			}
 		});
 
-		it('should return true when update DB with correct id', async () => {
+		it('should return true and an array with newData when update DB with correct id', async () => {
+			expect.assertions(2);
 			const db = new DB();
 			const data = { a: 1, b: 2, id: 1 };
 			const newData = { ...data, b: 4 };
 			await db.insert(data);
 			const updatedDB = await db.update(newData);
+			const row = await db.getRows();
 
 			expect(updatedDB).toBeTruthy();
+			expect(row).toStrictEqual([{ a: 1, b: 4, id: 1 }]);
 		});
 	});
 
@@ -110,21 +115,22 @@ describe('DB', () => {
 		it('should return one item from array when insert one item to array', async () => {
 			const db = new DB();
 			await db.insert({});
-			const receivedRows = await db.getRows();
+			const row = await db.getRows();
 
-			expect(receivedRows).toStrictEqual([{ id: 1 }]);
+			expect(row).toStrictEqual([{ id: 1 }]);
 		});
 	});
 
 	describe('truncate', () => {
-		it('should return 0 when truncate an array', async () => {
+		it('should return empty array when truncate an array', async () => {
 			const db = new DB();
 			await db.insert({ a: 1 });
 			await db.insert({ a: 2 });
 			await db.insert({ a: 3 });
 			await db.truncate();
+			const row = await db.getRows();
 
-			expect(db._rows.length).toBe(0);
+			expect(row).toEqual([]);
 		});
 	});
 });
