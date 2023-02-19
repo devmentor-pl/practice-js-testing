@@ -1,21 +1,21 @@
 export default randomNumber = (min, max) => {
-    if (areNotNumbers(min, max)) {
+    if (!areNumbers(min, max)) {
         throw new Error('Min or max is not a number!');
     }
 
-    if (isNotValidRange(min, max)) {
+    if (!isValidRange(min, max)) {
         throw new Error('Min value should be smaller than max value.');
     }
 
     return Math.random() * (max - min) + min;
 }
 
-function areNotNumbers(min, max) {
-    if (isNaN(min) || isNaN(max)) return true;
-    else return false;
+function areNumbers(min, max) {
+    if (isNaN(min) || isNaN(max)) return false;
+    else return true;
 }
 
-function isNotValidRange(min, max) {
-    if (min > max) return true;
-    else return false;
+function isValidRange(min, max) {
+    if (min > max) return false;
+    else return true;
 }
