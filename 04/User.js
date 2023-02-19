@@ -15,15 +15,15 @@ export default class User {
     }
 
     login() {
-        if (this.email.includes('devmentor.pl')) {
-            return true;
-        }
+        if (this.email.includes('devmentor.pl')) return true;
+        else return false;
     }
 
     validate() {
         if (!this.email.includes('@')) {
             throw new Error('Wrong email!');
         }
+        
         if (this.password.length < 4) {
             throw new Error('Wrong password!');
         }
