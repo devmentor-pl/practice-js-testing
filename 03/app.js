@@ -1,4 +1,10 @@
 export default randomNumber = (min, max) => {
+    checkArguments(min, max)
+
+    return Math.random() * (max - min) + min;
+}
+
+function checkArguments(min, max) {
     if (!areNumbers(min, max)) {
         throw new Error('Min or max is not a number!');
     }
@@ -6,8 +12,6 @@ export default randomNumber = (min, max) => {
     if (!isValidRange(min, max)) {
         throw new Error('Min value should be smaller than max value.');
     }
-
-    return Math.random() * (max - min) + min;
 }
 
 function areNumbers(min, max) {
