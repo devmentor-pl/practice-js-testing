@@ -18,5 +18,8 @@ export default class User {
         if (!this.email.includes('@')) {
             throw new Error('Wrong email!');
         }
+        if (this.password.length < 4) {
+            throw new Error('Wrong password!');
+        }
     }
 }
