@@ -6,8 +6,14 @@ describe('RandomNumber', () => {
     });
 
     it('throw exception when min is not a number', () => {
-        expect(()=> {
+        expect(() => {
             randomNumber('some string', 2);
+        }).toThrow();
+    });
+
+    it('throw exception when max is not a number', () => {
+        expect(() => {
+            randomNumber(2, 'some string');
         }).toThrow();
     });
 });
