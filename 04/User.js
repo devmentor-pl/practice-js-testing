@@ -14,6 +14,12 @@ export default class User {
         return this.password;
     }
 
+    login() {
+        if (this.email.includes('devmentor.pl')) {
+            return true;
+        }
+    }
+
     validate() {
         if (!this.email.includes('@')) {
             throw new Error('Wrong email!');
