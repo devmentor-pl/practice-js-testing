@@ -1,17 +1,20 @@
 export default randomNumber = (min, max) => {
-    checkArguments(min, max)
+    if (areArgumentsValid(min, max)) {
+        const result = Math.random() * (max - min) + min;
 
-    return Math.random() * (max - min) + min;
+        return result;
+    }
 }
 
-function checkArguments(min, max) {
+function areArgumentsValid(min, max) {
     if (!areNumbers(min, max)) {
-        throw new Error('Min or max is not a number!');
+        throw new Error('Min and max should be a number!');
     }
-
     if (!isValidRange(min, max)) {
         throw new Error('Min value should be smaller than max value.');
     }
+
+    return true;
 }
 
 function areNumbers(min, max) {
