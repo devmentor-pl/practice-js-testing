@@ -16,4 +16,10 @@ describe('RandomNumber', () => {
             randomNumber(2, 'some string');
         }).toThrow();
     });
+
+    it('throw exception when min is bigger than max', () => {
+        expect(() => {
+            randomNumber(4, 3);
+        }).toThrow();
+    });
 });
