@@ -1,17 +1,22 @@
 export default class User {
     constructor(userData) {
         this.userData = userData;
+        this.email = userData.email;
+        this.password = userData.password;
+        this.validate();
     }
 
     getEmail() {
-        const { email } = this.userData;
-
-        return email;
+        return this.email;
     }
 
     getPassword() {
-        const { password } = this.userData;
+        return this.password;
+    }
 
-        return password;
+    validate() {
+        if (!this.email.includes('@')) {
+            throw new Error('Wrong email!');
+        }
     }
 }
