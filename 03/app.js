@@ -3,7 +3,7 @@ export default randomNumber = (min, max) => {
         throw new Error('Min or max is not a number!');
     }
 
-    if(min > max){
+    if (isNotValidRange(min, max)) {
         throw new Error('Min value should be smaller than max value.');
     }
 
@@ -12,5 +12,10 @@ export default randomNumber = (min, max) => {
 
 function areNotNumbers(min, max) {
     if (isNaN(min) || isNaN(max)) return true;
+    else return false;
+}
+
+function isNotValidRange(min, max) {
+    if (min > max) return true;
     else return false;
 }
