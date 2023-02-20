@@ -10,7 +10,7 @@ describe('Database', () => {
                 await expect(db.insert(newItem))
                     .resolves.toBe(newItem);
             });
-            
+
         it('Should return 2 when insert 2 items to database',
             async () => {
                 const db = new DB();
@@ -47,9 +47,17 @@ describe('Database', () => {
 
                 await expect(db.insert(duplicatedItemID))
                     .rejects.toBe('ID can\'t be duplicated!');
-            })
+            });
     });
-    // describe('select()', () => {
+    describe('select()', () => {
+        it('Should resolve if id was found',
+            async () => {
+                const db = new DB();
+                const itemData = await db.insert({ id: 2, a: 1, b: 2 });
 
-    // })
+                await expect(db.select(2))
+                    .resolves.toBe(itemData);
+            });
+
+    })
 });
