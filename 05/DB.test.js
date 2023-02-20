@@ -222,5 +222,13 @@ describe('Database', () => {
                 await expect(db.getRows())
                     .resolves.toEqual(result);
             });
+
+        it('Should reject when DB is empty',
+            async () => {
+                const db = new DB();
+
+                await expect(db.getRows())
+                    .rejects.toBe('Database is empty.');
+            })
     });
 });

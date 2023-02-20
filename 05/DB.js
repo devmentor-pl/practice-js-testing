@@ -98,7 +98,7 @@ export default class DB {
     }
 
     getRows() {
-        return new Promise(resolve => {
+        return new Promise((resolve, reject) => {
             this.async(() => {
                 if (this._rows.length > 0) {
                     resolve(this._rows);
