@@ -39,7 +39,9 @@ describe('Database', () => {
         it('Should reject when id is duplicated',
             async () => {
                 const db = new DB();
-                await db.insert({ a: 1, b: 2, id: 1 });
+                db._rows = [
+                    { a: 1, b: 2, id: 1 }
+                ];
 
                 const duplicatedItemID = { a: 3, b: 4, id: 1 };
                 await expect(db.insert(duplicatedItemID))
@@ -58,7 +60,9 @@ describe('Database', () => {
         it('Should reject when id is not found',
             async () => {
                 const db = new DB();
-                await db.insert({ a: 1, b: 2, id: 1 });
+                db._rows = [
+                    { a: 1, b: 2, id: 1 }
+                ];
 
                 const wrongID = 3
                 await expect(db.select(wrongID))
@@ -70,7 +74,9 @@ describe('Database', () => {
         it('Should resolve when item is removed',
             async () => {
                 const db = new DB();
-                await db.insert({ a: 1, b: 2, id: 1 });
+                db._rows = [
+                    { a: 1, b: 2, id: 1 }
+                ];
 
                 const idToRemove = 1;
                 await expect(db.remove(idToRemove))
@@ -80,7 +86,9 @@ describe('Database', () => {
         it('Should reject when item to remove is not found',
             async () => {
                 const db = new DB();
-                await db.insert({ a: 1, b: 2, id: 1 });
+                db._rows = [
+                    { a: 1, b: 2, id: 1 }
+                ];
 
                 const wrongIdToRemove = 2;
                 await expect(db.remove(wrongIdToRemove))
@@ -90,8 +98,10 @@ describe('Database', () => {
         it('Should return 1 after removing item from DB',
             async () => {
                 const db = new DB();
-                await db.insert({ a: 1, b: 2, id: 1 });
-                await db.insert({ a: 3, b: 4, id: 2 });
+                db._rows = [
+                    { a: 1, b: 2, id: 1 },
+                    { a: 3, b: 4, id: 2 }
+                ];
 
                 const idToRemove = 2;
                 await db.remove(idToRemove);
@@ -99,14 +109,35 @@ describe('Database', () => {
                 const dbSize = db._rows.length;
                 await expect(dbSize).toBe(1);
             });
+
+        it('Should return correct array when item removed from DB',
+            async () => {
+                const db = new DB();
+                db._rows = [
+                    { a: 1, b: 2, id: 1 },
+                    { a: 3, b: 4, id: 2 },
+                    { a: 5, b: 6, id: 3 }
+                ];
+
+                await db.remove(2);
+
+                const result = [
+                    { a: 1, b: 2, id: 1 },
+                    { a: 5, b: 6, id: 3 }
+                ];
+
+                await expect(db.getRows())
+                    .resolves.toEqual(result);
+            })
     });
 
     describe('update()', () => {
         it('Should resolve when return updated item',
             async () => {
                 const db = new DB();
-                const itemData = { a: 1, b: 2, id: 2 };
-                await db.insert(itemData);
+                db._rows = [
+                    { a: 1, b: 2, id: 2 }
+                ];
 
                 const updatedData = { a: 3, b: 4, id: 2 };;
                 await expect(db.update(updatedData))
@@ -116,8 +147,9 @@ describe('Database', () => {
         it('Should reject when id to update is not found',
             async () => {
                 const db = new DB();
-                const itemData = { a: 1, b: 2, id: 2 };
-                await db.insert(itemData);
+                db._rows = [
+                    { a: 1, b: 2, id: 2 }
+                ];
 
                 const notExistingID = 3
                 await expect(db.update({ a: 3, b: 4, id: notExistingID }))
@@ -127,8 +159,9 @@ describe('Database', () => {
         it('Should reject when id to update is not inserted',
             async () => {
                 const db = new DB();
-                const itemData = { a: 1, b: 2, id: 2 };
-                await db.insert(itemData);
+                db._rows = [
+                    { a: 1, b: 2, id: 2 }
+                ];
 
                 await expect(db.update({ a: 3, b: 4 }))
                     .rejects.toBe('ID have to be set!');
@@ -139,9 +172,11 @@ describe('Database', () => {
         it('Should return size of DB = 0 after clearing',
             async () => {
                 const db = new DB();
-                await db.insert({ a: 1, b: 2 });
-                await db.insert({ a: 3, b: 4 });
-                await db.insert({ a: 5, b: 6 });
+                db._rows = [
+                    { a: 1, b: 2, id: 1 },
+                    { a: 3, b: 4, id: 2 },
+                    { a: 5, b: 6, id: 3 }
+                ];
                 await db.truncate();
 
                 const dbSize = db._rows.length;
@@ -153,8 +188,10 @@ describe('Database', () => {
         it('Should return added items to DB',
             async () => {
                 const db = new DB();
-                await db.insert({ a: 1, b: 2 });
-                await db.insert({ a: 3, b: 4 });
+                db._rows = [
+                    { a: 1, b: 2, id: 1 },
+                    { a: 3, b: 4, id: 2 }
+                ];
 
                 const result = [
                     { a: 1, b: 2, id: 1 },
@@ -162,7 +199,6 @@ describe('Database', () => {
                 ];
                 await expect(db.getRows())
                     .resolves.toEqual(result);
-
             });
     });
 });
