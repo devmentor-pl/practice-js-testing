@@ -70,4 +70,16 @@ describe('Database', () => {
             });
     });
 
+    describe('remove()', () => {
+        it('Should resolve when item was remove',
+            async () => {
+                const db = new DB();
+                await db.insert({ id: 1, a: 1, b: 2 });
+                const idToRemove = 1;
+
+                await expect(db.remove(idToRemove))
+                    .resolves.toBe('Item was remove!');
+            });
+
+    });
 });
