@@ -177,15 +177,24 @@ describe('Database', () => {
                     { a: 3, b: 4, id: 2 },
                     { a: 5, b: 6, id: 3 }
                 ];
+
                 await db.truncate();
 
                 const dbSize = db._rows.length;
                 await expect(dbSize).toBe(0);
             });
+
+        it('Should reject when DB is empty',
+            async () => {
+                const db = new DB();
+
+                await expect(db.truncate())
+                    .rejects.toBe('Database is empty.');
+            })
     });
 
     describe('getRows()', () => {
-        it('Should return added items to DB',
+        it('Should return items contained to DB',
             async () => {
                 const db = new DB();
                 db._rows = [
