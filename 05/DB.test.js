@@ -90,5 +90,17 @@ describe('Database', () => {
                 await expect(db.remove(wrongIdToRemove))
                     .rejects.toBe('Item not exist!');
             });
+
+        it('Should return 1 if removing item was successful',
+            async () => {
+                const db = new DB();
+                await db.insert({ id: 1, a: 1, b: 2 });
+                await db.insert({ id: 2, a: 3, b: 4 });
+                const idToRemove = 2;
+                await db.remove(idToRemove);
+                const dbSize = db._rows.length;
+
+                await expect(dbSize).toBe(1);
+            });
     });
 });
