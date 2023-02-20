@@ -136,7 +136,7 @@ describe('Database', () => {
     });
 
     describe('truncate()', () => {
-        it('Should return size of DB = 0 after clearing',
+        it('Should return 0 after clearing database',
             async () => {
                 const db = new DB();
                 await db.insert({ a: 1, b: 2 });
@@ -144,8 +144,7 @@ describe('Database', () => {
                 await db.insert({ a: 5, b: 6 });
                 await db.truncate();
 
-                const dbSize = db._rows.length;
-                await expect(dbSize).toBe(0);
+                await expect(db._rows.length).toBe(0)
             })
     })
 });
