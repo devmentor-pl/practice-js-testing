@@ -113,5 +113,16 @@ describe('Database', () => {
                     .resolves.toEqual(updatedData);
             });
 
+        it('Should reject when id to update is not found',
+            async () => {
+                const db = new DB();
+                const itemData = { a: 1, b: 2, id: 2 };
+                await db.insert(itemData);
+
+                const notExistingID = 3
+                await expect(db.update({ a: 3, b: 4, id: notExistingID }))
+                    .rejects.toBe('ID not found!');
+            });
+
     });
 });
