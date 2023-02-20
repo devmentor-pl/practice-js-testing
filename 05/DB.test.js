@@ -59,5 +59,15 @@ describe('Database', () => {
                     .resolves.toBe(itemData);
             });
 
-    })
+        it('Should reject if id was not found',
+            async () => {
+                const db = new DB();
+                const wrongID = 3
+                await db.insert({ id: 1, a: 1, b: 2 });
+
+                await expect(db.select(wrongID))
+                    .rejects.toBe('ID not found');
+            });
+    });
+
 });
