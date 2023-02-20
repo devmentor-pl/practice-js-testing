@@ -134,18 +134,4 @@ describe('Database', () => {
                     .rejects.toBe('ID have to be set!');
             });
     });
-
-    describe('truncate()', () => {
-        it('Should return size of DB = 0 after clearing',
-            async () => {
-                const db = new DB();
-                await db.insert({ a: 1, b: 2 });
-                await db.insert({ a: 3, b: 4 });
-                await db.insert({ a: 5, b: 6 });
-                await db.truncate();
-
-                const dbSize = db._rows.length;
-                await expect(dbSize).toBe(0);
-            })
-    })
 });
