@@ -184,13 +184,26 @@ describe('Database', () => {
                 await expect(dbSize).toBe(0);
             });
 
+        it('Should resolve true when DB is cleared',
+            async () => {
+                const db = new DB();
+                db._rows = [
+                    { a: 1, b: 2, id: 1 },
+                    { a: 3, b: 4, id: 2 },
+                    { a: 5, b: 6, id: 3 }
+                ];
+
+                await expect(db.truncate())
+                    .resolves.toBe(true);
+            });
+
         it('Should reject when DB is empty',
             async () => {
                 const db = new DB();
 
                 await expect(db.truncate())
                     .rejects.toBe('Database is empty.');
-            })
+            });
     });
 
     describe('getRows()', () => {

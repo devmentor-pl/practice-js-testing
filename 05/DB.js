@@ -100,7 +100,11 @@ export default class DB {
     getRows() {
         return new Promise(resolve => {
             this.async(() => {
-                resolve(this._rows);
+                if (this._rows.length > 0) {
+                    resolve(this._rows);
+                } else {
+                    reject('Database is empty.')
+                }
             });
         })
     }
