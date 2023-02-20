@@ -81,5 +81,14 @@ describe('Database', () => {
                     .resolves.toBe('Item was remove!');
             });
 
+        it('Should reject when item to remove is not found',
+            async () => {
+                const db = new DB();
+                await db.insert({ id: 1, a: 1, b: 2 });
+                const wrongIdToRemove = 2;
+
+                await expect(db.remove(wrongIdToRemove))
+                    .rejects.toBe('Item not exist!');
+            });
     });
 });
