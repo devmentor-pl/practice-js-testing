@@ -1,7 +1,16 @@
 import DB from './DB';
 
 describe('Database', () => {
-    describe('insert', () => {
+    describe('insert()', () => {
+        it('Should resolve when item added to database',
+            async () => {
+                const db = new DB();
+                const newItem = { a: 1, b: 2 };
+
+                await expect(db.insert(newItem))
+                    .resolves.toBe(newItem);
+            });
+            
         it('Should return 2 when insert 2 items to database',
             async () => {
                 const db = new DB();
@@ -29,5 +38,18 @@ describe('Database', () => {
                 await expect(db.insert(itemData))
                     .rejects.toBe('ID can be only number!');
             });
+
+        it('Should reject when id is duplicated',
+            async () => {
+                const db = new DB();
+                await db.insert({ id: 1, a: 1, b: 2 });
+                const duplicatedItemID = { id: 1, a: 3, b: 4 };
+
+                await expect(db.insert(duplicatedItemID))
+                    .rejects.toBe('ID can\'t be duplicated!');
+            })
     });
+    // describe('select()', () => {
+
+    // })
 });
