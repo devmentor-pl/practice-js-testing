@@ -134,4 +134,17 @@ describe('Database', () => {
                     .rejects.toBe('ID have to be set!');
             });
     });
+
+    describe('truncate()', () => {
+        it('Should return 0 after clearing database',
+            async () => {
+                const db = new DB();
+                await db.insert({ a: 1, b: 2 });
+                await db.insert({ a: 3, b: 4 });
+                await db.insert({ a: 5, b: 6 });
+                await db.truncate();
+
+                await expect(db._rows.length).toBe(0)
+            })
+    })
 });
