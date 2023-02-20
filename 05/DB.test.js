@@ -124,5 +124,14 @@ describe('Database', () => {
                     .rejects.toBe('ID not found!');
             });
 
+        it('Should reject when id to update is not inserted',
+            async () => {
+                const db = new DB();
+                const itemData = { a: 1, b: 2, id: 2 };
+                await db.insert(itemData);
+
+                await expect(db.update({ a: 3, b: 4 }))
+                    .rejects.toBe('ID have to be set!');
+            });
     });
 });
