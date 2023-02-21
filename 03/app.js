@@ -1,28 +1,24 @@
 export default randomNumber = (min, max) => {
-    if (areArgumentsValid(min, max)) {
-        const result = Math.random() * (max - min) + min;
+    if (isValidRange(min, max)) {
+        if (isMinValueValid(min) && isMaxValueValid(max)) {
+            const result = Math.random() * (max - min) + min;
 
-        return result;
+            return result;
+        }
     }
 }
 
-function areArgumentsValid(min, max) {
-    if (!areNumbers(min, max)) {
-        throw new Error('Min and max should be a number!');
-    }
-    if (!isValidRange(min, max)) {
-        throw new Error('Min value should be smaller than max value.');
-    }
-
-    return true;
+function isMinValueValid(min) {
+    if (typeof min !== 'number') throw new Error(`Minimum value should be a number!`);
+    else return true;
 }
 
-function areNumbers(min, max) {
-    if (isNaN(min) || isNaN(max)) return false;
+function isMaxValueValid(max) {
+    if (typeof max !== 'number') throw new Error(`Maximum value should be a number!`);
     else return true;
 }
 
 function isValidRange(min, max) {
-    if (min > max) return false;
+    if (min > max) throw new Error('Invalid range!');
     else return true;
 }
