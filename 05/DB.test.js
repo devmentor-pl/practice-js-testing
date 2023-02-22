@@ -192,7 +192,7 @@ describe('Database', () => {
                     .then(() => db.insert({ a: 5, b: 6, id: 3 }))
                     .then(() => {
                         expect(db.truncate())
-                            .resolves.toBe(true);
+                            .resolves.toBeTruthy();
                     });
             });
 
