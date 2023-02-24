@@ -1,3 +1,7 @@
+// jak ostatnie dwa punkty testu mają być spełnione skoro funkcja login zwróci mi jedynie true lub false. Nie jestem w stanie spełnić jednocześnie dwóch warunków
+
+
+
 export default class User {
     constructor({
         email,
