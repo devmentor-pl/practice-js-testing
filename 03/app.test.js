@@ -6,8 +6,12 @@ test('expect 1', () => {
 
 test("not number", () => {
     expect(randomNumber(1, "text")).toBe(NaN);
-})
+});
 
 test("min>max", () => {
     expect(randomNumber(3, 1)).toBe(false);
+});
+
+test("belong to range", () => {
+    expect(randomNumber(2, 4)).toBe(false);
 })
