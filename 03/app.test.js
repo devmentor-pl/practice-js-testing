@@ -5,5 +5,5 @@ test('expect 1', () => {
 });
 
 test("not number", () => {
-    expect(randomNumber(1, "text")).toBe(notNumber);
+    expect(randomNumber(1, "text")).toBe(NaN);
 })
