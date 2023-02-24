@@ -9,5 +9,5 @@ test("not number", () => {
 })
 
 test("min>max", () => {
-    expect(3, 1).tobe(true);
+    expect(randomNumber(3, 1)).toBe(false);
 })
