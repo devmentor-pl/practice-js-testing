@@ -7,3 +7,7 @@ test('expect 1', () => {
 test("not number", () => {
     expect(randomNumber(1, "text")).toBe(NaN);
 })
+
+test("min>max", () => {
+    expect(3, 1).tobe(true);
+})
