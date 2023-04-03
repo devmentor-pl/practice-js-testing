@@ -10,3 +10,10 @@ it('throw exception when "min" is not a number', () => {
 	}
 	expect(isNumber).toThrow();
 });
+
+it('throw exception when "max" is not a number', () => {
+	function isNumber() {
+		randomNumber(1, undefined);
+	}
+	expect(isNumber).toThrow();
+});
