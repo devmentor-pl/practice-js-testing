@@ -28,4 +28,11 @@ describe("randomNumber()", () => {
 		}
 		expect(checkRange).toThrow();
 	});
+
+	it("if min and max are numbers check if range is between 2 to 5", () => {
+		const result = randomNumber(2, 5);
+
+		expect(result).toBeGreaterThanOrEqual(2);
+		expect(result).toBeLessThanOrEqual(5);
+	});
 });
