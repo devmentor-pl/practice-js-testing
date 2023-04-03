@@ -21,6 +21,14 @@ describe("randomNumber()", () => {
 		}
 		expect(checkNumber).toThrow();
 	});
+
+	it("throw exception if max = 3 and in = 4", () => {
+		function checkRange() {
+			randomNumber(4, 3);
+		}
+
+		expect(checkRange).toThrow();
+	});
 });
 
-// jeśli podasz jako argument "nie liczbę", to zostanie rzucony błąd,
+// - jeśli przedział będzie się wykluczał (podasz, że chcesz liczbę od 4 do 3, a nie od 3 do 4), to również zostanie rzucony błąd,
