@@ -17,3 +17,10 @@ it('throw exception when "max" is not a number', () => {
 	}
 	expect(isNumber).toThrow();
 });
+
+it('throw exception when range is not correct', () => {
+	function isCorrectRange() {
+		randomNumber(4, 3);
+	}
+	expect(isCorrectRange).toThrow();
+});
