@@ -26,9 +26,6 @@ describe("randomNumber()", () => {
 		function checkRange() {
 			randomNumber(4, 3);
 		}
-
 		expect(checkRange).toThrow();
 	});
 });
-
-// - jeśli przedział będzie się wykluczał (podasz, że chcesz liczbę od 4 do 3, a nie od 3 do 4), to również zostanie rzucony błąd,
