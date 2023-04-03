@@ -10,7 +10,14 @@ describe("randomNumber()", () => {
 
 	it("throw exception when prop min is not a number", () => {
 		function checkNumber() {
-			randomNumber("string");
+			randomNumber("string", 1);
+		}
+		expect(checkNumber).toThrow();
+	});
+
+	it("throw exception when prop max is not a number", () => {
+		function checkNumber() {
+			randomNumber(1, "string");
 		}
 		expect(checkNumber).toThrow();
 	});
