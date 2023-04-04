@@ -3,6 +3,7 @@ export default class User {
 		this.email = email;
 		this.password = password;
 		this.validateEmail();
+		this.validatePassword();
 	}
 
 	getEmail() {
@@ -18,12 +19,10 @@ export default class User {
 			throw new Error("This email in incorrect");
 		}
 	}
+
+	validatePassword() {
+		if (this.password.length < 8) {
+			throw new Error("This password is too short");
+		}
+	}
 }
-
-// it("should throw exception when email is incorrect", () => {
-//     function createWrongUserData() {
-//         new User({ email: "devmentor.pl", password: "pw123456" });
-//     }
-
-//     expect(createWrongUserData).toThrow();
-// });
