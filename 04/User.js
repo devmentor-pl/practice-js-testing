@@ -25,4 +25,11 @@ export default class User {
 			throw new Error("This password is too short");
 		}
 	}
+
+	login() {
+		if (this.email.includes("devmentor.pl")) {
+			return true;
+		}
+		return false;
+	}
 }
