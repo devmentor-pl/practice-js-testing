@@ -8,19 +8,19 @@ it('throw exception when "min" is not a number', () => {
 	function isNumber() {
 		randomNumber(undefined, 1);
 	}
-	expect(isNumber).toThrow();
+	expect(isNumber).toThrow('min value is not a number');
 });
 
 it('throw exception when "max" is not a number', () => {
 	function isNumber() {
 		randomNumber(1, undefined);
 	}
-	expect(isNumber).toThrow();
+	expect(isNumber).toThrow('max value is not a number');
 });
 
 it('throw exception when range is not correct', () => {
 	function isCorrectRange() {
 		randomNumber(4, 3);
 	}
-	expect(isCorrectRange).toThrow();
+	expect(isCorrectRange).toThrow('max value must be greater than min value');
 });

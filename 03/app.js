@@ -1,7 +1,13 @@
 export default function randomNumber(min, max) {
-	if (typeof min !== 'number' || typeof max !== 'number') {
-		throw new Error('"min" or "max" value is not a number');
-	} else if (min > max) {
+	if (isNaN(min)) {
+		throw new Error('min value is not a number');
+	}
+
+	if (isNaN(max)) {
+		throw new Error('max value is not a number');
+	}
+
+	if (min > max) {
 		throw new Error('max value must be greater than min value');
 	}
 

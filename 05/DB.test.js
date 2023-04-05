@@ -6,9 +6,10 @@ describe('DB', () => {
 			expect.assertions(1);
 			const db = new DB();
 
-			return db.insert({ a: 1, b: 2 }).then(() => {
-				expect(db._rows.length).toBe(1);
-			});
+			return db
+				.insert({ a: 1, b: 2 })
+				.then(() => db.getRows())
+				.then((rows) => expect(rows.length).toBe(1));
 		});
 
 		it('should reject when ID is not a number', () => {
@@ -49,12 +50,13 @@ describe('DB', () => {
 		it('should resolve when item exists', () => {
 			expect.assertions(1);
 			const db = new DB();
+			const data = { id: 1, a: 1, b: 2 };
 
 			return db
-				.insert({ id: 1, a: 1, b: 2 })
+				.insert(data)
 				.then(() => db.select(1))
 				.then((resp) => {
-					expect(resp).toBe(resp);
+					expect(resp).toBe(data);
 				});
 		});
 	});
@@ -89,7 +91,7 @@ describe('DB', () => {
 		it('should reject when ID is not set', () => {
 			expect.assertions(1);
 			const db = new DB();
-			
+
 			return db.update({ a: 1, b: 2 }).catch((err) => {
 				expect(err).toBe('ID have to be set!');
 			});
@@ -107,12 +109,14 @@ describe('DB', () => {
 		it('should resolve when item was update', () => {
 			expect.assertions(1);
 			const db = new DB();
+			const data = { id: 1, a: 1, b: 2 };
+			const updateData = { id: 1, a: 10, b: 20 };
 
 			return db
-				.insert({ id: 1, a: 1, b: 2 })
-				.then(() => db.update({ id: 1, a: 10, b: 20 }))
+				.insert(data)
+				.then(() => db.update(updateData))
 				.then((resp) => {
-					expect(resp).toBe(resp);
+					expect(resp).toBe(updateData);
 				});
 		});
 	});
@@ -125,12 +129,13 @@ describe('DB', () => {
 			return db
 				.insert({ a: 1, b: 2 })
 				.then(() => db.truncate())
-				.then(() => expect(db._rows.length).toBe(0));
+				.then(() => db.getRows())
+				.then((rows) => expect(rows.length).toBe(0));
 		});
 	});
 
 	describe('getRows', () => {
-		it('should return rows that are in database', () => {
+		it('should return 2 rows that are in database', () => {
 			expect.assertions(1);
 			const db = new DB();
 
@@ -138,7 +143,7 @@ describe('DB', () => {
 				.insert({ a: 1, b: 2 })
 				.then(() => db.insert({ a: 10, b: 20 }))
 				.then(() => db.getRows())
-				.then((resp) => expect(resp).toBe(db._rows));
+				.then((rows) => expect(rows.length).toBe(2));
 		});
 	});
 });
