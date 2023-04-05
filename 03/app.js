@@ -6,11 +6,15 @@ export default function randomNumber(min, max) {
 
 function validateNumbers(min, max) {
 	if (min === max) {
-		return 1;
+		return max;
 	}
 
-	if (typeof min !== "number" || typeof max !== "number") {
-		throw new Error("Min and max have to be numbers");
+	if (isNaN(min) === true) {
+		throw new Error("Min has to be a number");
+	}
+
+	if (isNaN(max) === true) {
+		throw new Error("Max has to be a number");
 	}
 
 	if (min > max) {

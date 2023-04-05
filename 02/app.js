@@ -10,7 +10,7 @@ function init() {
 	initEventWithError(clickEl, "click", new RangeError("Błąd zakresu!"));
 	initEventWithError(enterEl, "mouseenter", new TypeError("Błąd typu!"));
 
-	removeAlert();
+	hideAlert();
 }
 
 function setRandomPosition(element, error = null) {
@@ -34,7 +34,7 @@ function initEventWithError(element, eventName, error) {
 	});
 }
 
-function removeAlert() {
+function hideAlert() {
 	const alertWrapper = document.querySelector(".alert--hidden");
 	const alertMessage = alertWrapper.querySelector(".alert__message");
 

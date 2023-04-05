@@ -2,17 +2,16 @@ import DB from "./DB";
 
 describe(".insert()", () => {
 	it("should return 2 when one item is inserted", () => {
+		expect.assertions(1);
 		const db = new DB();
 		const promise = db.insert({ a: 1, b: 2 });
 
-		return promise.then(() => {
-			expect(db._rows.length).toBe(2);
-		});
+		return promise
+			.then(() => db.getRows())
+			.then(dbRows => expect(dbRows.length).toBe(2));
 	});
 
 	it("should not add data when id is not a number", () => {
-		expect.assertions(1);
-
 		const db = new DB();
 		const promise = db.insert({ a: 3, b: 4, id: "string" });
 
@@ -29,6 +28,7 @@ describe(".insert()", () => {
 
 describe(".remove()", () => {
 	it("should remove item when it exists", () => {
+		expect.assertions(1);
 		const db = new DB();
 		const promise = db.remove(1);
 
@@ -38,7 +38,6 @@ describe(".remove()", () => {
 	});
 
 	it("should not remove item when it does not exist", () => {
-		expect.assertions(1);
 		const db = new DB();
 		const promise = db.remove(5);
 
@@ -48,6 +47,7 @@ describe(".remove()", () => {
 
 describe(".update()", () => {
 	it("should update item when its id matches new item's id", () => {
+		expect.assertions(1);
 		const db = new DB();
 		const newData = { a: 6, b: 7, id: 1 };
 		const promise = db.update(newData);
@@ -76,6 +76,7 @@ describe(".update()", () => {
 
 describe(".getRows()", () => {
 	it("should resolve when function is called", () => {
+		expect.assertions(1);
 		const db = new DB();
 		const promise = db.getRows();
 
