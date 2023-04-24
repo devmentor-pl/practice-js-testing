@@ -5,6 +5,7 @@ function getProductList() {
     ]
 }
 
+
 function getTotalPrice(productList) {
     return productList.reduce( (product, acc) => {
         return acc + (product.price * product.count);
