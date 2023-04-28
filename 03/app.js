@@ -5,5 +5,9 @@ export default function randomNumber(min, max) {
     throw new Error(`Property have to be a number`);
   }
 
+  if (min > max) {
+    throw new Error(`min cant be greater than max`);
+  }
+
   return number;
 }
