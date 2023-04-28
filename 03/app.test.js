@@ -14,4 +14,15 @@ it("throw error when property min is not a number", () => {
 
     expect(createRandomNumber).toThrow()
 
+});
+
+it("throw error if number range is incorrect", () => {
+
+    function createRandomNumber(){
+        randomNumber(4, 3);
+    }
+
+     expect(createRandomNumber).toThrow();
+
+
 })
