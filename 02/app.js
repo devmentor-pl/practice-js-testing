@@ -15,21 +15,21 @@ function setRandomPosition(element, error = null) {
   element.style.top = Math.random() * 600 + "px";
   element.style.left = Math.random() * 800 + "px";
 
-  try {
-    if (error) {
-      throw error;
-    }
-  } catch (e) {
-    const alertEl = document.querySelector(".alert--hidden");
-    alertEl.style.display = "block";
-    const pEl = document.querySelector(".alert__message");
-    pEl.textContent = e.message;
+  if (error) {
+    throw error;
   }
 }
 
 function initEventWithError(element, eventName, error) {
   element.addEventListener(eventName, function () {
-    setRandomPosition(this, error);
+    try {
+      setRandomPosition(this, error);
+    } catch (e) {
+      const alertEl = document.querySelector(".alert--hidden");
+      alertEl.style.display = "block";
+      const pEl = document.querySelector(".alert__message");
+      pEl.textContent = e.message;
+    }
   });
 }
 
