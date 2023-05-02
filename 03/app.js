@@ -1,7 +1,7 @@
 export default function randomNumber(min, max) {
   const number = Math.floor(Math.random() * min) + max;
 
-  if (typeof min !== "number") {
+  if (typeof min && typeof max !== "number" ) {
     throw new Error(`Property have to be a number`);
   }
 
