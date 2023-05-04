@@ -1,8 +1,5 @@
 import DB from "./DB";
 
-
-
-
 describe("Insert", () => {
   it("check if row number is equel 1", async () => {
     const database = new DB();
@@ -110,21 +107,18 @@ describe("update", () => {
     expect(updatedItem.name).toBe("Sławomir");
   });
 
-  /*  it("check if ID was found", async () => {
-      //expect.assertions(1);
-      
-      const database = new DB();
-      await database.insert({ id: 1, name: "Ariadna" });
+  it("check if ID was found", async () => {
+    expect.assertions(1);
+    const database = new DB();
+    await database.insert({ id: 1, name: "Ariadna" });
 
-      try {
-        database.update({ id: 2, name: "Sławomir" });
-      } catch (err) {
-        expect(err).toBe("ID not found!");
-      }
-    });*/
-  
+    try {
+      await database.update({ id: 2, name: "Sławomir" });
+    } catch (err) {
+      expect(err).toBe("ID not found!");
+    }
+  });
 });
-
 
 describe("getRows", () => {
   it("check if number of rows is 2", async () => {
