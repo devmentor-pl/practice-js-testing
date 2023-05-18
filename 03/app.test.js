@@ -11,3 +11,10 @@ it('should throw when either min or max is not a number', ()=>{
     }).toThrow();
         
 })
+
+it('should throw when either min > max', ()=>{
+    expect(()=> {
+        randomNumber(4,2);
+    }).toThrow();
+})
+
