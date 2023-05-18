@@ -18,3 +18,7 @@ it('should throw when either min > max', ()=>{
     }).toThrow();
 })
 
+it('should return number within range <min,max>', ()=>{
+    const result = randomNumber(2,5)
+    expect(2<=result<=5).toBeTruthy();
+})
