@@ -9,7 +9,7 @@ export default class DB {
                 if(typeof data.id !== 'number') {
                     this.async(reject,'ID can be only number!');
                     return null; // stop function
-                } else if(this._rows.some(item => item.id === data.id)) {
+                } else if(this._rows.some(item => item.id === data.id)) {   
                     this.async(reject, 'ID can\'t be duplicated!');
                     return null; // stop function
                 }
