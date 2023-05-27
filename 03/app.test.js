@@ -9,3 +9,9 @@ it('Should throw error if min is not a number', () => {
         randomNumber('1', 2).toThrow('"min" is not a number')
     })
 })
+
+it('Should throw error if max is not a number', () => {
+    expect( () => {
+        randomNumber(1, '2').toThrow('"max" is not a number')
+    })
+})
