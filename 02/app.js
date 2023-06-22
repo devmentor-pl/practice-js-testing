@@ -16,6 +16,10 @@ function setRandomPosition(element, error = null) {
     element.style.top = Math.random() * 600 + "px";
     element.style.left = Math.random() * 800 + "px";
   } catch (error) {
+    const alert = document.querySelector(".alert");
+    alert.classList.remove("alert--hidden");
+    const alertMessage = alert.querySelector(".alert__message");
+    alertMessage.textContent = error;
     throw error;
   }
 }
