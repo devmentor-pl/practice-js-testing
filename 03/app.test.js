@@ -11,3 +11,11 @@ test('Throw exception when min is not a number', () => {
 
     expect(callRandomNumber).toThrow()
 })
+
+test('Throw exception when max is not a number', () => {
+    function callRandomNumber() {
+        randomNumber(undefined, '1')
+    }
+
+    expect(callRandomNumber).toThrow()
+})
