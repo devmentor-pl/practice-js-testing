@@ -1,5 +1,6 @@
 export default function randomNumber(min = 0, max = 0) {
     _isTypeNumber(min)
+    _isTypeNumber(max)
     return Math.floor(Math.random() * (max - min)) + min
 
 }
