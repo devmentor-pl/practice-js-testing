@@ -29,9 +29,8 @@ test('Incorrectly defined range - from 4 to 3', () => {
 })
 
 test('Is random number in range', () => {
-    function callRandomNumber() {
-        randomNumber(1, 10)
-    }
+    const number = randomNumber(1, 10)
 
-    expect(callRandomNumber).toThrow()
+    expect(number).toBeGreaterThanOrEqual(1)
+    expect(number).toBeLessThanOrEqual(10)
 })
