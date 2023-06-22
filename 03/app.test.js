@@ -19,3 +19,11 @@ test('Throw exception when max is not a number', () => {
 
     expect(callRandomNumber).toThrow()
 })
+
+test('Incorrectly defined range - from 4 to 3', () => {
+    function callRandomNumber() {
+        randomNumber(4, 3)
+    }
+
+    expect(callRandomNumber).toThrow()
+})
