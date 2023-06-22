@@ -27,3 +27,11 @@ test('Incorrectly defined range - from 4 to 3', () => {
 
     expect(callRandomNumber).toThrow()
 })
+
+test('Is random number in range', () => {
+    function callRandomNumber() {
+        randomNumber(1, 10)
+    }
+
+    expect(callRandomNumber).toThrow()
+})
