@@ -1,4 +1,7 @@
 export default function randomNumber(min, max) {
+  if (min > max) {
+    throw new Error("Min cannot be greater than max!");
+  }
   if (typeof max !== "number") {
     throw new TypeError(`Argument max must be a number`);
   }
