@@ -35,3 +35,25 @@ describe('.insert()', () => {
     expect(insertData).toEqual(data);
   });
 });
+
+describe('DB', () => {
+  describe('select()', () => {
+    it('should resolve with the matching row if ID is found', async () => {
+      const db = new DB();
+      const data = { id: 1, name: 'John' };
+      await db.insert(data);
+      const result = await db.select(1);
+      expect(result).toEqual(data);
+    });
+
+    it('should reject with an error message if ID is not found', async () => {
+      const db = new DB();
+      expect.assertions(1);
+      try {
+        await db.select(1);
+      } catch (error) {
+        expect(error).toBe('ID not found');
+      }
+    });
+  });
+});
