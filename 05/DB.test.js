@@ -79,3 +79,38 @@ describe('DB', () => {
     });
   });
 });
+
+describe('DB', () => {
+  describe('update()', () => {
+    it('should resolve with the updated data when the item is found and updated', async () => {
+      const db = new DB();
+      const originalData = { id: 1, name: 'John' };
+      const updatedData = { id: 1, name: 'John Doe' };
+      await db.insert(originalData);
+      const result = await db.update(updatedData);
+      expect(result).toEqual(updatedData);
+    });
+
+    it('should reject with an error message if the item is not found', async () => {
+      const db = new DB();
+      const data = { id: 1, name: 'John' };
+      expect.assertions(1);
+      try {
+        await db.update(data);
+      } catch (error) {
+        expect(error).toBe('ID not found!');
+      }
+    });
+
+    it('should reject with an error message if the ID is not set', async () => {
+      const db = new DB();
+      const data = { name: 'John' };
+      expect.assertions(1);
+      try {
+        await db.update(data);
+      } catch (error) {
+        expect(error).toBe('ID have to be set!');
+      }
+    });
+  });
+});
