@@ -57,3 +57,25 @@ describe('DB', () => {
     });
   });
 });
+
+describe('DB', () => {
+  describe('remove()', () => {
+    it('should resolve with a success message when the item is removed', async () => {
+      const db = new DB();
+      const data = { id: 1, name: 'John' };
+      await db.insert(data);
+      const result = await db.remove(1);
+      expect(result).toBe('Item was remove!');
+    });
+
+    it('should reject with an error message if the item does not exist', async () => {
+      const db = new DB();
+      expect.assertions(1);
+      try {
+        await db.remove(1);
+      } catch (error) {
+        expect(error).toBe('Item not exist!');
+      }
+    });
+  });
+});
