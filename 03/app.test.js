@@ -15,3 +15,11 @@ test("when non-number is passed should throw an error", () => {
 test("should throw an error if min is greater than max", () => {
   expect(() => randomNumber(5, 3)).toThrow();
 });
+
+test("should return a number within the range of min and max", () => {
+  const min = 5,
+    max = 10;
+  const result = randomNumber(min, max);
+  expect(result).toBeGreaterThanOrEqual(min);
+  expect(result).toBeLessThanOrEqual(max);
+});
