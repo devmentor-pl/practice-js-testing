@@ -6,9 +6,11 @@ function getProductList() {
 }
 
 function getTotalPrice(productList) {
-    return productList.reduce( (product, acc) => {
-        return acc + (product.price * product.count);
+    let price = 0;
+    productList.forEach(element => {
+        price = price + (element.count * (element.price * (1 - element.discount)))
     });
+    return price.toFixed(2)
 }
 
 const totalPrice = getTotalPrice( getProductList() );
