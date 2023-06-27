@@ -11,3 +11,7 @@ it('if min is NaN throw error', () => {
 it('if max is NaN throw error', () => {
     expect( () => randomNumber(2, '9')).toThrow('max is not a number')
 }) 
+
+it('if min > max throw error', () => {
+    expect( () => randomNumber(5, 2)).toThrow('min is higher than max')
+})
