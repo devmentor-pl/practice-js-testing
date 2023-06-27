@@ -15,3 +15,10 @@ it('if max is NaN throw error', () => {
 it('if min > max throw error', () => {
     expect( () => randomNumber(5, 2)).toThrow('min is higher than max')
 })
+
+it('max > result > min', () => {
+    const result = randomNumber(0, 9)
+    expect(result).toBeGreaterThanOrEqual(0)
+    expect(result).toBeLessThanOrEqual(9)
+
+})
