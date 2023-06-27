@@ -5,5 +5,5 @@ it('min=1 and max=1 returns 1', () => {
 })
 
 it('if min is NaN throw error', () => {
-    expect( randomNumber('a', 4).toThrow('min is not a number'))
+    expect( () => randomNumber('a', 4)).toThrow('min is not a number')
 }) 
