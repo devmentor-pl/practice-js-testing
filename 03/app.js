@@ -8,6 +8,10 @@ export default function randomNumber(min, max) {
         throwError('max is not a number')
     }
 
+    if(min > max) {
+        throwError('min is higher than max')
+    }
+
     return Math.random() * (max - min) + min
 }
 
