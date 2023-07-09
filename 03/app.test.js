@@ -21,7 +21,7 @@ it('throw exception when max property is not a number', () => {
     expect(getRandomNumber).toThrow()
 })
 
-it('throw exception when min property is greater then max property', () => {
+it('throw exception when min property is greater than max property', () => {
     function getRandomNumber() {
         const result = randomNumber(3, 2)
     }
