@@ -30,5 +30,6 @@ it('throw exception when min property is greater than max property', () => {
 
 it('random number is greater than min property and less or equal to max property', () => {
     const result = randomNumber(2, 4)
-    expect(result > 2 && result <= 4)
+    expect(result).toBeGreaterThan(2)
+    expect(result).toBeLessThanOrEqual(4)
 })
