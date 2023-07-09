@@ -12,3 +12,11 @@ it('throw exception when first property is not a number', () => {
 
     expect(getRandomNumber).toThrow()
 })
+
+it('throw exception when second property is not a number', () => {
+    function getRandomNumber() {
+        const result = randomNumber(1, '1')
+    }
+
+    expect(getRandomNumber).toThrow()
+})
