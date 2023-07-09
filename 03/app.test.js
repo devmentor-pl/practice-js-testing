@@ -27,3 +27,8 @@ it('throw exception when min property is greater than max property', () => {
     }
     expect(getRandomNumber).toThrow()
 })
+
+it('random number is greater than min property and less or equal to max property', () => {
+    const result = randomNumber(2, 4)
+    expect(result > 2 && result <= 4)
+})
