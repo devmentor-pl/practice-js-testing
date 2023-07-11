@@ -21,6 +21,4 @@ export default class User {
             return false
         } else return true
     }
-
-
 }
