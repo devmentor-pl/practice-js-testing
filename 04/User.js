@@ -1,19 +1,27 @@
 export default class User {
     constructor({ email, password }) {
-        this.email = this.getEmail(email)
-        this.password = this.getPassword(password)
+        this.email = this.setEmail(email)
+        this.password = this.setPassword(password)
     }
 
-    getEmail(email) {
+    setEmail(email) {
         if (!email.includes('@')) {
-            throw new Error('Email must include "@" sign')
+           throw new Error('Email must include "@" sign')
         } else return email
     }
 
-    getPassword(password) {
-        if (password.length < 8) {
+    setPassword(password) {
+        if (password.length < 8) { 
             throw new Error('Password length must be greater than 8')
         } else return password
+    }
+
+    getEmail() {
+        return this.email
+    } 
+
+    getPassword() {
+        return this.password
     }
 
     login() {
