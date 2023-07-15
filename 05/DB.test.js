@@ -33,20 +33,27 @@ describe('DB', () => {
         it('select item when id=3 is passed', () => {
             const db = new DB()
 
-            const promise = db.insert({ a: 1, b: 2, id: 3 })
+            const obj = { a: 1, b: 2, id: 3 }
+
+            const promise = db.insert({ ...obj })
                 .then(() => db.select(3))
 
             return promise.then(result => {
-                expect(result).toStrictEqual({ a: 1, b: 2, id: 3 })
+                expect(result).toStrictEqual({ ...obj })
             })
         })
 
         it('show error when select id=4 and rows is empty', () => {
+            expect.assertions(1)
+
             const db = new DB()
 
             const promise = db.select(4)
 
-            return promise.catch(err => expect(err).toBe('ID not found'))
+            return promise.catch(err => {
+
+                expect(err).toBe('ID not found')
+            })
         })
     })
 
@@ -63,6 +70,8 @@ describe('DB', () => {
         })
 
         it('show error when remove id=2 and rows is empty', () => {
+            expect.assertions(1)
+
             const db = new DB()
 
             const promise = db.remove(2)
@@ -73,6 +82,8 @@ describe('DB', () => {
 
     describe('update method', () => {
         test('show error when data.id is not passed', () => {
+            expect.assertions(1)
+
             const db = new DB()
 
             const promise = db.update({ a: 3, c: '32' })
@@ -108,8 +119,10 @@ describe('DB', () => {
 
             const promise = db.insert({ a: 3, id: 1 })
                 .then(() => db.truncate())
+                .then(() => db.getRows())
+                .then(rows => rows.length)
 
-            return expect(promise).resolves.toBe(true)
+            return expect(promise).resolves.toBe(0)
         })
     })
 
@@ -133,10 +146,3 @@ describe('DB', () => {
         })
     })
 })
-
-// przy toBe mam błąd :
-// Expected: []
-// Received: serializes to the same string
-// If it should pass with deep equality, replace "toBe" with "toStrictEqual"
-
-
