@@ -36,10 +36,13 @@ function initEventWithError(element, eventName, error) {
 
 function displayError(err) {
     const errorEl = document.querySelector('.alert')
-    errorEl.classList.toggle('alert--hidden')
-
+    changeElDisplay(errorEl)
     const messageEl = errorEl.querySelector('.alert__message')
     messageEl.textContent = err.name + ': ' + err.message
+}
+
+function changeElDisplay(el) {
+    el.classList.toggle('alert--hidden')
 }
 
 function closeErrorEl() {
@@ -52,9 +55,9 @@ function getErrorEl() {
 }
 
 function clickHandle(e) {
-    e.stopPropagation() // chciałam ustawić, żeby kliknięcie w diva nie powodowało zamknięcia okna. I nie działa w żadnym przypadku, jakim próbowałam zrobić. :P
-    // e.stopImmediatePropagation()
     const errorEl = getErrorEl()
 
-    errorEl.classList.toggle('alert--hidden')
+    if (e.target.tagName !== 'DIV' && e.target.tagName !== 'P') {
+        changeElDisplay(errorEl)
+    }
 }
