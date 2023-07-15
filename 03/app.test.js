@@ -10,7 +10,7 @@ it('throw exception when min property is not a number', () => {
         const result = randomNumber('1', 1)
     }
 
-    expect(getRandomNumber).toThrow()
+    expect(getRandomNumber).toThrow('Property "min" has to be a number') 
 })
 
 it('throw exception when max property is not a number', () => {
@@ -18,14 +18,14 @@ it('throw exception when max property is not a number', () => {
         const result = randomNumber(1, '1')
     }
 
-    expect(getRandomNumber).toThrow()
+    expect(getRandomNumber).toThrow('Property "max" has to be a number')
 })
 
 it('throw exception when min property is greater than max property', () => {
     function getRandomNumber() {
         const result = randomNumber(3, 2)
     }
-    expect(getRandomNumber).toThrow()
+    expect(getRandomNumber).toThrow('"Max" property has to be greater than "min" property')
 })
 
 it('random number is greater than min property and less or equal to max property', () => {
