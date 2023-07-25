@@ -6,6 +6,9 @@ export default function randomNumber(min, max) {
 
   const isMinOutOfRage = min > max;
   if (isMinOutOfRage) throw new Error("min arg must be bigger than max");
+
+  const result = Math.floor(Math.random() * (max - min)) + min;
+  return result;
 }
 
 function validateNumbers(...args) {
