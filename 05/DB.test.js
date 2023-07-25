@@ -4,7 +4,7 @@ describe("DB", () => {
   describe(".insert()", () => {
     it("should reject when [id] not a number", async () => {
       const db = new DB();
-      const data = { id: "X", a: 2, b: 3 };
+      const data = { id: "X" };
       //   const result = await db.insert(data);
       await expect(db.insert(data)).rejects.toMatch("ID can be only number!");
     });
@@ -40,6 +40,29 @@ describe("DB", () => {
       await db.insert(data);
 
       await expect(db.select(1)).rejects.toMatch("ID not found");
+    });
+  });
+
+  describe(".remove()", () => {
+    it("removes element by ID", async () => {
+      const db = new DB();
+      const data = { id: 3, a: 2, b: 3 };
+      await db.insert(data);
+      const remove = db.remove(data.id);
+
+      await expect(remove).resolves.toMatch("Item was remove!");
+
+      // nie wiem, czy to jest mądre, co tutaj zrobiłem
+      const rows = await db.getRows();
+      await expect(rows.length).toBe(0);
+    });
+
+    it("rejects when no matching ID", async () => {
+      const db = new DB();
+      const itemIDtoRemove = 5;
+      const remove = db.remove(itemIDtoRemove);
+
+      await expect(remove).rejects.toMatch("Item not exist!");
     });
   });
 });
