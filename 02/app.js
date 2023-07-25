@@ -7,6 +7,7 @@ function init() {
   setRandomPosition(clickEl);
   setRandomPosition(enterEl);
 
+  // chciałem tutaj wrzucić try/catch, ale nie łapało błędu, nie wiem dlaczego
   initEventWithError(clickEl, "click", new RangeError("Błąd zakresu!"));
   initEventWithError(enterEl, "mouseenter", new TypeError("Błąd typu!"));
 }
