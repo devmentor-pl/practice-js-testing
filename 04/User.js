@@ -1,8 +1,29 @@
+const PASSWORD_LENGTH = 8;
+
 export default class User {
   constructor(user) {
     const { email, password } = user;
-    this.setEmail(email);
-    this.password = password;
+    this.setProp("email", email);
+    this.setProp("password", password);
+  }
+
+  setProp(propName, value) {
+    const isString = typeof value === "string";
+    const isEmpty = propName.length === 0;
+    if (!isString || isEmpty) throw new Error(`${propName} not valid`);
+
+    if (propName === "email") {
+      const isEmail = value.includes("@");
+      if (!isEmail) throw new Error("not a valid email");
+    }
+
+    if (propName === "password") {
+      const isLengthValid = value.length >= PASSWORD_LENGTH;
+      if (!isLengthValid)
+        throw new Error("password should contain min 8 characters");
+    }
+
+    this[propName] = value;
   }
 
   getEmail() {
@@ -12,12 +33,6 @@ export default class User {
   getPassword() {
     return this.password;
   }
-
-  setEmail(emailInput) {
-    const isEmpty = emailInput.length === 0;
-    const isEmail = emailInput.includes("@");
-    if (isEmpty || !isEmail) throw new Error("email not valid");
-
-    this.email = emailInput;
-  }
 }
+
+const user = new User({ email: "123@123.pl", password: "123333213" });
