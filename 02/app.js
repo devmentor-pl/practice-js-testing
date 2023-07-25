@@ -32,8 +32,7 @@ function initEventWithError(element, eventName, error) {
 
 function printError(errMsg) {
   const alertSectionEl = document.querySelector(".alert");
-  const alertContainerEl = alertSectionEl.querySelector(".alert__container");
-  const alertMessageEl = alertContainerEl.querySelector(".alert__message");
+  const alertMessageEl = alertSectionEl.querySelector(".alert__message");
 
   alertSectionEl.classList.remove("alert--hidden");
   alertMessageEl.innerText = errMsg;
