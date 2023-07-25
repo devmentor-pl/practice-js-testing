@@ -16,4 +16,11 @@ describe("randomNumber", () => {
     const arg2 = 3;
     expect(() => randomNumber(arg1, arg2)).toThrow();
   });
+
+  it("return value is between min and max value range", () => {
+    const arg1 = 10;
+    const arg2 = 15;
+    expect(randomNumber(arg1, arg2)).toBeGreaterThanOrEqual(arg1);
+    expect(randomNumber(arg1, arg2)).toBeLessThanOrEqual(arg2);
+  });
 });
