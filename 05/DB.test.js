@@ -5,7 +5,6 @@ describe("DB", () => {
     it("should reject when ID not a number", async () => {
       const db = new DB();
       const data = { id: "X" };
-      //   const result = await db.insert(data);
       await expect(db.insert(data)).rejects.toMatch("ID can be only number!");
     });
 
@@ -39,7 +38,7 @@ describe("DB", () => {
       const data = { id: 3, a: 2, b: 3 };
       await db.insert(data);
 
-      await expect(db.select(1)).rejects.toMatch("ID not found");
+      expect(db.select(1)).rejects.toMatch("ID not found");
     });
   });
 
@@ -81,6 +80,27 @@ describe("DB", () => {
       const newData = { id: 3, a: 4 };
 
       await expect(db.update(newData)).resolves.toEqual(newData);
+    });
+  });
+
+  describe(".truncate()", () => {
+    it("clears the row array", async () => {
+      const db = new DB();
+      const data = { id: 3, a: 2, b: 3 };
+      await db.insert(data);
+      await db.truncate();
+      const rows = await db.getRows();
+      expect(rows.length).toBe(0);
+    });
+  });
+
+  describe(".getRows()", () => {
+    it("should provides rows when resolved", async () => {
+      const db = new DB();
+      const data = { id: 3, a: 2, b: 3 };
+      await db.insert(data);
+      const rows = await db.getRows();
+      expect(rows.length).toBe(1);
     });
   });
 });
