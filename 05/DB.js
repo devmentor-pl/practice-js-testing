@@ -111,3 +111,5 @@ export default class DB {
 // db.insert({ a: 1, b: 2 })
 //   .then(() => db.insert({ a: 3, b: 4 }))
 //   .then((rows) => console.log(rows));
+// db.truncate();
+// console.log(db)

@@ -2,14 +2,14 @@ import DB from "./DB";
 
 describe("DB", () => {
   describe(".insert()", () => {
-    it("should reject when [id] not a number", async () => {
+    it("should reject when ID not a number", async () => {
       const db = new DB();
       const data = { id: "X" };
       //   const result = await db.insert(data);
       await expect(db.insert(data)).rejects.toMatch("ID can be only number!");
     });
 
-    it("should reject when [id] not unique", async () => {
+    it("should reject when ID not unique", async () => {
       const db = new DB();
       const data = { id: 3, a: 2, b: 3 };
       await db.insert(data);
@@ -63,6 +63,24 @@ describe("DB", () => {
       const remove = db.remove(itemIDtoRemove);
 
       await expect(remove).rejects.toMatch("Item not exist!");
+    });
+  });
+
+  describe(".update()", () => {
+    it("rejects when ID is not provided", async () => {
+      const db = new DB();
+      const data = { a: 3 };
+
+      await expect(db.update(data)).rejects.toMatch("ID have to be set!");
+    });
+
+    it("updates item in db", async () => {
+      const db = new DB();
+      const data = { id: 3, a: 2, b: 3 };
+      await db.insert(data);
+      const newData = { id: 3, a: 4 };
+
+      await expect(db.update(newData)).resolves.toEqual(newData);
     });
   });
 });
