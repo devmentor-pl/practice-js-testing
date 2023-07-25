@@ -1,4 +1,5 @@
 const PASSWORD_LENGTH = 8;
+const DOMAIN = "devmentor.pl";
 
 export default class User {
   constructor(user) {
@@ -33,6 +34,11 @@ export default class User {
   getPassword() {
     return this.password;
   }
+
+  login() {
+    const domain = this.email.split("@")[1];
+    const isDomainMatch = domain === DOMAIN;
+    return isDomainMatch;
+  }
 }
 
-const user = new User({ email: "123@123.pl", password: "123333213" });
