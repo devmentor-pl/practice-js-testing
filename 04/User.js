@@ -1,6 +1,6 @@
 export default class User {
 	constructor(dataUser) {
-		if (this._validation(dataUser.email)) {
+		if (this._validationMail(dataUser.email) && this._validationPass(dataUser.password)) {
 			this.email = dataUser.email;
 			this.password = dataUser.password;
 		} else {
@@ -13,8 +13,12 @@ export default class User {
 	getPassword() {
 		return this.password;
 	}
-	_validation(email) {
-		const EmailRegex = /^[-\w\.]+@([-\w]+\.)+[a-z]+$/i;
-		return EmailRegex.test(email);
+	_validationMail(email) {
+		const emailRegex = /^[-\w\.]+@([-\w]+\.)+[a-z]+$/i;
+		return emailRegex.test(email);
+	}
+	_validationPass(pass) {
+		const passRegex = /^.{6,}$/;
+		return passRegex.test(pass);
 	}
 }
