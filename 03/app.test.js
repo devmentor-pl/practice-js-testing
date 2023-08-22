@@ -14,7 +14,6 @@ describe('RandomNumber', () => {
 		expect(result).toBe(1);
 	});
 	it('the range is excluded', () => {
-		const result = randomNumber(4, 3);
-		expect(result).toThrow();
+		expect(() => randomNumber(5, 1)).toThrow();
 	});
 });
