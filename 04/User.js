@@ -13,6 +13,13 @@ export default class User {
 	getPassword() {
 		return this.password;
 	}
+	login() {
+		if (this.email.includes('devmentor.pl')) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	_validationMail(email) {
 		const emailRegex = /^[-\w\.]+@([-\w]+\.)+[a-z]+$/i;
 		return emailRegex.test(email);
