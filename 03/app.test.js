@@ -16,4 +16,10 @@ describe('RandomNumber', () => {
 	it('the range is excluded', () => {
 		expect(() => randomNumber(5, 1)).toThrow();
 	});
+	it('its wokring', () => {
+		const result = randomNumber(1, 100);
+
+		expect(result).toBeLessThanOrEqual(100);
+		expect(result).toBeGreaterThanOrEqual(1);
+	});
 });
