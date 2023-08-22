@@ -11,7 +11,10 @@ describe('RandomNumber', () => {
 	});
 	it('return 1 when arguments are 1,1', () => {
 		const result = randomNumber(1, 1);
-        // trzeba wrzucic zmienna ktora przechowuje wynik, bo jak wrzuce funkcje z argumentami to nie przejdzie ~ zanotowane 
 		expect(result).toBe(1);
+	});
+	it('the range is excluded', () => {
+		const result = randomNumber(4, 3);
+		expect(result).toThrow();
 	});
 });
