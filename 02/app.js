@@ -30,11 +30,11 @@ function initEventWithError(element, eventName, error) {
 		} catch (e) {
 			alertElem.classList.remove('alert--hidden');
 			alertMsg.textContent = e.name;
-			uCanTryClosePopup();
+			closePopup();
 		}
 	});
 }
-function uCanTryClosePopup() {
+function closePopup() {
 	alertElem.addEventListener('click', function (e) {
 		if (e.target !== alertContainer && e.target !== alertMsg) {
 			alertElem.classList.add('alert--hidden');
