@@ -3,8 +3,6 @@ export default class User {
 		if (this._validationMail(dataUser.email) && this._validationPass(dataUser.password)) {
 			this.email = dataUser.email;
 			this.password = dataUser.password;
-		} else {
-			throw new Error('email nieprawidlowy');
 		}
 	}
 	getEmail() {
@@ -22,10 +20,18 @@ export default class User {
 	}
 	_validationMail(email) {
 		const emailRegex = /^[-\w\.]+@([-\w]+\.)+[a-z]+$/i;
-		return emailRegex.test(email);
+		if (emailRegex.test(email)) {
+			return true;
+		} else {
+			throw new Error('invalid email');
+		}
 	}
 	_validationPass(pass) {
 		const passRegex = /^.{6,}$/;
-		return passRegex.test(pass);
+		if (passRegex.test(pass)) {
+			return true;
+		} else {
+			throw new Error('invalid password');
+		}
 	}
 }
