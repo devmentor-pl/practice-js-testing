@@ -4,9 +4,12 @@ let DBClass;
 
 beforeEach(() => {
 	DBClass = new DB();
+	//a tutaj jakbym wrzucil, a gdzie byloby wiecej to bym nadpisywal w kodzie?
+	// expect.assertions(1);
 });
 describe('DB insert func', () => {
 	it('func insert return correctly insert data', async () => {
+		expect.assertions();
 		const objectTest = {
 			say: 'hello',
 			id: 10,
@@ -20,6 +23,7 @@ describe('DB insert func', () => {
 	});
 
 	it('func insert should throw an error when id is a string', async () => {
+		expect.assertions(1);
 		const objectTest = {
 			say: 'hello',
 			id: 'id',
@@ -33,6 +37,7 @@ describe('DB insert func', () => {
 	});
 
 	it('func insert should throw an error when id is duplicated', async () => {
+		expect.assertions(1);
 		const objectTest = {
 			say: 'hello',
 			id: 2,
@@ -56,6 +61,7 @@ describe('DB func select', () => {
 	});
 
 	it('func select should return reject when id is not finded', async () => {
+		expect.assertions(1);
 		const id = 3;
 
 		try {
@@ -71,12 +77,19 @@ describe('DB func remove', () => {
 		//2 added in DB.js file
 		const id = 2;
 
-		const remove = await DBClass.remove(id);
+		//removing object with id = const id
+		await DBClass.remove(id);
 
-		expect(remove).toBe('Item was remove!');
+		// take all data from .rows and setting to const rows
+		const rows = await DBClass.getRows();
+		//searching in rows if my const id is still available
+		const containsObjectTest = rows.some(row => row.id === objectTest.id);
+		// expect false (we cannot find id because we removed)
+		expect(containsObjectTest).toBe(false);
 	});
 
 	it('func remove cant remove because id is not exsist', async () => {
+		expect.assertions(1);
 		const id = 3;
 
 		try {
@@ -89,6 +102,7 @@ describe('DB func remove', () => {
 
 describe('DB func update', () => {
 	it('func update should return an error when id will be empty', async () => {
+		expect.assertions(1);
 		const objectTest = {
 			say: 'hello',
 		};
@@ -113,6 +127,7 @@ describe('DB func update', () => {
 	});
 
 	it('func update should return an error when id not matches with exist id', async () => {
+		expect.assertions(1);
 		const objectTest = {
 			say: 'newHello',
 			id: 3,
@@ -128,6 +143,17 @@ describe('DB func update', () => {
 
 describe('DB fun truncate', () => {
 	it('func truncate should return clear array', async () => {
-		expect(await DBClass.truncate()).toBe(true);
+		const clearedArr = [ ];
+		const greatTests= {}
+
+		await DBClass.truncate();
+		const rows = await DBClass.getRows();
+		// myslalem, ze to bedzie super logika zeby sprawdzic czy tablica jest pusta
+		// expect(rows).toMatchObject([]);
+		expect(rows).toMatchObject(clearedArr);
+		
+		// ale to tez przechodzi :') wiec o co chodzi?
+		// expect(rows).toMatchObject(greatTests)
+		// expect(rows).toMatchObject({})
 	});
 });
