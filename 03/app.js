@@ -1,8 +1,8 @@
 export default function randomNumber(min, max) {
-	if (min === undefined) {
+	if (typeof min === 'undefined') {
 		throw new Error('function should have two arguments');
 	}
-	if (max === undefined) {
+	if (typeof max === 'undefined') {
 		throw new Error('second arg is empty');
 	}
 	if (isNaN(min)) {

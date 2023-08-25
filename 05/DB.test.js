@@ -4,12 +4,11 @@ let DBClass;
 
 beforeEach(() => {
 	DBClass = new DB();
-	//a tutaj jakbym wrzucil, a gdzie byloby wiecej to bym nadpisywal w kodzie?
-	// expect.assertions(1);
 });
 describe('DB insert func', () => {
 	it('func insert return correctly insert data', async () => {
-		expect.assertions();
+		expect.assertions(1);
+
 		const objectTest = {
 			say: 'hello',
 			id: 10,
@@ -53,6 +52,7 @@ describe('DB insert func', () => {
 
 describe('DB func select', () => {
 	it('func select should return searching id', async () => {
+		expect.assertions(1);
 		//2 added in DB.js file
 		const id = 2;
 		const result = await DBClass.select(id);
@@ -74,6 +74,7 @@ describe('DB func select', () => {
 
 describe('DB func remove', () => {
 	it('func remove is working correctly', async () => {
+		expect.assertions(1);
 		//2 added in DB.js file
 		const id = 2;
 
@@ -116,6 +117,7 @@ describe('DB func update', () => {
 	});
 
 	it('func update should return resolve when update ended succesfully', async () => {
+		expect.assertions(1);
 		const objectTest = {
 			say: 'newHello',
 			id: 2,
@@ -143,17 +145,11 @@ describe('DB func update', () => {
 
 describe('DB fun truncate', () => {
 	it('func truncate should return clear array', async () => {
-		const clearedArr = [ ];
-		const greatTests= {}
+		expect.assertions(1);
 
 		await DBClass.truncate();
 		const rows = await DBClass.getRows();
-		// myslalem, ze to bedzie super logika zeby sprawdzic czy tablica jest pusta
-		// expect(rows).toMatchObject([]);
-		expect(rows).toMatchObject(clearedArr);
-		
-		// ale to tez przechodzi :') wiec o co chodzi?
-		// expect(rows).toMatchObject(greatTests)
-		// expect(rows).toMatchObject({})
+
+		expect(rows.length).toBe(0);
 	});
 });
