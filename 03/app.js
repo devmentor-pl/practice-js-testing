@@ -3,4 +3,7 @@ export default function randomNumber(min, max) {
   if (typeof min !== 'number' || typeof max !== 'number') {
     throw new TypeError('The entered data must be numbers.');
   }
+  if (min > max) {
+    throw new Error("Min number can't be greater than max number.");
+  }
 }
