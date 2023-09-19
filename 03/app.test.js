@@ -10,3 +10,10 @@ it('throw error when one of arguments is not a number', () => {
 it('throw error when min number is bigger than max number', () => {
   expect(() => randomNumber(2, 1)).toThrow();
 });
+it('return a number from a specified range', () => {
+  const min = 5;
+  const max = 10;
+  const randomNum = randomNumber(min, max);
+  expect(randomNum).toBeGreaterThanOrEqual(min);
+  expect(randomNum).toBeLessThanOrEqual(max);
+});
