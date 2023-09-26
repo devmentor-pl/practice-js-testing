@@ -44,9 +44,9 @@ describe('.select(id)', () => {
   it('return ID of selected row', async () => {
     const data = { id: 6, name: 'element 06' };
     const db = new DB();
-    await db.insert(data);
+    const selectedData = await db.insert(data);
 
-    expect(data.id).toBe(6);
+    expect(selectedData.id).toBe(data.id);
   });
   it('throw error when ID not found', async () => {
     expect.assertions(1);
@@ -71,20 +71,24 @@ describe('.remove(id)', () => {
     await db.insert({ id: 11, name: 'element 11' });
 
     const deletedData = await db.remove(9);
+    const rows = await db.getRows();
 
     expect(deletedData).toBe('Item was remove!');
+    expect(rows.length).toBe(2);
   });
 
   it('ID of deleted element not exist', async () => {
-    expect.assertions(1);
+    expect.assertions(2);
 
     const db = new DB();
     await db.insert({ id: 12, name: 'element 12' });
+    const rows = await db.getRows();
 
     try {
       await db.remove(13);
     } catch (err) {
       expect(err).toBe('Item not exist!');
+      expect(rows.length).toBe(1);
     }
   });
 });
@@ -122,7 +126,9 @@ describe('.truncate()', () => {
     await db.insert({ id: 19, name: 'element 19' });
 
     const truncate = await db.truncate();
+    const rows = await db.getRows();
 
     expect(truncate).toBe(true);
+    expect(rows.length).toBe(0);
   });
 });
