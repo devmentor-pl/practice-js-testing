@@ -12,8 +12,10 @@ it('throw exception when min > max', () => {
    expect(() => {
       randomNumber(4, 3).toThrow()
    })
+})
+it('return valid number from range', () => {
+   const generatedNumber = randomNumber(1, 10);
+   expect(generatedNumber).toBeGreaterThanOrEqual(1);
+   expect(generatedNumber).toBeLessThanOrEqual(10);
 })   
-
-
-
 
