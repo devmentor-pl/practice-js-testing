@@ -8,6 +8,11 @@ it('throw exception when one of the arguments is not a number ', () => {
       randomNumber('2', 2).toThrow()
    })
 })
+it('throw exception when min > max', () => {
+   expect(() => {
+      randomNumber(4, 3).toThrow()
+   })
+})   
 
 
 
