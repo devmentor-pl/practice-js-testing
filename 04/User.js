@@ -20,7 +20,7 @@ export default class User {
    }
 
    isPassValid(password) {
-     return password.match(/[a-zA-Z]/) && password.length > 3;
+     return password.match(/[a-zA-Z]/);
    }
    isPassLengthCorrect(password) {
     return password.length >= 6

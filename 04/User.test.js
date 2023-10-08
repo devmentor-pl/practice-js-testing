@@ -17,7 +17,7 @@ describe('User', () => {
 
         expect(createWrongUserData).toThrow();
     });
-    it('should throw exception when password.length <= 6', () => {
+    it('should throw exception when password.length < 6', () => {
         function createWrongUserData() {
             new User({email: 'devmentor.pl', password: '1234e'});
         }
