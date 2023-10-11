@@ -3,7 +3,7 @@ describe('randomNumber', () => {
    it('return 1 when min and max is equal 1', () => {
       expect(randomNumber(1, 1)).toBe(1)
    })
-   it('throw exception when both argumenst are not a numbers', () => {
+   it('throw exception when both arguments are not a numbers', () => {
       expect(() => {
          randomNumber('2', '2').toThrow('Property have to be number')
       })

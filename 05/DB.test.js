@@ -10,7 +10,8 @@ describe('DB class', () => {
       it('inserts data correctly', async () =>{
          const data = {id: 1, name: 'John'};
          const result = await db.insert(data);
-         expect(result.id).toBe(1);
+         await db.select(result.id)
+         expect(result.id).toBe(1)
          expect(result.name).toBe('John')
       })
       it('show error when id is not a number', async () => {
@@ -42,7 +43,6 @@ describe('DB class', () => {
   describe('select', async () => {
       it('select data by id', async () => {
          const result = await db.insert({id: 1, name: 'John'});
-
          const selectData = await db.select(1);
          expect(selectData).toEqual(result)
       });
@@ -59,6 +59,7 @@ describe('DB class', () => {
   })
   describe('remove', async () => {
     it('reject to remove not existing id', async () => {
+      expect.assertions(1)
       const id = 123;
       try {
          await db.remove(id)
@@ -73,11 +74,25 @@ describe('DB class', () => {
       await db.remove(1);
     })
   })
-//   describe('update', async () => {
-//      it('reject update data without id', async () => {
+  describe('update', async () => {
+     it('reject update data without id', async () => {
+      expect.assertions(1)
+      const data = {name: 'John'};
+      try{
+         await db.update(data)
+      }
+     catch (e) {
+         expect(e).toBe('ID have to be set!');
+     }
+     })
+     it('update data when id exist', async () => {
+         const data = {name: 'Adam', id: 2}
+         await expect(db.update({name: 'Kate', id: data.id}))
+     })
+  })
+   it('truncate', async () => {
       
-//      })
-//   })
+   })
 })
 
 
