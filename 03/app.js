@@ -9,5 +9,5 @@ export default function randomNumber(min, max) {
         throw new Error('Wrong range');
     }
    
-    return Math.floor(Math.random() * (max - min) + max)
+    return Math.floor(Math.random() * (max - min) + min)
 }
