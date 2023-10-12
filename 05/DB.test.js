@@ -6,7 +6,7 @@ beforeEach(() => {
   db = new DB();
 });
 describe("DB class", () => {
-  describe("insert", async () => {
+  describe("insert", () => {
     it("inserts data correctly", async () => {
       const data = { id: 1, name: "John" };
       const result = await db.insert(data);
@@ -38,7 +38,7 @@ describe("DB class", () => {
       expect(result.name).toEqual(data.name);
     });
   });
-  describe("select", async () => {
+  describe("select", () => {
     it("select data by id", async () => {
       const result = await db.insert({ id: 1, name: "John" });
       const selectData = await db.select(1);
@@ -54,7 +54,7 @@ describe("DB class", () => {
       }
     });
   });
-  describe("remove", async () => {
+  describe("remove", () => {
     it("reject to remove not existing id", async () => {
       expect.assertions(1);
       const id = 123;
@@ -70,7 +70,7 @@ describe("DB class", () => {
       await db.remove(1);
     });
   });
-  describe("update", async () => {
+  describe("update", () => {
     it("reject update data without id", async () => {
       expect.assertions(1);
       const data = { name: "John" };
@@ -81,8 +81,11 @@ describe("DB class", () => {
       }
     });
     it("update data when id exist", async () => {
-      const data = { name: "Adam", id: 2 };
-      await expect(db.update({ name: "Kate", id: data.id }));
+      await db.insert({name: 'John'})
+
+      const updatedData = { id: 1, name: 'John' };
+      const result = await db.update(updatedData);
+      expect(result.name).toBe('John');
     });
   });
  
