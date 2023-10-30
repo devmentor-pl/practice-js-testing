@@ -9,3 +9,9 @@ it('Throw an error when a non-number is provided', () => {
     randomNumber('X', 1).toThrow();
   });
 });
+
+it('Throw an error when min is greater than max', () => {
+  expect(() => {
+    randomNumber(4, 3).toThrow();
+  });
+});
