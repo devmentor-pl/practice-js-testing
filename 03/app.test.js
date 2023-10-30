@@ -15,3 +15,11 @@ it('Throw an error when min is greater than max', () => {
     randomNumber(4, 3).toThrow();
   });
 });
+
+it('Generate a random number within the specified range', () => {
+  const min = 10;
+  const max = 20;
+  const result = randomNumber(min, max);
+  expect(result).toBeGreaterThanOrEqual(min);
+  expect(result).toBeLessThanOrEqual(max);
+});
