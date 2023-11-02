@@ -16,17 +16,16 @@ function setRandomPosition(element, error = null) {
   element.style.left = Math.random() * 800 + 'px';
 
   if (error) {
-    displayError(error);
+    throw error;
   }
 }
 
-function initEventWithError(element, eventName, error) {
+function initEventWithError(element, eventName, errorToThrow) {
   element.addEventListener(eventName, function () {
-    try {
-      setRandomPosition(this, error);
-    } catch (error) {
-      displayError(error);
+    if (errorToThrow) {
+      displayError(errorToThrow);
     }
+    setRandomPosition(this);
   });
 }
 
