@@ -53,6 +53,8 @@ describe('DB', () => {
       await db.insert(data);
       const result = await db.remove(1);
       expect(result).toBe('Item was remove!');
+      const rows = await db.getRows();
+      expect(rows.length).toBe(0);
     });
 
     it('Should reject with an error if the item does not exist', async () => {
@@ -61,12 +63,16 @@ describe('DB', () => {
   });
 
   describe('Update method', () => {
-    it('Should resolve with the updated data if yhe ID exists', async () => {
+    it('Should resolve with the updated data if the ID exists', async () => {
       const data = { id: 1, name: 'Eve' };
       await db.insert(data);
       const updatedData = { id: 1, name: 'Updated Eve' };
       const result = await db.update(updatedData);
       expect(result).toEqual(updatedData);
+
+      const rows = await db.getRows();
+      const updatedRow = rows.find((row) => row.id === updatedData.id);
+      expect(updatedRow).toEqual(updatedData);
     });
 
     it('Should reject with an error if the ID does not exist', async () => {
@@ -94,6 +100,7 @@ describe('DB', () => {
       expect(result).toBe(true);
       const rows = await db.getRows();
       expect(rows).toHaveLength(0);
+      expect(rows.length).toBe(0);
     });
   });
 
