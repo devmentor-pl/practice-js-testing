@@ -99,7 +99,6 @@ describe('DB', () => {
       const result = await db.truncate();
       expect(result).toBe(true);
       const rows = await db.getRows();
-      expect(rows).toHaveLength(0);
       expect(rows.length).toBe(0);
     });
   });
