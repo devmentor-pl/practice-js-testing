@@ -1,8 +1,8 @@
 export default function randomNumber(min, max) {
-  if (typeof min !== 'number') {
+  if (typeof min !== 'number' || isNaN(min)) {
     throw new Error('Invalid input. Min value must be a number.');
   }
-  if (typeof max !== 'number') {
+  if (typeof max !== 'number' || isNaN(max)) {
     throw new Error('Invalid input. Max value must be a number.');
   }
   if (min > max) {

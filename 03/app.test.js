@@ -23,3 +23,15 @@ it('Generate a random number within the specified range', () => {
   expect(result).toBeGreaterThanOrEqual(min);
   expect(result).toBeLessThanOrEqual(max);
 });
+
+it('Throw an error when min NaN is provvided', () => {
+  expect(() => {
+    randomNumber(NaN, 10);
+  }).toThrow('Invalid input. Min value must be a number.');
+});
+
+it('Throw an error when max NaN is provvided', () => {
+  expect(() => {
+    randomNumber(10, NaN);
+  }).toThrow('Invalid input. Max value must be a number.');
+});
