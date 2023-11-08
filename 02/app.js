@@ -20,12 +20,13 @@ function setRandomPosition(element, error = null) {
   }
 }
 
-function initEventWithError(element, eventName, errorToThrow) {
+function initEventWithError(element, eventName, error) {
   element.addEventListener(eventName, function () {
-    if (errorToThrow) {
-      displayError(errorToThrow);
+    try {
+      setRandomPosition(this, error);
+    } catch (error) {
+      displayError(error);
     }
-    setRandomPosition(this);
   });
 }
 
