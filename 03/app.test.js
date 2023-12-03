@@ -12,4 +12,12 @@ describe('randomNumber', () => {
     test('throws errror if the range start is freater than the range end', () => {
         expect(() => randomNumber(4,3)).toThrow();
     });
+
+    test('returns a number within the specified range', () => {
+        const start = 3;
+        const end = 7;
+        const result = randomNumber(start, end);
+        expect(result).toBeGreaterThanOrEqual(start);
+        expect(result).toBeLessThanOrEqual(end);
+    });
 })
