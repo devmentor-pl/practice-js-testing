@@ -6,6 +6,7 @@ export default function randomNumber(min, max) {
     if (min > max) {
         throw new Error('Start of range must be less than or equal to end of range');
     }
-    return 1;
+
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 
 }
