@@ -69,4 +69,12 @@ describe('DB - truncate', () => {
         await expect(db.truncate()).resolves.toBe(true);
         await expect(db.getRows()).resolves.toEqual([]);
     });
-})
+});
+
+describe('DB - getRows', () => {
+    it('should return all rows', async () => {
+        const db = new DB();
+        await db.insert({ id: 1, name: 'Test' });
+        await expect(db.getRows()).resolves.toEqual([{ id: 1, name: 'Test' }]);
+    });
+});
