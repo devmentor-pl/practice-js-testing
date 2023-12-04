@@ -30,3 +30,16 @@ describe(DB - Selection, () => {
         await expect(db.select(999)).rejects.toMatch('ID not found');
     });
 });
+
+describe('DB - remove', () => {
+    it('should remove an item by ID', async () => {
+        const db = new DB();
+        await db.insert({ id: 1, name: 'Test' });
+        await expect(db.remove(1)).resolves.toMatch('Item was remove!');
+    });
+
+    it('should reject when trying to remove an item that does not exist', async () => {
+        const db = new DB();
+        await expect(db.remove(999)).rejects.toMatch('Item not exist!');
+    });
+});
