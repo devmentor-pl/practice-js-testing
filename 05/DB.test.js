@@ -43,3 +43,30 @@ describe('DB - remove', () => {
         await expect(db.remove(999)).rejects.toMatch('Item not exist!');
     });
 });
+
+describe('DB - update', () => {
+    it('should update an item', async () => {
+        const db = new DB();
+        await db.insert({ id: 1, name: 'Test' });
+        await expect(db.update({ id: 1, name: 'Updated' })).resolves.toEqual({ id: 1, name: 'Updated' });
+    });
+
+    it('should reject update without ID', async () => {
+        const db = new DB();
+        await expect(db.update({ name: 'No ID' })).rejects.toMatch('ID have to be set!');
+    });
+
+    it('should reject when trying to update an item with non-existing ID', async () => {
+        const db = new DB();
+        await expect(db.update({ id: 999, name: 'Not Found' })).rejects.toMatch('ID not found!');
+    });
+});
+
+describe('DB - truncate', () => {
+    it('should truncate all items', async () => {
+        const db = new DB ();
+        await db.insert({ id: 1, name: 'Test' });
+        await expect(db.truncate()).resolves.toBe(true);
+        await expect(db.getRows()).resolves.toEqual([]);
+    });
+})
