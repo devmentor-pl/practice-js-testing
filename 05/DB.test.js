@@ -18,4 +18,15 @@ describe('DB - insert', () => {
     });
 });
 
+describe(DB - Selection, () => {
+    it('should select and item by ID', async () => {
+        const db = new DB();
+        await db.insert({ id: 1, name: 'Test' });
+        await expect(db.select(1)).resolves.toEqual({ id: 1, name: 'Test'});;
+    });
 
+    it('should reject when ID not found', async () => {
+        const db = new DB();
+        await expect(db.select(999)).rejects.toMatch('ID not found');
+    });
+});
