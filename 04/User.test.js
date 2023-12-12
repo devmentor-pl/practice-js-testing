@@ -28,7 +28,13 @@ describe('User', () => {
 
     describe('.login()', () => {
         it('should return true when email contain domain devmentor.pl', () => {
-            const email = 'koder@devmentor.pl';
+            const email = 'koder@devmentor.pl';it('should throw exception when password is incorrect', () => {
+        function createWrongUserData() {
+            new User({email: 'koder@devmentor.pl', password: '123'});
+        }
+
+        expect(createWrongUserData).toThrow();
+    });
             const password = 'pw123456';
             const user = new User({email, password});
 
