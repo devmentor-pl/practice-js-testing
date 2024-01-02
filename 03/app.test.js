@@ -4,5 +4,10 @@ describe('randomNumber', ()=> {
         const result = randomNumber(1,1)
         expect(result).toBe(1);
     })
+    it('should throw an error when NaN value is provided', ()=>{
+        expect(() => randomNumber('abc', 5)).toThrowError('Invalid input. Both min and max must be numbers.');
+        expect(() => randomNumber(2, 'xyz')).toThrowError('Invalid input. Both min and max must be numbers.');
+        expect(() => randomNumber('abc', 'xyz')).toThrowError('Invalid input. Both min and max must be numbers.');
+    } )
     
 })
