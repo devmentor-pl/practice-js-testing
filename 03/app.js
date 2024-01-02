@@ -3,6 +3,6 @@ export default function randomNumber(min, max) {
  return 1;
  if(typeof min !== 'number' || typeof max !== 'number') {
     throw new Error('Both min and max must be numbers.');
+}
 
-
-}}
+}

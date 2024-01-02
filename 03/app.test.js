@@ -9,5 +9,7 @@ describe('randomNumber', ()=> {
         expect(() => randomNumber(2, 'xyz')).toThrowError('Both min and max must be numbers.');
         expect(() => randomNumber('abc', 'xyz')).toThrowError('Both min and max must be numbers.');
     } )
-    
+    it('should throw an error when min is greater than max', ()=> {
+        expect(()=> randomNumber(4,3)).toThrowError('Min must be smaller or equal to max')
+    })
 })
