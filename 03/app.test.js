@@ -5,9 +5,9 @@ describe('randomNumber', ()=> {
         expect(result).toBe(1);
     })
     it('should throw an error when NaN value is provided', ()=>{
-        expect(() => randomNumber('abc', 5)).toThrowError('Invalid input. Both min and max must be numbers.');
-        expect(() => randomNumber(2, 'xyz')).toThrowError('Invalid input. Both min and max must be numbers.');
-        expect(() => randomNumber('abc', 'xyz')).toThrowError('Invalid input. Both min and max must be numbers.');
+        expect(() => randomNumber('abc', 5)).toThrowError('Both min and max must be numbers.');
+        expect(() => randomNumber(2, 'xyz')).toThrowError('Both min and max must be numbers.');
+        expect(() => randomNumber('abc', 'xyz')).toThrowError('Both min and max must be numbers.');
     } )
     
 })
