@@ -12,4 +12,11 @@ describe('randomNumber', ()=> {
     it('should throw an error when min is greater than max', ()=> {
         expect(()=> randomNumber(4,3)).toThrowError('Min must be smaller or equal to max')
     })
+    it('should return a number within the range', ()=>{
+        const min = 3
+        const max = 8
+        const result =  randomNumber(min, max)
+        expect(result).toBeGreaterThanOrEqual(min)
+        expect(result).toBeLessThanOrEqual(max)
+    })
 })
