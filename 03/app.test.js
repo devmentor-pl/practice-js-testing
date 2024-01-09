@@ -11,3 +11,10 @@ it('throw exception when prop max is not a number', () => {
   }
   expect(createRandomNum).toThrow('Property have to be a number');
 });
+
+it('throw exception when prop min is greater than max', () => {
+  function checkNumbers() {
+    randomNumber(4, 3);
+  }
+  expect(checkNumbers).toThrow('min number is grater than max');
+});
