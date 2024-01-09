@@ -1,12 +1,22 @@
 import randomNumber from "./app";
-let x = randomNumber(1, 10);
+let x;
 
 test("sprawdzenie czy jest wynik z podanego przedziału", () => {
+  x = randomNumber(1, 10);
   console.log(x);
   const checkRange = (x) => {
     if (x >= 0 && x <= 10) return true;
   };
   expect(true).toBe(Boolean(checkRange(x)));
+});
+
+test("sprawdzenie danych wejściowych: 1,1", () => {
+  x = randomNumber(1, 1);
+  console.log(x);
+  const checkOnes = (x) => {
+    if (x === 1) return true;
+  };
+  expect(true).toBe(Boolean(checkOnes(x)));
 });
 
 // test("sprawdzenie czy podano typ number", () => {
