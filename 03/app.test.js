@@ -18,3 +18,9 @@ it('throw exception when prop min is greater than max', () => {
   }
   expect(checkNumbers).toThrow('min number is grater than max');
 });
+
+it('return true if randomNumber falls within the specified range', () => {
+  const result = randomNumber(1, 6);
+  expect(result).toBeGreaterThanOrEqual(1);
+  expect(result).toBeLessThanOrEqual(6);
+});
