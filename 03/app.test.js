@@ -1,7 +1,7 @@
 import randomNumber from "./app";
 let x;
 
-// test("sprawdzenie czy jest wynik z podanego przedziału", () => {
+// test("sprawdzenie czy jest WYNIK Z podanego PRZEDZIAŁU", () => {
 //   x = randomNumber(1, 10);
 //   const checkRange = (x) => {
 //     if (x >= 0 && x <= 10) return true;
@@ -17,7 +17,12 @@ let x;
 //   expect(true).toBe(Boolean(checkOnes(x)));
 // });
 
-test("sprawdzenie czy podano typ number", () => {
+// test("sprawdzenie czy podano TYP NUMBER", () => {
+//   x = randomNumber(20, 30);
+//   expect(true).toBe(Boolean(x));
+// });
+
+test("sprawdzenie czy podano PRAWIDLOWY ZAKRES", () => {
   x = randomNumber(20, 30);
   expect(true).toBe(Boolean(x));
 });
@@ -28,17 +33,12 @@ min. 3 testy!
 Funkcja ma generować losową liczbę z podanego przez usera przedziału
 
 input: 
--typ: number
 -2 argumenty: min number, max number
 
 output:
 -zwracać 1 liczbę całkowitą
--zwracać typ number
 
 testy:
-- min=1 max=1 ma zwrócić 1
-- jeśli podam 'nie liczbę' to zwróć błąd
 - jeśli przedział odwrotny (min=5, max=2) to zwróć błąd
-- jeśli argum. poprawne to sprawdź czywynik jest z podanego zakresu 
 
 */
