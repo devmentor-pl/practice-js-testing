@@ -1,38 +1,29 @@
 export default class User {
   constructor(userData) {
     const {email, password} = userData;
-    this.email = email;
-    this.password = password;
-    this.getEmail();
-    this.getPassword();
+    this.validateEmail(email);
+    this.validatePassword(password);
+
     this.login();
   }
   getEmail() {
-    const isCorrectEmail = this.validateEmail();
-
-    if (isCorrectEmail) {
-      return this.email;
-    } else {
-      throw new Error('Niepoprawny email');
-    }
+    return this.email;
   }
   getPassword() {
-    const isPasswordCorrect = this.validatePassword();
-    if (isPasswordCorrect) {
-      return this.password;
-    } else {
-      throw new Error(
-        'Niepoprawne haslo. Haslo musi zawierać 8 znaków w tym liczby i litery'
-      );
-    }
+    return this.password;
   }
-  validateEmail() {
+  validateEmail(email) {
     const regExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regExp.test(this.email);
+
+    if (regExp.test(email)) {
+      return (this.email = email);
+    } else throw new Error('Email is incorrect');
   }
-  validatePassword() {
+  validatePassword(password) {
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    return passwordRegex.test(this.password);
+    if (passwordRegex.test(password)) {
+      return (this.password = password);
+    } else throw new Error('incorrect password');
   }
   login() {
     const dataBaseDomains = ['devmentor.pl'];
