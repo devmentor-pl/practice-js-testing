@@ -1,7 +1,7 @@
 import DB from './DB';
 
 describe('DB', () => {
-  describe('insert', async () => {
+  describe('insert', () => {
     it('Should throw exception when id not a number', async () => {
       expect.assertions(1);
       const id = 'pwd';
@@ -25,7 +25,7 @@ describe('DB', () => {
         id: id,
       };
       const db = new DB();
-      db._rows.push(data);
+      await db.insert(data);
       try {
         await db.insert(data);
       } catch (err) {
@@ -44,7 +44,7 @@ describe('DB', () => {
       expect(result.id).toBe(4);
     });
   });
-  describe('select', async () => {
+  describe('select', () => {
     it('show selected id if exist', async () => {
       expect.assertions(1);
       const id = 4;
@@ -67,7 +67,7 @@ describe('DB', () => {
       }
     });
   });
-  describe('remove', async () => {
+  describe('remove', () => {
     it('Should throw exception when removed item is not exist', async () => {
       expect.assertions(1);
       const id = 2;
@@ -107,8 +107,9 @@ describe('DB', () => {
       };
       const db = new DB();
       const result = await db.insert(data);
-      const response = await db.update(data);
-      expect(result.id).toBe(response.id);
+      const response = await db.update({...data, content: 'test'});
+      const selected = await db.select(data.id);
+      expect(selected.content).toBe('test');
     });
     it('should throw exception when removed item is not exist', async () => {
       expect.assertions(1);
