@@ -16,10 +16,8 @@ describe("My first TEST! - test randomNumber() function", () => {
   test("sprawdzenie czy jest WYNIK Z podanego PRZEDZIAŁU", () => {
     expect(randomNumber(1, 10)).not.toBe(false);
   });
-});
 
-// test("sprawdzenie czy podano 2 LICZBY", () => {
-//   a = 10;
-//   b = 30;
-//   expect(randomNumber(a, b)).toBe(true);
-// });
+  test("sprawdzenie czy podano 2 LICZBY", () => {
+    expect(randomNumber(10, 10)).toBeTruthy();
+  });
+});
