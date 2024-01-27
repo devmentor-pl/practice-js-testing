@@ -26,8 +26,18 @@ function setRandomPosition(element, error = null) {
     }
 }
 
-function initEventWithError(element, eventName, error) {
+function initEventWithError(element, eventName, error, errorEl) {
     element.addEventListener(eventName, function() {
-        setRandomPosition(this, error);
+        try {
+            setRandomPosition(this, error)
+        } catch(err) {
+            showError(errorEl, err.message)
+        }
     })
+}
+
+function showError(element, message) {
+    element.classList.remove('alert--hidden')
+    const messageEl = element.querySelector('.alert__message')
+    messageEl.innerText = message
 }
