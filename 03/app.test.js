@@ -6,3 +6,6 @@ it("return 1 if min =1 and max=1", () => {
 it("throw error if not a number", () => {
     expect(() => randomNumber("1", 2)).toThrow('"min" is not a number');
 });
+it("throw error if max is not a number", () => {
+    expect(() => randomNumber(1, "2")).toThrow('"max" is not a number');
+});
