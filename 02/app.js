@@ -22,7 +22,21 @@ function setRandomPosition(element, error = null) {
 }
 
 function initEventWithError(element, eventName, error) {
-    element.addEventListener(eventName, function() {
-        setRandomPosition(this, error);
-    })
+    let alertElement = document.querySelector('.alert--hidden');
+
+    element.addEventListener(eventName, function(e) {
+        e.stopPropagation();
+        try {
+            setRandomPosition(this, error);
+        } catch (err) {
+            alertElement.querySelector('.alert__message').innerText = err.message;
+            alertElement.style.display = 'block';
+        }
+    });
+
+    document.addEventListener('click', function hideAlert() {
+        if (alertElement.style.display === 'block') {
+            alertElement.style.display = 'none';
+        }
+    });
 }
