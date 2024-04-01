@@ -11,5 +11,7 @@ function getTotalPrice(productList) {
     });
 }
 
+
+
 const totalPrice = getTotalPrice( getProductList() );
 console.log(totalPrice); // prawidłowa wartość: 390.42 (należy zaaokrąglić do 2 miejsc po przecinku)
