@@ -6,7 +6,7 @@ export default function randomNumber(min, max) {
         throw new Error('Both arguments must be integers');
     }
     if (min > max) {
-        throw new Error('min must be less than max');
+        throw new Error('Invalid input: The "min" argument must be less than or equal to the "max" argument.');
     }
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
