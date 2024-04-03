@@ -4,9 +4,10 @@ test('randomNumber should return a number', () => {
   expect(typeof randomNumber(1, 10)).toBe('number');
 });
 
-// Next test: If argument is not a number, it should throw an error
 test('randomNumber should throw an error if argument is not a number', () => {
-  expect(() => {
-    randomNumber('a', 10);
-  }).toThrow();
+    expect(() => randomNumber('1', 10)).toThrow('Both arguments must be numbers');
+});
+
+test('throws error when min is greater than max', () => {
+    expect(() => randomNumber(2, 1)).toThrow('min must be less than max');
 });
