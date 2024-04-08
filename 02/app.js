@@ -1,3 +1,4 @@
+//DZIAŁA
 document.addEventListener('DOMContentLoaded', init);
 
 function init() {
@@ -13,16 +14,24 @@ function init() {
 }
 
 function setRandomPosition(element, error = null) {
-    element.style.top = Math.random() * 600 + 'px';
-    element.style.left = Math.random() * 800 + 'px';
+    try {
+        element.style.top = Math.random() * 600 + 'px';
+        element.style.left = Math.random() * 800 + 'px';
 
-    if(error) {
-        throw error;
+        if (error) {
+            throw error;
+        }
+    } catch (err) {
+        const alertElement = document.querySelector('.alert');
+        const alertMessage = alertElement.querySelector('.alert__message');
+
+        alertMessage.textContent = err.message;
+        alertElement.classList.remove('alert--hidden');
     }
 }
 
 function initEventWithError(element, eventName, error) {
     element.addEventListener(eventName, function() {
         setRandomPosition(this, error);
-    })
+    });
 }
