@@ -1,4 +1,4 @@
-// BłĄD - pokazuje się 518.25
+// DZIAŁA
 
 function getProductList() {     
     return [         
@@ -8,7 +8,7 @@ function getProductList() {
 }  
 
 function getTotalPrice(productList) {     
-    return productList.reduce((acc, product) => acc + (product.price * product.count), 0); 
+    return productList.reduce((acc, product) => acc + (product.price * product.count * (1 - product.discount)), 0); 
 }  
 
 const totalPrice = getTotalPrice(getProductList()); 
