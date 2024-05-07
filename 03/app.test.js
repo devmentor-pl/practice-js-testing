@@ -13,11 +13,18 @@ describe('randomNumber(min, max)', () => {
       const max = 1;
       expect(() => randomNumber(min, max)).toThrow();
     })
-    
+
     it('max is not a number', () => {
       const min = 1;
       const max = 'not a number';
       expect(() => randomNumber(min, max)).toThrow();
     })
+  })
+
+  it('if min > max throw an error', () => {
+    const min = 10;
+    const max = 9;
+
+    expect(() => randomNumber(min, max)).toThrow();
   })
 })
