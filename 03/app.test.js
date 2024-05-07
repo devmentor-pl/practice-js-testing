@@ -6,4 +6,17 @@ describe('randomNumber(min, max)', () => {
     const max = 1;
     expect(randomNumber(min, max)).toBe(1);
   })
+
+  describe('if arguments are not numbers throw an error', () => {
+    it('min is not a number', () => {
+      const min = 'not a number';
+      const max = 1;
+      expect(randomNumber(min, max).toThrow());
+    })
+    it('max is not a number', () => {
+      const min = 1;
+      const max = 'not a number';
+      expect(randomNumber(min, max).toThrow());
+    })
+  })
 })
