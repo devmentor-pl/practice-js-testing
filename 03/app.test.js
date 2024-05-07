@@ -27,4 +27,20 @@ describe('randomNumber(min, max)', () => {
 
     expect(() => randomNumber(min, max)).toThrow();
   })
+
+  it('if min & max are valid, check if drawn number are in the range of min-max', () => {
+    const min = 80;
+    const max = 100;
+
+    const isDawnNumberInTheRange = (min, max) => {
+      const drawnNumber = randomNumber(min, max);
+      if(drawnNumber >= min || drawnNumber <= max) {
+        return true;
+      }
+
+      return false;
+    }
+
+    expect(isDawnNumberInTheRange(min, max)).toBe(true);
+  })
 })
