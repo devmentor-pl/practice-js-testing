@@ -1,109 +1,114 @@
 export default class DB {
-    constructor() {
-        this._rows = [];
-    }
+	constructor() {
+		this._rows = []
+	}
 
-    insert(data) {
-        return new Promise((resolve, reject) => {
-            if(data.id) {
-                if(typeof data.id !== 'number') {
-                    this.async(reject,'ID can be only number!');
-                    return null; // stop function
-                } else if(this._rows.some(item => item.id === data.id)) {
-                    this.async(reject, 'ID can\'t be duplicated!');
-                    return null; // stop function
-                }
-            }
+	insert(data) {
+		return new Promise((resolve, reject) => {
+			if (data.id) {
+				if (typeof data.id !== 'number') {
+					this.async(reject, 'ID can be only number!')
+					return null // stop function
+				} else if (this._rows.some(item => item.id === data.id)) {
+					this.async(reject, "ID can't be duplicated!")
+					return null // stop function
+				}
+			}
 
-            this.async(() => {
-                if(!data.id) {
-                    data.id = this._rows.reduce((acc, item) => {
-                        return acc <= item.id ? item.id + 1 : acc;
-                    }, 1);
-                }
+			this.async(() => {
+				if (!data.id) {
+					data.id = this._rows.reduce((acc, item) => {
+						return acc <= item.id ? item.id + 1 : acc
 
-                this._rows.push(data);
-                resolve(data)
-            }); 
-        });
-    }
+						// if (acc <= item.id) {
+						// 	return item.id + 1;
+						// } else {
+						// 	return acc;
+						// }
+					}, 1)
+				}
 
-    select(id) {
-        return new Promise((resolve, reject) => {
-            this.async(() => {
-                const [row = null] = this._rows.filter(item => item.id === id);
-                if(row) {
-                    resolve(row);
-                } else {
-                    reject('ID not found');
-                }
-            });
-        });
-    }
+				this._rows.push(data)
+				resolve(data)
+			})
+		})
+	}
 
-    remove(id) {
-        return new Promise((resolve, reject) => {
-            this.async(() => {
-                const lengthBeforeFilter = this._rows.length;
-                this._rows = this._rows.filter(item => item.id !== id);
-                const lengthAfterFilter = this._rows.length;
-                
-                if(lengthBeforeFilter === lengthAfterFilter) {
-                    reject('Item not exist!');
-                } else {
-                    resolve('Item was remove!');
-                }
-            });
-        });
-    }
+	select(id) {
+		return new Promise((resolve, reject) => {
+			this.async(() => {
+				const [row = null] = this._rows.filter(item => item.id === id)
+				if (row) {
+					resolve(row)
+				} else {
+					reject('ID not found')
+				}
+			})
+		})
+	}
 
-    update(data) {
-        return new Promise((resolve, reject) => {
-            if(!data.id) {
-                this.async(reject, 'ID have to be set!');
-            } else {
-                this.async(() => {
-                    let updated = null;
-                    this._rows = this._rows.map(item => {
-                        if(item.id === data.id) {
-                            updated = data
-                            return updated;
-                        }
-            
-                        return item;
-                    });
+	remove(id) {
+		return new Promise((resolve, reject) => {
+			this.async(() => {
+				const lengthBeforeFilter = this._rows.length
+				this._rows = this._rows.filter(item => item.id !== id)
+				const lengthAfterFilter = this._rows.length
 
-                    if(updated) {
-                        resolve(updated);
-                    } else {
-                        reject('ID not found!');   
-                    }
-                });
-            }
-        });
-    }
+				if (lengthBeforeFilter === lengthAfterFilter) {
+					reject('Item not exist!')
+				} else {
+					resolve('Item was remove!')
+				}
+			})
+		})
+	}
 
-    truncate() {
-        return new Promise(resolve => {
-            this.async(() => {
-                this._rows = [];
-                resolve(true);
-            });
-            
-        })
-    }
+	update(data) {
+		return new Promise((resolve, reject) => {
+			if (!data.id) {
+				this.async(reject, 'ID have to be set!')
+			} else {
+				this.async(() => {
+					let updated = null
+					this._rows = this._rows.map(item => {
+						if (item.id === data.id) {
+							updated = data
+							return updated
+						}
 
-    getRows() {
-        return new Promise(resolve => {
-            this.async(() => {
-                resolve(this._rows);
-            });
-        })
-    }
+						return item
+					})
 
-    async(callback, ...params) {
-        setTimeout(() => {
-            callback(...params);
-        }, Math.random() * 100);
-    }
+					if (updated) {
+						resolve(updated)
+					} else {
+						reject('ID not found!')
+					}
+				})
+			}
+		})
+	}
+
+	truncate() {
+		return new Promise(resolve => {
+			this.async(() => {
+				this._rows = []
+				resolve(true)
+			})
+		})
+	}
+
+	getRows() {
+		return new Promise(resolve => {
+			this.async(() => {
+				resolve(this._rows)
+			})
+		})
+	}
+
+	async(callback, ...params) {
+		setTimeout(() => {
+			callback(...params)
+		}, Math.random() * 100)
+	}
 }
