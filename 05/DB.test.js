@@ -1,20 +1,7 @@
 import DB from "./DB";
 
 describe("class DB", () => {
-  it(`Creates new instance of the class | WHEN: "new" operator is used.`, () => {
-    const db = new DB();
-
-    function createNewDB(db) {
-      if (db) {
-        return true;
-      }
-
-      return false;
-    }
-
-    expect(createNewDB(db)).toBe(true);
-  });
-
+  //Ostatecznie usunąłem test tworzenia nowego obiektu, dlatego, że nie widzę powodu dla którego miałby się nie stworzyć. W przypadku podania argumentów do konstruktora i tak nic złego się nie dzieje.
   describe("insert(data)", () => {
     // scenario
     it("REJECTS: the promise | WHEN: data ID is not a number", async () => {
@@ -22,16 +9,18 @@ describe("class DB", () => {
       const db = new DB();
       // Czy nie brakuje tutaj when?
       // then
-      await expect(
-        db.insert({ id: "not a number", a: 1, b: 2 })
-      ).rejects.toBeTruthy();
+      await expect(db.insert({ id: "not a number", a: 1, b: 2 })).rejects.toBe(
+        "ID can be only number!"
+      );
     });
 
     it("REJECTS: the promise | WHEN: data ID is a duplicate", async () => {
       const db = new DB();
 
       await db.insert({ id: 5, a: 1, b: 2 });
-      await expect(db.insert({ id: 5, a: 2, b: 3 })).rejects.toBeTruthy();
+      await expect(db.insert({ id: 5, a: 2, b: 3 })).rejects.toBe(
+        "ID can't be duplicated!"
+      );
     });
 
     it("REJECTS: the promise | WHEN: there's no data", async () => {
@@ -49,8 +38,8 @@ describe("class DB", () => {
 
     it("PUSHES: data to the array", async () => {
       const db = new DB();
-      await db.insert({ a: 1, b: 2 });
-      expect(db._rows.length > 0).toBeTruthy();
+      await db.insert({a: 1, b: 2 });
+      expect(db._rows.length === 1).toBeTruthy();
     });
   });
 
@@ -58,14 +47,14 @@ describe("class DB", () => {
     it("REJECTS: the promise | WHEN: provided ID doesn't match any item", async () => {
       const db = new DB();
 
-      await expect(db.remove(3)).rejects.toBeTruthy();
+      await expect(db.remove(3)).rejects.toBe("Item not exist!");
     });
 
     it("RESOLVES: the promise | WHEN: provided ID matches an item", async () => {
       const db = new DB();
 
       await db.insert({ id: 5, a: 1, b: 3 });
-      await expect(db.remove(5)).resolves.toBeTruthy();
+      await expect(db.remove(5)).resolves.toBe("Item was removed!");
     });
   });
 
@@ -73,13 +62,15 @@ describe("class DB", () => {
     it(`REJECTS: the promise | WHEN: data ID is not provided`, async () => {
       const db = new DB();
 
-      await expect(db.update("not an ID")).rejects.toBeTruthy();
+      await expect(db.update("not an ID")).rejects.toBe("ID have to be set!");
     });
 
     it(`REJECTS: the promise | WHEN: provided ID doesn't match any item`, async () => {
       const db = new DB();
 
-      await expect(db.update({ id: 1, a: 3, b: 4 })).rejects.toBeTruthy();
+      await expect(db.update({ id: 1, a: 3, b: 4 })).rejects.toBe(
+        "ID not found!"
+      );
     });
 
     it(`UPDATES: item`, async () => {
@@ -123,14 +114,24 @@ describe("class DB", () => {
     it(`REJECTS: the promise | WHEN: provided ID doesn't match any item`, async () => {
       const db = new DB();
 
-      await expect(db.select(1)).rejects.toBeTruthy();
+      await expect(db.select(1)).rejects.toBe("ID not found");
     });
 
     it(`RESOLVES: the promise with selected item as its value | WHEN: provided ID matches any item`, async () => {
+      expect.assertions(2);
+
       const db = new DB();
 
-      await db.insert({ a: 1, b: 2 });
-      await expect(db.select(1)).resolves.toBeTruthy();
+      const newObj = {
+        id: 5,
+        a: 1,
+        b: 2
+      }
+
+      await db.insert(newObj);
+      const insertedObject = await db.select(5);
+      await expect(insertedObject.a).toBe(newObj.a);
+      await expect(insertedObject.b).toBe(newObj.b);
     });
   });
 
