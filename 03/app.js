@@ -1,8 +1,15 @@
 export default function randomNumber(min, max) {
-  if(typeof min !== 'number' || typeof max !== 'number') {
-    throw new TypeError('Arguments have to be numbers.');
+  if(typeof min !== "number" && typeof max !== "number") {
+    throw new TypeError("Arguments has to be numbers.");
   }
-  if(min > max) {
+  if (typeof min !== "number") {
+    throw new TypeError("min has to be a number.");
+  }
+  if (typeof max !== "number") {
+    throw new TypeError("max has to be a number.");
+  }
+
+  if (min > max) {
     throw new RangeError("min can't be larger than max.");
   }
 
