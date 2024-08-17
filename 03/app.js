@@ -12,7 +12,7 @@ export default function randomNumber(min, max) {
 }
 
 function isNumber(number) {
-  return typeof number !== "number";
+  return typeof number !== "number" || Number.isNaN(number);
 }
 
 function renderError(value) {
