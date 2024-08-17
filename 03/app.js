@@ -7,6 +7,8 @@ export default function randomNumber(min, max) {
     renderError("max");
   }
 
+  if (min > max) throw new Error("The min sie bigger than max");
+
   const randomNum = Math.random() * (max - min) + min;
   return randomNum;
 }
