@@ -1,12 +1,20 @@
 export default function randomNumber(min, max) {
-  if (typeof min !== "number") {
-    throw new Error("The min is not a number");
+  if (isNumber(min)) {
+    renderError("min");
   }
 
-  if (typeof max !== "number") {
-    throw new Error("The max is not a number");
+  if (isNumber(max)) {
+    renderError("max");
   }
 
   const randomNum = Math.random() * (max - min) + min;
   return randomNum;
+}
+
+function isNumber(number) {
+  return typeof number !== "number";
+}
+
+function renderError(value) {
+  throw new Error(`The ${value} is not a number`);
 }
