@@ -10,6 +10,9 @@ export default function randomNumber(min, max) {
   if (min > max) throw new Error("The min sie bigger than max");
 
   const randomNum = Math.random() * (max - min) + min;
+
+  if (randomNum > max || randomNum < min)
+    throw new Error("The random number is out of range");
   return randomNum;
 }
 

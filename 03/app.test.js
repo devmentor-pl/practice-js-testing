@@ -15,3 +15,12 @@ it("throw error if max is not a number", () => {
 it("throw error if min > max", () => {
   expect(() => randomNumber(4, 3)).toThrow("The min sie bigger than max");
 });
+
+if (
+  ("throw error if random number is out of range",
+  () => {
+    expect(() =>
+      randomNumber(1, 2).toThrow("The random number is out of range")
+    );
+  })
+);
