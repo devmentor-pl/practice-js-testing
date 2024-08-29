@@ -131,11 +131,18 @@ describe("update", () => {
 
 describe("truncate", () => {
   it("resolve when truncate", async () => {
-    expect.assertions(1);
+    expect.assertions();
     const dataItem = new DB();
     const data = { id: 1, car: "Audi" };
     await dataItem.insert(data);
+
+    let rows = await dataItem.getRows();
+    expect(rows.length).toBe(1);
+
     const result = await dataItem.truncate();
     expect(result).toBe(true);
+
+    rows = await dataItem.getRows();
+    expect(rows.length).toBe(0);
   });
 });
