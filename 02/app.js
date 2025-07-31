@@ -23,6 +23,23 @@ function setRandomPosition(element, error = null) {
 
 function initEventWithError(element, eventName, error) {
     element.addEventListener(eventName, function() {
-        setRandomPosition(this, error);
+        try {
+            setRandomPosition(this, error);
+        } catch (e) {
+            showError(e);
+        }
     })
 }
+
+function showError(err) {
+    const alertEl = document.querySelector('.alert');
+    alertEl.classList.remove('alert--hidden');
+    showErrorMsg(err);
+}
+
+function showErrorMsg(err) {
+    const alertMsg = document.querySelector('.alert__message');
+    alertMsg.innerText = `Przechwycono błąd: ${err.name}`;
+}
+
+// jakieś wskazówki jak się zabrać za zadani dodatkowe? :D
