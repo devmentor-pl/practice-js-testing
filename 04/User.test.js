@@ -6,8 +6,8 @@ describe('User', () => {
         const password = 'pw123456';
         const user = new User({email, password});
 
-        expect(user.getEmail()).toBe(email);
-        expect(user.getPassword()).toBe(password);
+       expect(user.getEmail()).toBe(email);
+       expect(user.getPassword()).toBe(password);
     });
 
     it('should throw exception when email is incorrect', () => {
@@ -17,7 +17,13 @@ describe('User', () => {
 
         expect(createWrongUserData).toThrow();
     });
+    it('should throw exception when password.length < 6', () => {
+        function createWrongUserData() {
+            new User({email: 'devmentor.pl', password: '1234e'});
+        }
 
+        expect(createWrongUserData).toThrow();
+    });
     it('should throw exception when password is incorrect', () => {
         function createWrongUserData() {
             new User({email: 'koder@devmentor.pl', password: '123'});
