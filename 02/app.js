@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', init);
-
+const alertElement =  document.querySelector('.alert--hidden')
 function init() {
     const clickEl = document.querySelector('.error--click');
     const enterEl = document.querySelector('.error--enter');
@@ -9,6 +9,10 @@ function init() {
 
     initEventWithError(clickEl, 'click', new RangeError('Błąd zakresu!'));
     initEventWithError(enterEl, 'mouseenter', new TypeError('Błąd typu!'));
+
+    alertElement.addEventListener('click', function() {
+        this.style.display = 'none';
+    })
 
 }
 
@@ -23,6 +27,16 @@ function setRandomPosition(element, error = null) {
 
 function initEventWithError(element, eventName, error) {
     element.addEventListener(eventName, function() {
-        setRandomPosition(this, error);
+        try{
+        setRandomPosition(this, error);}
+        catch(err){
+            displayError(err.message)
+        }
     })
+}
+function displayError(message){
+    const alertMessage= document.querySelector('.alert__message');
+
+    alertMessage.innerText = message 
+    alertElement.style.display = 'flex'
 }
