@@ -22,7 +22,14 @@ function setRandomPosition(element, error = null) {
 }
 
 function initEventWithError(element, eventName, error) {
-    element.addEventListener(eventName, function() {
-        setRandomPosition(this, error);
+    element.addEventListener(eventName, function () {
+        try {
+            setRandomPosition(this, error);
+        } catch (error) {
+            const badParagraphElement = document.querySelector('.alert__message');
+            const alertEl = badParagraphElement.parentElement.parentElement
+            badParagraphElement.innerText = error
+            alertEl.classList.remove('alert--hidden')
+        }
     })
 }
