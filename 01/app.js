@@ -5,11 +5,13 @@ function getProductList() {
     ]
 }
 
+
 function getTotalPrice(productList) {
-    return productList.reduce( (product, acc) => {
-        return acc + (product.price * product.count);
-    });
+    return productList.reduce( (acc, product) => {
+        const discountedPrice = product.price * (1 - product.discount);
+        return acc + (discountedPrice * product.count);
+    }, 0).toFixed(2);
 }
 
-const totalPrice = getTotalPrice( getProductList() );
+const totalPrice = getTotalPrice(getProductList());
 console.log(totalPrice); // prawidłowa wartość: 390.42 (należy zaaokrąglić do 2 miejsc po przecinku)
