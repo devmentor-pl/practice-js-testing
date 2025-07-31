@@ -23,6 +23,18 @@ function setRandomPosition(element, error = null) {
 
 function initEventWithError(element, eventName, error) {
     element.addEventListener(eventName, function() {
-        setRandomPosition(this, error);
+        try {
+            setRandomPosition(this, error);
+        } catch (error) {
+            const alertEl = document.querySelector('.alert--hidden');
+            const alertText = alertEl.querySelector('.alert__message');
+            
+            alertEl.style.display = 'block';
+            alertText.innerText = error.message;
+            
+            alertEl.addEventListener('click', function() {
+                alertEl.style.display = 'none';
+            })
+        }
     })
-}
+}   
