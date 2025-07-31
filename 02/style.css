@@ -21,7 +21,7 @@ body {
 }
 
 .alert--hidden {
-    display: none;
+     display: none;
 }
 
 .alert__container {
