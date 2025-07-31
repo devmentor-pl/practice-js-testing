@@ -1,3 +1,4 @@
+//DZIAŁA
 export default class DB {
     constructor() {
         this._rows = [];
