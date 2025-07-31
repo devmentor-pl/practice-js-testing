@@ -1,6 +1,6 @@
 export default class DB {
     constructor() {
-        this._rows = [];
+        this._rows = []
     }
 
     insert(data) {
@@ -22,9 +22,9 @@ export default class DB {
                     }, 1);
                 }
 
-                this._rows.push(data);
+                this._rows.push(data)
                 resolve(data)
-            }); 
+            }) 
         });
     }
 
@@ -53,7 +53,7 @@ export default class DB {
                 } else {
                     resolve('Item was remove!');
                 }
-            });
+            })
         });
     }
 
@@ -74,9 +74,9 @@ export default class DB {
                     });
 
                     if(updated) {
-                        resolve(updated);
+                        resolve(updated)
                     } else {
-                        reject('ID not found!');   
+                        reject('ID not found!')  
                     }
                 });
             }
@@ -105,5 +105,9 @@ export default class DB {
         setTimeout(() => {
             callback(...params);
         }, Math.random() * 100);
+    }
+
+    reset() {
+        this._rows = []
     }
 }
