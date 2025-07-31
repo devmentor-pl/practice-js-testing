@@ -10,6 +10,8 @@ function init() {
     initEventWithError(clickEl, 'click', new RangeError('Błąd zakresu!'));
     initEventWithError(enterEl, 'mouseenter', new TypeError('Błąd typu!'));
 
+    closeAlertEvent();
+
 }
 
 function setRandomPosition(element, error = null) {
@@ -21,8 +23,30 @@ function setRandomPosition(element, error = null) {
     }
 }
 
+function showAlert(text) {
+    const modalWnd = document.querySelector('.alert');
+    const msgModal = modalWnd.querySelector('.alert__message');
+
+    modalWnd.classList.remove('alert--hidden');
+    msgModal.textContent = text;
+}
+
 function initEventWithError(element, eventName, error) {
     element.addEventListener(eventName, function() {
-        setRandomPosition(this, error);
+        try {
+            setRandomPosition(this, error);
+        } catch(e) {
+            showAlert(e.message);
+        }
     })
+}
+
+function closeAlertEvent() {
+    const modalWnd = document.querySelector('.alert');
+    modalWnd.addEventListener('click', e => {        
+        if (e.target === e.currentTarget) {
+             modalWnd.classList.add('alert--hidden');
+        }
+    })
+
 }
