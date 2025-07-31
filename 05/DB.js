@@ -4,6 +4,9 @@ export default class DB {
     }
 
     insert(data) {
+        if (typeof data === 'undefined') {
+            throw new Error('this method should contains one argument')
+        };
         return new Promise((resolve, reject) => {
             if(data.id) {
                 if(typeof data.id !== 'number') {
@@ -24,40 +27,55 @@ export default class DB {
 
                 this._rows.push(data);
                 resolve(data)
-            }); 
+            })
         });
     }
 
     select(id) {
+        if (typeof id === 'undefined') {
+            return Promise.reject('Id has to be a number');
+        };
+        if (typeof id !== 'number') {
+            return Promise.reject('Id has to be a number');
+        };
         return new Promise((resolve, reject) => {
             this.async(() => {
                 const [row = null] = this._rows.filter(item => item.id === id);
                 if(row) {
-                    resolve(row);
+                   return resolve(row);
                 } else {
-                    reject('ID not found');
+                   return reject('ID not found');
                 }
             });
         });
     }
 
     remove(id) {
+        if (typeof id === 'undefined') {
+            return Promise.reject('this method should contains one argument');
+        };
+        if (typeof id !== 'number') {
+            return Promise.reject('Id has to be a number');
+        };
         return new Promise((resolve, reject) => {
             this.async(() => {
                 const lengthBeforeFilter = this._rows.length;
                 this._rows = this._rows.filter(item => item.id !== id);
                 const lengthAfterFilter = this._rows.length;
-                
+
                 if(lengthBeforeFilter === lengthAfterFilter) {
-                    reject('Item not exist!');
+                   return reject('Item not exist!');
                 } else {
-                    resolve('Item was remove!');
+                   return resolve('Item was remove!');
                 }
             });
         });
     }
 
     update(data) {
+        if (typeof data === 'undefined') {
+            throw new Error('this method should contains one argument')
+        };
         return new Promise((resolve, reject) => {
             if(!data.id) {
                 this.async(reject, 'ID have to be set!');
@@ -69,14 +87,14 @@ export default class DB {
                             updated = data
                             return updated;
                         }
-            
+
                         return item;
                     });
 
                     if(updated) {
-                        resolve(updated);
+                       return resolve(updated);
                     } else {
-                        reject('ID not found!');   
+                       return reject('ID not found!');
                     }
                 });
             }
@@ -89,7 +107,7 @@ export default class DB {
                 this._rows = [];
                 resolve(true);
             });
-            
+
         })
     }
 
