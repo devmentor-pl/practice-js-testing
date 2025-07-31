@@ -9,7 +9,6 @@ function init() {
 
     initEventWithError(clickEl, 'click', new RangeError('Błąd zakresu!'));
     initEventWithError(enterEl, 'mouseenter', new TypeError('Błąd typu!'));
-
 }
 
 function setRandomPosition(element, error = null) {
@@ -23,6 +22,28 @@ function setRandomPosition(element, error = null) {
 
 function initEventWithError(element, eventName, error) {
     element.addEventListener(eventName, function() {
-        setRandomPosition(this, error);
+        try {
+            setRandomPosition(this, error);
+        } catch(e) {
+            showAlertSection(e);
+        }
     })
+}
+
+function showAlertSection(e) {
+    const alertSection = document.querySelector('.alert--hidden');
+    alertSection.style.display = 'block';
+
+    const alertEl = alertSection.querySelector('.alert__message');
+    alertEl.innerText = e.message;
+
+    alertSection.addEventListener('click', (e) => {
+        if(e.target !== alertEl ) {
+            hideAlertSection(alertSection);
+        }
+    });
+}
+
+function hideAlertSection(section) {
+    section.style.display = 'none';
 }
