@@ -13,16 +13,32 @@ function init() {
 }
 
 function setRandomPosition(element, error = null) {
-    element.style.top = Math.random() * 600 + 'px';
-    element.style.left = Math.random() * 800 + 'px';
 
-    if(error) {
-        throw error;
+    try {
+        element.style.top = Math.random() * 600 + 'px';
+        element.style.left = Math.random() * 800 + 'px';
+
+        if (error) {
+            throw error;
+        }
+    } catch (error) {
+        const alertHidden = document.querySelector('.alert--hidden')
+        alertHidden.style.display = 'block'
+        const alertMessage = alertHidden.querySelector('.alert__message')
+        alertMessage.innerText = error
+
+        alertHidden.addEventListener('click', (e) => {
+            if (e.target.tagName === 'SECTION') {
+                alertHidden.style.display = 'none'
+            }
+        })
     }
+
+
 }
 
 function initEventWithError(element, eventName, error) {
-    element.addEventListener(eventName, function() {
+    element.addEventListener(eventName, function () {
         setRandomPosition(this, error);
     })
 }
