@@ -16,13 +16,25 @@ function setRandomPosition(element, error = null) {
     element.style.top = Math.random() * 600 + 'px';
     element.style.left = Math.random() * 800 + 'px';
 
-    if(error) {
+    if (error) {
         throw error;
     }
 }
 
 function initEventWithError(element, eventName, error) {
-    element.addEventListener(eventName, function() {
-        setRandomPosition(this, error);
+    element.addEventListener(eventName, function () {
+        try {
+            setRandomPosition(this, error);
+        } catch (err) {
+            const alertEl = document.querySelector('.alert');
+
+            document.querySelector('.alert__message').textContent = err.message;
+            alertEl.classList.remove('alert--hidden');
+            alertEl.addEventListener('click', (ev) => {
+                if (ev.target === ev.currentTarget) {
+                    alertEl.classList.add('alert--hidden');
+                }
+            })
+        }
     })
 }
