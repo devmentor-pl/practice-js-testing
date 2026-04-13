@@ -6,15 +6,15 @@ describe('randomNumber', () => {
 	});
 
 	it('throws an error if min is not a number', () => {
-		expect(() => randomNumber('x', 3)).toThrow();
+		expect(() => randomNumber('x', 3)).toThrow('Argument min must be a number');
 	});
 
 	it('throws an error if max is not a number', () => {
-		expect(() => randomNumber(2, 'y')).toThrow();
+		expect(() => randomNumber(2, 'y')).toThrow('Argument max must be a number');
 	});
 
 	it('throws an error if min is greater than max', () => {
-		expect(() => randomNumber(5, 3)).toThrow();
+		expect(() => randomNumber(5, 3)).toThrow('Min cannot be greater than max');
 	});
 
 	it('returns a number within the given range', () => {

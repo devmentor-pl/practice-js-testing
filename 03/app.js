@@ -1,6 +1,9 @@
 function validateRange(min, max) {
-	if (typeof min !== 'number' || typeof max !== 'number') {
-		throw new Error('Arguments must be numbers');
+	if (typeof min !== 'number') {
+		throw new Error('Argument min must be a number');
+	}
+	if (typeof max !== 'number') {
+		throw new Error('Argument max must be a number');
 	}
 
 	if (min > max) {
